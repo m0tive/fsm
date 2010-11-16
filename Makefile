@@ -1,4 +1,4 @@
-SCONS=python scons/scons.py
+SCONS=python scons-local/scons.py
 
 all:
 	@$(SCONS) -Q
