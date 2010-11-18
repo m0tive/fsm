@@ -1,3 +1,6 @@
 [submodule "scons-local"]
 	path = scons-local
 	url = https://github.com/dustyleary/scons-local.git
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/dustyleary/googletest.git

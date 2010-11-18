@@ -17,8 +17,6 @@
 
 namespace cm2
 {
-#pragma pack(push,1)
-
 /// \brief A two dimensional point or vector
 class Vector2
 {
@@ -32,8 +30,6 @@ public:
     ~Vector2();
 
 };
-
-#pragma pack(pop)
 }
 
 #endif
