@@ -2,10 +2,10 @@ SCONSPATH=$(shell python -c 'import os.path; print os.path.normpath("scons-local
 SCONS=python $(SCONSPATH)
 
 all:
-	@$(SCONS) -Q
+	@$(SCONS)
 
 clean:
-	@$(SCONS) -Qc
+	@$(SCONS) -c
 
 %:
 	@$(SCONS) $@
