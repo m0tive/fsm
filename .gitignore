@@ -1,2 +1,5 @@
 *.dblite
 .scon*
+*.log
+*.a
+*.o
