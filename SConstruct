@@ -17,19 +17,16 @@ opt.AddVariables(
     )
 
 HAS_DOXYGEN = False
-
-whichPath = 'which'
+whichPath = 'python %s' % os.path.normpath("tools/which.py")
 
 env = Environment(ENV = os.environ)
 BUILD_CLEAN = env.GetOption('clean')
 opt.Update(env)
 
 if not BUILD_CLEAN:
-
-    # TODO check for which, fall back to python which.py script
-
     def CheckProgram(context, name):
         context.Message( 'Checking for %s...' % name )
+        # TODO append the OS executable path (ie. add ".(exe|bat)" for windows)
         ret = context.TryAction( '%s %s' % (whichPath, name) )[0]
         context.Result( ret )
         return ret;
@@ -51,13 +48,6 @@ if not BUILD_CLEAN:
 
     if not conf.CheckHeader('math.h'):
         print "!! You need 'math.h' to compile this library"
-        Exit(1)
-
-    if not conf.CheckProgram(whichPath) :
-        # TODO try and use the python which command to find the compiler (which we've
-        # already checked )
-
-        print('!! Your environment has no which command.')
         Exit(1)
 
     HAS_DOXYGEN = conf.CheckProgram( 'doxygen' )
