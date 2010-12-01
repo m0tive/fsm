@@ -17,6 +17,8 @@
 
 #include "cm2/Def.hpp"
 
+//------------------------------------------------------------------------------
+
 namespace cm2
 {
 /// \brief A two dimensional point or vector
