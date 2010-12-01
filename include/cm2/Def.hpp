@@ -17,6 +17,12 @@
 
 #include <math.h>
 
+#ifdef USE_MSVC_STDINT
+  #include "cm2/stdint.h"
+#else
+  #include <stdint.h>
+#endif
+
 namespace cm2
 {
     typedef double Real;

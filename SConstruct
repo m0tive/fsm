@@ -50,6 +50,14 @@ if not BUILD_CLEAN:
         print "!! You need 'math.h' to compile this library"
         Exit(1)
 
+    if not conf.CheckHeader('stdint.h'):
+        if env['CC'] == "cl":
+            print "Using local header 'include/cm2/stdint.h'"
+            env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
+        else:
+            print "!! You need 'stdint.h' to compile this library"
+            Exit(1)
+
     HAS_DOXYGEN = conf.CheckProgram( 'doxygen' )
 
     env = conf.Finish()

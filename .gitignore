@@ -2,4 +2,7 @@
 .scon*
 *.log
 *.a
+*.lib
+lib/*.dll
 *.o
+*.obj
