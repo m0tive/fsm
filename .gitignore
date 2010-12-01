@@ -6,3 +6,8 @@
 lib/*.dll
 *.o
 *.obj
+
+*.ncb
+*.sln
+*.suo
+*.vcproj.*
