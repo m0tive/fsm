@@ -15,6 +15,8 @@
 #define _cm2_Vector2_hpp_
 // }}}
 
+#include "cm2/Def.hpp"
+
 namespace cm2
 {
 /// \brief A two dimensional point or vector
@@ -29,6 +31,14 @@ public:
     /// \details Destructor
     ~Vector2();
 
+    union
+    {
+        struct
+        {
+            Real x, y;
+        };
+        Real m_data[2];
+    };
 };
 }
 
