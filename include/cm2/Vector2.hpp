@@ -26,8 +26,17 @@ class Vector2
 {
 public:
     //---------------------------------------
-    /// \details Default constructor
+    /// \details Default constructor.
     Vector2();
+
+    /// \details Copy constructor.
+    /// \param _v - the Vector2 to copy.
+    Vector2( const Vector2& _v );
+
+    /// \details Value constructor.
+    /// \param _x - x-axis component.
+    /// \param _y - y-axis component.
+    Vector2( const Real _x, const Real _y );
 
     //---------------------------------------
     /// \details Destructor
@@ -37,9 +46,10 @@ public:
     {
         struct
         {
-            Real x, y;
+            Real x; //< x-axis component.
+            Real y; //< y-axis component.
         };
-        Real m_data[2];
+        Real data[2]; //< data in array format.
     };
 };
 }

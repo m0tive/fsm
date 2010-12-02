@@ -18,6 +18,6 @@ TEST_F(Vector2Test, DefaultConstructor) {
 
 TEST_F(Vector2Test, DataAccess) {
     v0_.x = 1; v0_.y = 2;
-    ASSERT_DOUBLE_EQ( v0_.x, v0_.m_data[0] );
-    ASSERT_DOUBLE_EQ( v0_.y, v0_.m_data[1] );
+    ASSERT_DOUBLE_EQ( v0_.x, v0_.data[0] );
+    ASSERT_DOUBLE_EQ( v0_.y, v0_.data[1] );
 }
