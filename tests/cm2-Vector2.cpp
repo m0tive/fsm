@@ -4,16 +4,27 @@
 
 class Vector2Test : public testing::Test {
   protected:
-//    Vector2Test() : v1_(1,2), v_2(-0.5,-1) {}
+    Vector2Test() : v1_(1,2), v2_(-0.5,-1) {}
 
     cm2::Vector2 v0_;
-//    cm2::Vector2 v1_;
-//    cm2::Vector2 v2_;
+    cm2::Vector2 v1_;
+    cm2::Vector2 v2_;
 };
 
 TEST_F(Vector2Test, DefaultConstructor) {
     ASSERT_DOUBLE_EQ( 0, v0_.x );
     ASSERT_DOUBLE_EQ( 0, v0_.y );
+}
+
+TEST_F(Vector2Test, CopyConstructor) {
+    cm2::Vector2 v (v1_);
+    ASSERT_DOUBLE_EQ( 1, v1_.x );
+    ASSERT_DOUBLE_EQ( 2, v1_.y );
+}
+
+TEST_F(Vector2Test, Constructor) {
+    ASSERT_DOUBLE_EQ( 1, v1_.x );
+    ASSERT_DOUBLE_EQ( 2, v1_.y );
 }
 
 TEST_F(Vector2Test, DataAccess) {
