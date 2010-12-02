@@ -13,22 +13,36 @@
 namespace cm2
 {
     //---------------------------------------
-    Vector2::Vector2() : x(0), y(0)
+    Vector2::Vector2( const Real _x/* = 0*/, const Real _y/*= 0*/)
+        : x(_x), y(_y)
     {
     }
 
     //---------------------------------------
-    Vector2::Vector2( const Real _x, const Real _y) : x(_x), y(_y)
-    {
-    }
-
-    //---------------------------------------
-    Vector2::Vector2( const Vector2& _v ) : x(_v.x), y(_v.y)
+    Vector2::Vector2( const Vector2& _v )
+        : x(_v.x), y(_v.y)
     {
     }
 
     //---------------------------------------
     Vector2::~Vector2()
     {
+    }
+
+
+    //---------------------------------------
+    const Vector2& Vector2::set( const Vector2& _v )
+    {
+        x = _v.x;
+        y = _v.y;
+        return *this;
+    }
+
+    //---------------------------------------
+    const Vector2& Vector2::set( const Real _x/*= 0*/, const Real _y/*= 0*/ )
+    {
+        x = _x;
+        y = _y;
+        return *this;
     }
 }

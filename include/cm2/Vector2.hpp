@@ -26,21 +26,32 @@ class Vector2
 {
 public:
     //---------------------------------------
-    /// \details Default constructor.
-    Vector2();
-
+    /// \details Constructor.
+    /// \param _x - x-axis component.
+    /// \param _y - y-axis component.
+    Vector2( const Real _x = 0, const Real _y = 0 );
+    //---------------------------------------
     /// \details Copy constructor.
     /// \param _v - the Vector2 to copy.
     Vector2( const Vector2& _v );
 
-    /// \details Value constructor.
-    /// \param _x - x-axis component.
-    /// \param _y - y-axis component.
-    Vector2( const Real _x, const Real _y );
-
     //---------------------------------------
     /// \details Destructor
     ~Vector2();
+
+
+    //---------------------------------------
+    /// \brief Set the vectors value by copying another vector
+    /// \param _v - vector to copy
+    /// \return A copy of the resulting vector
+    const Vector2& set( const Vector2& _v );
+    //---------------------------------------
+    /// \brief Set the vectors value to a given x and y
+    /// \param _x - x-axis component
+    /// \param _y - y-axis component
+    /// \return A copy of the resulting vector
+    const Vector2& set( const Real _x = 0, const Real _y = 0 );
+
 
     union
     {

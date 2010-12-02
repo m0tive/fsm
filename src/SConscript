@@ -8,7 +8,7 @@ env.AppendUnique( CPPPATH = [ '#include' ] )
 if env['DEBUG'] :
     env.AppendUnique( CPPDEFINES = [ '_DEBUG' ] )
     if 'g++' in env['TOOLS'] :
-        env.AppendUnique( CCFLAGS = [ '-g', '-Wall' ] )
+        env.AppendUnique( CCFLAGS = [ '-g', '-Wall', '-Wextra' ] )
     elif 'msvc' in env['TOOLS'] :
         env.AppendUnique( CCFLAGS = [ '/Od', '/Gm', '/RTC1',
             '/W3', '/Wp64', '/Zi', '/EHsc' ] )

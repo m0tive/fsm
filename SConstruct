@@ -4,7 +4,7 @@ import os
 
 opt = Variables();
 opt.AddVariables(
-    BoolVariable('DEBUG', 'Compile a debug version', 'False'),
+    BoolVariable('DEBUG', 'Compile a debug version', 'True'),
     BoolVariable('TEST', 'Compile and run the unit-tests', 'True'),
     )
 

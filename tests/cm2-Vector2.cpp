@@ -39,3 +39,13 @@ TEST_F(Vector2Test, DataAccess)
     ASSERT_DOUBLE_EQ( v0_.y, v0_.data[1] );
 }
 
+//------------------------------------------------------------------------------
+TEST_F(Vector2Test, Set)
+{
+    cm2::Vector2 v = v0_.set(1,2);
+    EXPECT_XY_VECT2_EQ( 1, 2, v0_ );
+    EXPECT_XY_VECT2_EQ( 1, 2, v );
+
+    v1_.set(v2_);
+    EXPECT_VECT2_EQ( v1_, v2_ );
+}
