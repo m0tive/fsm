@@ -13,7 +13,7 @@ def builder_unit_test( target, source, env ):
 opt = Variables();
 opt.AddVariables(
     BoolVariable('DEBUG', 'Compile a debug version', 'False'),
-    BoolVariable('TEST', 'Compile and run the unit-tests', 'False'),
+    BoolVariable('TEST', 'Compile and run the unit-tests', 'True'),
     )
 
 HAS_DOXYGEN = False
@@ -72,5 +72,5 @@ Export( 'global_env' )
 
 SConscript( 'src/SConscript' )
 
-#if env['TEST'] :
-#    SConscript( [ 'test/SConscript', 'gtest/SConscript' ] )
+if env['TEST'] :
+    SConscript( [ 'googletest.SConscript' ] )

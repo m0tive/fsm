@@ -1,0 +1,7 @@
+Import( 'global_env' )
+env = global_env.Clone()
+
+env.AppendUnique( CPPPATH = [ 'googletest', 'googletest/include' ] )
+
+env.Library( '#lib/gtest', 'googletest/src/gtest-all.cc' )
+env.Library( '#lib/gtest_main', [ 'googletest/src/gtest-all.cc', 'googletest/src/gtest_main.cc' ] )
