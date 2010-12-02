@@ -2,14 +2,6 @@
 
 import os
 
-# Defining unit test runner from http://www.scons.org/wiki/UnitTests
-def builder_unit_test( target, source, env ):
-    app = str( source[0].abspath )
-    if os.spawnl( os.P_WAIT, app, app ) == 0:
-        open( str( target[0] ), 'w' ).write( "PASSED\n" )
-    else:
-        return 1
-
 opt = Variables();
 opt.AddVariables(
     BoolVariable('DEBUG', 'Compile a debug version', 'False'),
@@ -73,4 +65,4 @@ Export( 'global_env' )
 SConscript( 'src/SConscript' )
 
 if env['TEST'] :
-    SConscript( [ 'googletest.SConscript' ] )
+    SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
