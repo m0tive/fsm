@@ -1,13 +1,24 @@
-*.dblite
 .scon*
-*.log
-*.a
-*.lib
-lib/*.dll
-*.o
-*.obj
 
+*.log
+*.orig
+
+# build outputs
+*.[oa]
+*.obj
+*.lib
+*.so
+*.dll
+
+# executables
+bin/*
+!bin/*.dll
+
+# visual studio files
 *.ncb
 *.sln
 *.suo
 *.vcproj.*
+
+# test results
+tests/*.passed
