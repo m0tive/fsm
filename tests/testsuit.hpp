@@ -26,11 +26,11 @@ enddef
 enddef
 
 #define ASSERT_VECT2_EQ( _v1, _v2 ) __do \
-    ASSERT_XY_VECT2_EQ( _v1.x, _v1.y, _v2 ); \
+    ASSERT_XY_VECT2_EQ( (_v1).x, (_v1).y, _v2 ); \
 enddef
 
 #define EXPECT_VECT2_EQ( _v1, _v2 ) __do \
-    EXPECT_XY_VECT2_EQ( _v1.x, _v1.y, _v2 ); \
+    EXPECT_XY_VECT2_EQ( (_v1).x, (_v1).y, _v2 ); \
 enddef
 
 

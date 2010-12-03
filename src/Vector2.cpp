@@ -45,4 +45,10 @@ namespace cm2
         y = _y;
         return *this;
     }
+
+    //---------------------------------------
+    Vector2 Vector2::operator +( const Vector2& _rhs ) const
+    {
+        return Vector2( x + _rhs.x, y + _rhs.y );
+    }
 }

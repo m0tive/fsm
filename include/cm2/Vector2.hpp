@@ -52,6 +52,16 @@ public:
     /// \return A copy of the resulting vector
     const Vector2& set( const Real _x = 0, const Real _y = 0 );
 
+    //---------------------------------------
+    /// \brief Create a new Vector2 by adding two Vector2 together
+    /// \param _rhs - the right hand side of the addition
+    /// \return The resulting vector
+    Vector2 operator +( const Vector2& _rhs ) const;
+    //---------------------------------------
+    /// \brief Create a new Vector2 by adding two Vector2 together
+    /// \param _rhs - the right hand side of the addition
+    /// \return The resulting vector
+    Vector2 add( const Vector2& _rhs ) const { return this->operator+(_rhs); }
 
     union
     {

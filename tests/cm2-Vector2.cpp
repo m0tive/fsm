@@ -48,4 +48,22 @@ TEST_F(Vector2Test, Set)
 
     v1_.set(v2_);
     EXPECT_VECT2_EQ( v1_, v2_ );
+
+    v2_.set();
+    EXPECT_XY_VECT2_EQ( 0, 0, v2_ );
+}
+
+//------------------------------------------------------------------------------
+TEST_F(Vector2Test, Add)
+{
+    v0_ = v1_.add( v2_ );
+    EXPECT_XY_VECT2_EQ( 1-0.5, 2-1, v0_ );
+    EXPECT_XY_VECT2_EQ( 1, 2, v1_ );
+    EXPECT_XY_VECT2_EQ( -0.5, -1, v2_ );
+
+    v0_.set();
+    v0_ = v1_ + v2_;
+    EXPECT_XY_VECT2_EQ( 1-0.5, 2-1, v0_ );
+    EXPECT_XY_VECT2_EQ( 1, 2, v1_ );
+    EXPECT_XY_VECT2_EQ( -0.5, -1, v2_ );
 }
