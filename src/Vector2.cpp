@@ -31,14 +31,6 @@ namespace cm2
 
 
     //---------------------------------------
-    const Vector2& Vector2::set( const Vector2& _v )
-    {
-        x = _v.x;
-        y = _v.y;
-        return *this;
-    }
-
-    //---------------------------------------
     const Vector2& Vector2::set( const Real _x/*= 0*/, const Real _y/*= 0*/ )
     {
         x = _x;
@@ -50,5 +42,39 @@ namespace cm2
     Vector2 Vector2::operator +( const Vector2& _rhs ) const
     {
         return Vector2( x + _rhs.x, y + _rhs.y );
+    }
+
+    //---------------------------------------
+    Vector2 Vector2::operator -( const Vector2& _rhs ) const
+    {
+        return Vector2( x - _rhs.x, y - _rhs.y );
+    }
+
+    //---------------------------------------
+    const Vector2& Vector2::operator +=( const Vector2& _rhs )
+    {
+        x += _rhs.x;
+        y += _rhs.y;
+        return *this;
+    }
+
+    //---------------------------------------
+    const Vector2& Vector2::operator -=( const Vector2& _rhs )
+    {
+        x -= _rhs.x;
+        y -= _rhs.y;
+        return *this;
+    }
+
+    //---------------------------------------
+    Vector2 Vector2::operator *( const Real _rhs ) const
+    {
+        return Vector2( x * _rhs, y * _rhs );
+    }
+
+    //---------------------------------------
+    Vector2 Vector2::operator /( const Real _rhs ) const
+    {
+        return Vector2( x / _rhs, y / _rhs );
     }
 }
