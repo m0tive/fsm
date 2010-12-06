@@ -77,4 +77,20 @@ namespace cm2
     {
         return Vector2( x / _rhs, y / _rhs );
     }
+
+    //---------------------------------------
+    const Vector2& Vector2::operator *=( const Real _rhs )
+    {
+        x *= _rhs;
+        y *= _rhs;
+        return *this;
+    }
+
+    //---------------------------------------
+    const Vector2& Vector2::operator /=( const Real _rhs )
+    {
+        x /= _rhs;
+        y /= _rhs;
+        return *this;
+    }
 }

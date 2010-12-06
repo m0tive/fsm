@@ -83,6 +83,9 @@ TEST_F(Vector2Test, ScalarMult)
     v0_ = v1_ * 2;
     EXPECT_XY_VECT2_EQ( 2, 4, v0_ );
     EXPECT_XY_VECT2_EQ( 1, 2, v1_ );
+
+    v1_ *= 2;
+    EXPECT_XY_VECT2_EQ( 2, 4, v1_ );
 }
 
 //---------------------------------------
@@ -91,6 +94,9 @@ TEST_F(Vector2Test, ScalarDivide)
     v0_ = v1_ / 2;
     EXPECT_XY_VECT2_EQ( 0.5, 1, v0_ );
     EXPECT_XY_VECT2_EQ( 1, 2, v1_ );
+
+    v1_ /= 2;
+    EXPECT_XY_VECT2_EQ( 0.5, 1, v1_ );
 }
 
 

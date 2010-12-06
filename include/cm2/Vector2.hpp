@@ -69,7 +69,7 @@ public:
     const Vector2& operator +=( const Vector2& _rhs );
     //---------------------------------------
     /// \brief Vector subtract.
-    /// Subtract another Vector2 to this Vector2.
+    /// Subtract another Vector2 from this Vector2.
     /// \param _rhs - the right hand side of the subtraction
     /// \return A copy of the resulting vector
     const Vector2& operator -=( const Vector2& _rhs );
@@ -79,18 +79,28 @@ public:
     //---------------------------------------
     /// \brief Scalar multiply.
     /// Create a new Vector2 by multiplying this Vector2 by a Real number.
-    /// \param _rhs - the right hand side of the multiplcation
+    /// \param _rhs - the right hand side of the multiplication
     /// \return The resulting vector
     Vector2 operator *( const Real _rhs ) const;
     //---------------------------------------
-    /// \brief Scaler division.
+    /// \brief Scalar division.
     /// Create a new Vector2 by dividing this Vector2 by a Real number.
     /// \param _rhs - the right hand side of the division
     /// \return The resulting vector
     Vector2 operator /( const Real _rhs ) const;
 
-    // Vect *= Real
-    // Vect /= Real
+    //---------------------------------------
+    /// \brief Scalar multiply.
+    /// Multiply each value of this Vector2 by a Real.
+    /// \param _rhs - the right hand side of the multiplication
+    /// \return A copy of the resulting vector
+    const Vector2& operator *=( const Real _rhs );
+    //---------------------------------------
+    /// \brief Scalar divide.
+    /// Divide each value of this Vector2 by a Real.
+    /// \param _rhs - the right hand side of the division
+    /// \return A copy of the resulting vector
+    const Vector2& operator /=( const Real _rhs );
 
     // magnitude
     // magnitudeSquared
