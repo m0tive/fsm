@@ -74,7 +74,12 @@ public:
     /// \return A copy of the resulting vector
     const Vector2& operator -=( const Vector2& _rhs );
 
-    // dot
+    //---------------------------------------
+    /// \brief Vector dot product.
+    /// Calculate the dot product of this Vector2 and another Vector2.
+    /// \param _rhs - the right hand side of the dot product
+    /// \return The dot product
+    Real dot( const Vector2& _rhs ) const;
 
     //---------------------------------------
     /// \brief Scalar multiply.

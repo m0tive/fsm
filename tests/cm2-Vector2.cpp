@@ -99,4 +99,9 @@ TEST_F(Vector2Test, ScalarDivide)
     EXPECT_XY_VECT2_EQ( 0.5, 1, v1_ );
 }
 
-
+//---------------------------------------
+TEST_F(Vector2Test, DotProduct)
+{
+    cm2::Real result = v1_.dot(v2_);
+    EXPECT_DOUBLE_EQ( -2.5, result );
+}

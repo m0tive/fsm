@@ -67,6 +67,12 @@ namespace cm2
     }
 
     //---------------------------------------
+    Real Vector2::dot( const Vector2& _rhs ) const
+    {
+        return x * _rhs.x + y * _rhs.y;
+    }
+
+    //---------------------------------------
     Vector2 Vector2::operator *( const Real _rhs ) const
     {
         return Vector2( x * _rhs, y * _rhs );
