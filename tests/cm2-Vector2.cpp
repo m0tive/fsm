@@ -105,3 +105,13 @@ TEST_F(Vector2Test, DotProduct)
     cm2::Real result = v1_.dot(v2_);
     EXPECT_DOUBLE_EQ( -2.5, result );
 }
+
+//---------------------------------------
+TEST_F(Vector2Test, Magnitude)
+{
+    v1_.set(3,4);
+    cm2::Real resA = v1_.magnitudeSquared();
+    EXPECT_DOUBLE_EQ( 25, resA );
+    EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
+}
+

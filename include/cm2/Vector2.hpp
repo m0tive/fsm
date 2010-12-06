@@ -108,7 +108,7 @@ public:
     const Vector2& operator /=( const Real _rhs );
 
     // magnitude
-    // magnitudeSquared
+    Real magnitudeSquared() const;
     // normalise
 
     union

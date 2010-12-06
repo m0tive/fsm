@@ -99,4 +99,10 @@ namespace cm2
         y /= _rhs;
         return *this;
     }
+
+    //---------------------------------------
+    Real Vector2::magnitudeSquared() const
+    {
+        return x * x + y * y;
+    }
 }
