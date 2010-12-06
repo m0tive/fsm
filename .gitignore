@@ -10,6 +10,7 @@
 *.lib
 *.so
 *.dll
+obj/*
 
 # executables
 bin/*
@@ -20,6 +21,7 @@ bin/*
 *.sln
 *.suo
 *.vcproj.*
+*.[ip]db
 
 # test results
 tests/*.passed
