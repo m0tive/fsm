@@ -17,7 +17,7 @@ else :
     if 'g++' in env['TOOLS'] :
         env.AppendUnique( CCFLAGS = [ '-O3', '-funroll-loops', '-ffast-math' ] )
     elif 'msvc' in env['TOOLS'] :
-        env.AppendUnique( CCFLAGS = [ '/Ox' ] )
+        env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc' ] )
 
 src_files = [ 'Vector2.cpp' ]
 

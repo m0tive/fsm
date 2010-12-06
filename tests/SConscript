@@ -17,6 +17,9 @@ env.Append( BUILDERS = { 'Test' : bld } )
 env.AppendUnique( CPPPATH = [ '#googletest/include', '#include' ] )
 env.AppendUnique( LIBS = [ 'gtest_main', 'cm2' ] )
 
+if 'msvc' in env['TOOLS'] :
+    env.AppendUnique( CCFLAGS = [ '/EHsc' ] )
+
 test_files = [ 'cm2-Vector2.cpp']
 
 unittest = env.Program( '#bin/test', test_files )
