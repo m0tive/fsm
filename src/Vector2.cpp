@@ -101,6 +101,12 @@ namespace cm2
     }
 
     //---------------------------------------
+    Real Vector2::magnitude() const
+    {
+      return cm2::sqrt( x * x + y * y );
+    }
+
+    //---------------------------------------
     Real Vector2::magnitudeSquared() const
     {
         return x * x + y * y;

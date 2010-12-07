@@ -113,5 +113,9 @@ TEST_F(Vector2Test, Magnitude)
     cm2::Real resA = v1_.magnitudeSquared();
     EXPECT_DOUBLE_EQ( 25, resA );
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
+
+    cm2::Real resB = v1_.magnitude();
+    EXPECT_DOUBLE_EQ( 5, resB );
+    EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 }
 

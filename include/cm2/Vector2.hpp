@@ -107,8 +107,15 @@ public:
     /// \return A copy of the resulting vector
     const Vector2& operator /=( const Real _rhs );
 
-    // magnitude
+    /// \brief Vector magnitude.
+    /// Calculate the length of this Vector2.
+    /// \return The magnitude
+    Real magnitude() const;
+    /// \brief Vector magnitude squared.
+    /// Calculate the length of this Vector2 but skip the final cm2::sqrt
+    /// \return The magnitude squared
     Real magnitudeSquared() const;
+
     // normalise
 
     union
