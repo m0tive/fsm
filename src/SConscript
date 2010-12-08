@@ -19,6 +19,7 @@ else :
     elif 'msvc' in env['TOOLS'] :
         env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc' ] )
 
-src_files = [ 'Vector2.cpp' ]
+src_files = [ 'Def.cpp',
+              'Vector2.cpp' ]
 
 env.Library( '#lib/cm2', src_files )
