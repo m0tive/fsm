@@ -38,7 +38,7 @@ namespace cm2
     inline Real pow( const Real r1, const Real r2 ) { return ::pow( r1, r2 ); }
     inline Real sqrt( const Real r ) { return ::sqrt(r); }
 
-    extern Real g_realEpsilon;
+    extern const Real g_realEpsilon;
     Real realCompare( const Real _a, const Real _b );
 }
 
