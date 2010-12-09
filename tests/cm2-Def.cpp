@@ -21,3 +21,10 @@ TEST(DefTest, RealCompare)
     EXPECT_FALSE( cm2::realCompare( a, 3.001) );
     EXPECT_FALSE( cm2::realCompare( a, 2.999) );
 }
+
+//---------------------------------------
+TEST(DefTest, RealSqrt)
+{
+    EXPECT_REAL_EQ( 5, cm2::sqrt(25.0) );
+}
+

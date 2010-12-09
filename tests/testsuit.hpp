@@ -15,14 +15,17 @@
 
 //------------------------------------------------------------------------------
 
+#define ASSERT_REAL_EQ( _x, _y ) ASSERT_DOUBLE_EQ( _x, _y )
+#define EXPECT_REAL_EQ( _x, _y ) EXPECT_DOUBLE_EQ( _x, _y )
+
 #define ASSERT_XY_VECT2_EQ( _x, _y, _v ) __do \
-    ASSERT_DOUBLE_EQ( _x, _v.x ); \
-    ASSERT_DOUBLE_EQ( _y, _v.y ); \
+    ASSERT_REAL_EQ( _x, _v.x ); \
+    ASSERT_REAL_EQ( _y, _v.y ); \
 enddef
 
 #define EXPECT_XY_VECT2_EQ( _x, _y, _v ) __do \
-    EXPECT_DOUBLE_EQ( _x, _v.x ); \
-    EXPECT_DOUBLE_EQ( _y, _v.y ); \
+    EXPECT_REAL_EQ( _x, _v.x ); \
+    EXPECT_REAL_EQ( _y, _v.y ); \
 enddef
 
 #define ASSERT_VECT2_EQ( _v1, _v2 ) __do \

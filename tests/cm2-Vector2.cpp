@@ -35,8 +35,8 @@ TEST_F(Vector2Test, Constructor)
 TEST_F(Vector2Test, DataAccess)
 {
     v0_.x = 1; v0_.y = 2;
-    ASSERT_DOUBLE_EQ( v0_.x, v0_.data[0] );
-    ASSERT_DOUBLE_EQ( v0_.y, v0_.data[1] );
+    ASSERT_REAL_EQ( v0_.x, v0_.data[0] );
+    ASSERT_REAL_EQ( v0_.y, v0_.data[1] );
 }
 
 
@@ -103,7 +103,7 @@ TEST_F(Vector2Test, ScalarDivide)
 TEST_F(Vector2Test, DotProduct)
 {
     cm2::Real result = v1_.dot(v2_);
-    EXPECT_DOUBLE_EQ( -2.5, result );
+    EXPECT_REAL_EQ( -2.5, result );
 }
 
 //---------------------------------------
@@ -111,11 +111,11 @@ TEST_F(Vector2Test, Magnitude)
 {
     v1_.set(3,4);
     cm2::Real resA = v1_.magnitudeSquared();
-    EXPECT_DOUBLE_EQ( 25, resA );
+    EXPECT_REAL_EQ( 25, resA );
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 
     cm2::Real resB = v1_.magnitude();
-    EXPECT_DOUBLE_EQ( 5, resB );
+    EXPECT_REAL_EQ( 5, resB );
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 }
 
