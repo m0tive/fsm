@@ -50,6 +50,10 @@ if not BUILD_CLEAN:
             print "!! You need 'stdint.h' to compile this library"
             Exit(1)
 
+    if not conf.CheckHeader('float.h'):
+        print "!! You need 'float.h' to compile this library"
+        Exit(1)
+
     HAS_DOXYGEN = conf.CheckProgram( 'doxygen' )
 
     env = conf.Finish()
