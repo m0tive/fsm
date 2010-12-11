@@ -5,8 +5,8 @@
 //---------------------------------------
 TEST(DefTest, RealEpsilon)
 {
-    EXPECT_TRUE( (1.0 + cm2::g_realEpsilon*0.5) == 1.0 );
-    EXPECT_FALSE( (1.0 + cm2::g_realEpsilon) == 1.0 );
+    EXPECT_EQ( 1.0, 1.0 + cm2::g_realEpsilon * 0.5 );
+    EXPECT_NE( 1.0, 1.0 + cm2::g_realEpsilon );
 }
 
 //---------------------------------------
