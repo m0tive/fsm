@@ -20,6 +20,13 @@ TEST(DefTest, RealCompare)
 }
 
 //---------------------------------------
+TEST(DefTest, RealPow)
+{
+    EXPECT_REAL_EQ( 25, cm2::pow(5.0,2.0) );
+    EXPECT_REAL_EQ( 25, cm2::pow(-5.0,2.0) );
+}
+
+//---------------------------------------
 TEST(DefTest, RealSqrt)
 {
     EXPECT_REAL_EQ( 5, cm2::sqrt(25.0) );
