@@ -20,6 +20,7 @@ else :
         env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc' ] )
 
 src_files = [ 'Def.cpp',
-              'Vector2.cpp' ]
+              'Vector2.cpp',
+              'Vector3.cpp' ]
 
 env.Library( '#lib/cm2', src_files )
