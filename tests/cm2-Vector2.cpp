@@ -22,7 +22,10 @@ TEST_F(Vector2Test, DefaultConstructor)
 TEST_F(Vector2Test, CopyConstructor)
 {
     cm2::Vector2 v (v1_);
-    ASSERT_VECT2_EQ( v1_, v );
+    // the copy contructor is used in the assert_vect2_eq test
+    // so we need to use the basic comparison...
+    ASSERT_REAL_EQ( v1_.x, v.x );
+    ASSERT_REAL_EQ( v1_.y, v.y );
 }
 
 //---------------------------------------
