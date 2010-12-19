@@ -70,3 +70,9 @@ SConscript( 'src/SConscript' )
 
 if env['TEST'] :
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
+
+if HAS_DOXYGEN :
+    doxygen_sources = Glob( 'include/cm2/*.hpp')
+    doxygen_sources.extend( Glob( 'Doxyfile' ) )
+    env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
+

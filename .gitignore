@@ -25,3 +25,6 @@ bin/*
 
 # test results
 tests/*.passed
+
+# docs
+docs/html
