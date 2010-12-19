@@ -35,3 +35,22 @@ TEST_F(Vector3Test, Constructor)
     ASSERT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
 }
 
+//---------------------------------------
+TEST_F(Vector3Test, DataAccess)
+{
+    v0_.x = 1; v0_.y = 2; v0_.z = 4;
+    ASSERT_REAL_EQ( 1, v0_.data[0] );
+    ASSERT_REAL_EQ( 2, v0_.data[1] );
+    ASSERT_REAL_EQ( 4, v0_.data[2] );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, Set)
+{
+    v0_ = v1_.set(1,2,4);
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+    EXPECT_VECT3_EQ( v1_, v0_ );
+
+    v2_.set();
+    EXPECT_XYZ_VECT3_EQ( 0, 0, 0, v2_ );
+}

@@ -30,4 +30,13 @@ namespace cm2
     {
     }
 
+    //---------------------------------------
+    const Vector3& Vector3::set(
+            const Real _x/*= 0*/, const Real _y/*= 0*/, const Real _z/*= 0*/ )
+    {
+        x = _x;
+        y = _y;
+        z = _z;
+        return *this;
+    }
 }
