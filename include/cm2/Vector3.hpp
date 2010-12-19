@@ -25,14 +25,31 @@ namespace cm2
 class Vector3
 {
 public:
+    //---------------------------------------
+    /// \details Default constructor.
+    /// \param _x - x-axis component.
+    /// \param _y - y-axis component.
+    /// \param _z - z-axis component.
+    Vector3( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
+    //---------------------------------------
+    /// \details Copy constructor.
+    /// \param _v - the Vector3 to copy.
+    Vector3( const Vector3& _v );
+
+    //---------------------------------------
+    /// \details Destructor
+    ~Vector3();
+
+
     union
     {
         struct
         {
             Real x; //< x-axis component.
             Real y; //< y-axis component.
+            Real z; //< z-axis component.
         };
-        Real data[2]; //< data in array format.
+        Real data[3]; //< data in array format.
     };
 };
 }
