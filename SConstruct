@@ -5,17 +5,28 @@ import os
 opt = Variables();
 opt.AddVariables(
     BoolVariable('DEBUG', 'Compile a debug version', 'True'),
-    BoolVariable('TEST', 'Compile and run the unit-tests', 'True'),
     )
 
 HAS_DOXYGEN = False
 whichPath = 'python %s' % os.path.normpath("tools/which.py")
 
+AddOption("--test",
+          action="store_true", dest="run_tests", default=True,
+          help="Compile and run unit tests [default]")
+AddOption("--no-test",
+          action="store_false", dest="run_tests",
+          help="Don't compile and run unit tests")
+AddOption("--build-debug",
+          action="store_true", dest="debug",
+          help="Compile with debug information and warnings")
+AddOption("--no-debug",
+          action="store_false", dest="debug", default=False,
+          help="Compile without debug information and warnings [default]")
+
 env = Environment(ENV = os.environ)
-BUILD_CLEAN = env.GetOption('clean')
 opt.Update(env)
 
-if not BUILD_CLEAN:
+if not GetOption('clean') and not GetOption('help'):
     def CheckProgram(context, name):
         context.Message( 'Checking for %s...' % name )
         # TODO append the OS executable path (ie. add ".(exe|bat)" for windows)
@@ -68,7 +79,7 @@ Export( 'global_env' )
 
 SConscript( 'src/SConscript' )
 
-if env['TEST'] :
+if GetOption('run_tests') :
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
 if HAS_DOXYGEN :
