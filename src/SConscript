@@ -5,7 +5,7 @@ Import('global_env')
 env = global_env.Clone()
 env.AppendUnique( CPPPATH = [ '#include' ] )
 
-if env['DEBUG'] :
+if GetOption('debug') :
     env.AppendUnique( CPPDEFINES = [ '_DEBUG' ] )
     if 'g++' in env['TOOLS'] :
         env.AppendUnique( CCFLAGS = [ '-g', '-Wall', '-Wextra' ] )

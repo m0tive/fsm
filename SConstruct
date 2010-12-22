@@ -2,11 +2,6 @@
 
 import os
 
-opt = Variables();
-opt.AddVariables(
-    BoolVariable('DEBUG', 'Compile a debug version', 'True'),
-    )
-
 HAS_DOXYGEN = False
 whichPath = 'python %s' % os.path.normpath("tools/which.py")
 
@@ -16,15 +11,29 @@ AddOption("--test",
 AddOption("--no-test",
           action="store_false", dest="run_tests",
           help="Don't compile and run unit tests")
-AddOption("--build-debug",
+AddOption("--debug-build",
           action="store_true", dest="debug",
           help="Compile with debug information and warnings")
-AddOption("--no-debug",
+AddOption("--release",
           action="store_false", dest="debug", default=False,
           help="Compile without debug information and warnings [default]")
+AddOption("--doxygen",
+          action="store_true", dest="run_doxygen", default=True,
+          help="Generate the reference documents [defualt]")
+AddOption("--no-doxygen",
+          action="store_false", dest="run_doxygen",
+          help="Don't generate the reference documents")
+AddOption("--configure",
+          action="store_true", dest="run_config", default=False,
+          help="Run the build configuration process and quit")
 
 env = Environment(ENV = os.environ)
-opt.Update(env)
+
+var= Variables();
+var.AddVariables(
+    BoolVariable('HAS_DOXYGEN', '', False),
+    )
+var.Update(env)
 
 if not GetOption('clean') and not GetOption('help'):
     def CheckProgram(context, name):
@@ -55,7 +64,7 @@ if not GetOption('clean') and not GetOption('help'):
 
     if not conf.CheckHeader('stdint.h'):
         if env['CC'] == "cl":
-            print "Using local header 'include/cm2/stdint.h'"
+            print "\tUsing local header 'include/cm2/stdint.h'"
             env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
         else:
             print "!! You need 'stdint.h' to compile this library"
@@ -65,24 +74,28 @@ if not GetOption('clean') and not GetOption('help'):
         print "!! You need 'float.h' to compile this library"
         Exit(1)
 
-    HAS_DOXYGEN = conf.CheckProgram( 'doxygen' )
+    if GetOption('run_doxygen'):
+        if conf.CheckProgram( 'doxygen' ):
+            env['HAS_DOXYGEN'] = True
+        else:
+            print "\tCannot find doxygen on your system, make sure it is in your PATH"
 
     env = conf.Finish()
 
     env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
     env.AppendUnique( LIBPATH = [ '#lib' ] )
 
-# end ( not BUILD_CLEAN )
+# end ( not GetOption('clean') and not GetOption('help') )
 
 global_env = env
 Export( 'global_env' )
 
 SConscript( 'src/SConscript' )
 
-if GetOption('run_tests') :
+if GetOption('run_tests') or GetOption('clean'):
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
-if HAS_DOXYGEN :
+if env['HAS_DOXYGEN'] :
     doxygen_sources = Glob( 'include/cm2/*.hpp')
     doxygen_sources.extend( Glob( 'Doxyfile' ) )
     env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
