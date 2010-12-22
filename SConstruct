@@ -2,9 +2,6 @@
 
 import os
 
-HAS_DOXYGEN = False
-whichPath = 'python %s' % os.path.normpath("tools/which.py")
-
 AddOption("--test",
           action="store_true", dest="run_tests", default=True,
           help="Compile and run unit tests [default]")
@@ -32,6 +29,7 @@ env = Environment(ENV = os.environ)
 var= Variables();
 var.AddVariables(
     BoolVariable('HAS_DOXYGEN', '', False),
+    ('WHICH_PATH', '', 'python %s' % os.path.normpath("tools/which.py")),
     )
 var.Update(env)
 
@@ -39,7 +37,7 @@ if not GetOption('clean') and not GetOption('help'):
     def CheckProgram(context, name):
         context.Message( 'Checking for %s...' % name )
         # TODO append the OS executable path (ie. add ".(exe|bat)" for windows)
-        ret = context.TryAction( '%s %s' % (whichPath, name) )[0]
+        ret = context.TryAction( '%s %s' % (env['WHICH_PATH'], name) )[0]
         context.Result( ret )
         return ret;
 
