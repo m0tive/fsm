@@ -109,9 +109,6 @@ if reconfig :
 
     env = conf.Finish()
 
-    env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
-    env.AppendUnique( LIBPATH = [ '#lib' ] )
-
     env['CONFIG_FROM_FILE'] = True
     env['CONFIG_PLATFORM'] = env['PLATFORM']
     vars.Save('build-setup.conf', env)

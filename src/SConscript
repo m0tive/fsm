@@ -4,6 +4,8 @@ Import('global_env')
 
 env = global_env.Clone()
 env.AppendUnique( CPPPATH = [ '#include' ] )
+env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
+env.AppendUnique( LIBPATH = [ '#lib' ] )
 
 if env['USE_MSVC_STDINT']:
     env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
