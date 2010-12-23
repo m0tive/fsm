@@ -55,6 +55,14 @@ TEST_F(Vector2Test, Set)
 }
 
 //---------------------------------------
+TEST_F(Vector2Test, Copy)
+{
+    v0_ = v1_ = v2_;
+    EXPECT_VECT2_EQ( v2_, v1_ );
+    EXPECT_VECT2_EQ( v1_, v0_ );
+}
+
+//---------------------------------------
 TEST_F(Vector2Test, Add)
 {
     v0_ = v1_ + v2_;

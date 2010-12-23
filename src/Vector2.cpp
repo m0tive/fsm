@@ -39,6 +39,14 @@ namespace cm2
     }
 
     //---------------------------------------
+    const Vector2& Vector2::operator =( const Vector2& _rhs )
+    {
+        x = _rhs.x;
+        y = _rhs.y;
+        return *this;
+    }
+
+    //---------------------------------------
     Vector2 Vector2::operator +( const Vector2& _rhs ) const
     {
         return Vector2( x + _rhs.x, y + _rhs.y );
