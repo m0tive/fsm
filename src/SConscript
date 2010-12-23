@@ -5,6 +5,9 @@ Import('global_env')
 env = global_env.Clone()
 env.AppendUnique( CPPPATH = [ '#include' ] )
 
+if env['USE_MSVC_STDINT']:
+    env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
+
 if GetOption('debug') :
     env.AppendUnique( CPPDEFINES = [ '_DEBUG' ] )
     if 'g++' in env['TOOLS'] :

@@ -3,6 +3,9 @@ import os
 Import( 'global_env' )
 env = global_env.Clone()
 
+if env['USE_MSVC_STDINT']:
+    env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
+
 # Defining unit test runner from http://www.scons.org/wiki/UnitTests
 def builder_unit_test( target, source, env ):
     app = str( source[0].abspath )

@@ -21,19 +21,42 @@ AddOption("--no-doxygen",
           action="store_false", dest="run_doxygen",
           help="Don't generate the reference documents")
 AddOption("--configure",
-          action="store_true", dest="run_config", default=False,
+          action="store_true", dest="run_config_and_quit", default=False,
           help="Run the build configuration process and quit")
+
+#-------------------------------------------------------------------------------
 
 env = Environment(ENV = os.environ)
 
-var= Variables();
-var.AddVariables(
-    BoolVariable('HAS_DOXYGEN', '', False),
+vars = Variables('build-setup.conf');
+vars.AddVariables(
+    BoolVariable('CONFIG_FROM_FILE', '', False),
+    ('CONFIG_PLATFORM', '', ''),
     ('WHICH_PATH', '', 'python %s' % os.path.normpath("tools/which.py")),
+    BoolVariable('USE_MSVC_STDINT', '', False),
+    BoolVariable('HAS_DOXYGEN', '', False),
     )
-var.Update(env)
+vars.Update(env)
 
-if not GetOption('clean') and not GetOption('help'):
+#-------------------------------------------------------------------------------
+
+reconfig = True
+
+if GetOption('clean') or GetOption('help'):
+    reconfig = False
+else:
+    if GetOption('run_config_and_quit'):
+        reconfig = True
+    elif env['CONFIG_FROM_FILE']:
+        if env['CONFIG_PLATFORM'] == env['PLATFORM']:
+            reconfig = False
+        else:
+            print "Configuration file is for a different platform."
+            reconfig = True
+
+
+if reconfig :
+    print 'Configuring...'
     def CheckProgram(context, name):
         context.Message( 'Checking for %s...' % name )
         # TODO append the OS executable path (ie. add ".(exe|bat)" for windows)
@@ -60,13 +83,18 @@ if not GetOption('clean') and not GetOption('help'):
         print "!! You need 'math.h' to compile this library"
         Exit(1)
 
+    # TODO. move this into a macro in the header file
+    # A user of the library shouldn't have to manually define USE_MSVC_STDINT
+    # possible add the option to override 
     if not conf.CheckHeader('stdint.h'):
         if env['CC'] == "cl":
             print "\tUsing local header 'include/cm2/stdint.h'"
-            env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
+            env['USE_MSVC_STDINT'] = True
         else:
             print "!! You need 'stdint.h' to compile this library"
             Exit(1)
+    else:
+        env['USE_MSVC_STDINT'] = False
 
     if not conf.CheckHeader('float.h'):
         print "!! You need 'float.h' to compile this library"
@@ -77,13 +105,23 @@ if not GetOption('clean') and not GetOption('help'):
             env['HAS_DOXYGEN'] = True
         else:
             print "\tCannot find doxygen on your system, make sure it is in your PATH"
+            env['HAS_DOXYGEN'] = False
 
     env = conf.Finish()
 
     env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
     env.AppendUnique( LIBPATH = [ '#lib' ] )
 
-# end ( not GetOption('clean') and not GetOption('help') )
+    env['CONFIG_FROM_FILE'] = True
+    env['CONFIG_PLATFORM'] = env['PLATFORM']
+    vars.Save('build-setup.conf', env)
+
+    if GetOption('run_config_and_quit'):
+        Exit(0)
+
+# end reconfig
+
+#-------------------------------------------------------------------------------
 
 global_env = env
 Export( 'global_env' )
@@ -93,7 +131,7 @@ SConscript( 'src/SConscript' )
 if GetOption('run_tests') or GetOption('clean'):
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
-if env['HAS_DOXYGEN'] :
+if GetOption('run_doxygen') and env['HAS_DOXYGEN'] :
     doxygen_sources = Glob( 'include/cm2/*.hpp')
     doxygen_sources.extend( Glob( 'Doxyfile' ) )
     env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
