@@ -50,6 +50,39 @@ public:
     /// \return A copy of the resulting vector
     const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
 
+    //---------------------------------------
+    /// \brief Vector assignment.
+    /// Copy the value of another Vector3 into this vector
+    /// \param _rhs - the vector to copy
+    /// \return A copy of the resulting vector
+    const Vector3& operator =( const Vector3& _rhs );
+
+    //---------------------------------------
+    /// \brief Vector add.
+    /// Create a new Vector3 by adding two Vector3 together
+    /// \param _rhs - the right hand side of the addition
+    /// \return The resulting vector
+    Vector3 operator +( const Vector3& _rhs ) const;
+    //---------------------------------------
+    /// \brief Vector subtract.
+    /// Create a new Vector3 by subtracted one Vector3 from anther.
+    /// \param _rhs - the right hand side of the subtraction
+    /// \return The resulting vector
+    Vector3 operator -( const Vector3& _rhs ) const;
+
+    //---------------------------------------
+    /// \brief Scalar multiply.
+    /// Create a new Vector3 by multiplying this Vector3 by a Real number.
+    /// \param _rhs - the right hand side of the multiplication
+    /// \return The resulting vector
+    Vector3 operator *( const Real _rhs ) const;
+    //---------------------------------------
+    /// \brief Scalar division.
+    /// Create a new Vector3 by dividing this Vector3 by a Real number.
+    /// \param _rhs - the right hand side of the division
+    /// \return The resulting vector
+    Vector3 operator /( const Real _rhs ) const;
+
     union
     {
         struct

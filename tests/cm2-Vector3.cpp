@@ -54,3 +54,45 @@ TEST_F(Vector3Test, Set)
     v2_.set();
     EXPECT_XYZ_VECT3_EQ( 0, 0, 0, v2_ );
 }
+
+//---------------------------------------
+TEST_F(Vector3Test, Copy)
+{
+    v0_ = v1_ = v2_;
+    EXPECT_VECT3_EQ( v2_, v1_ );
+    EXPECT_VECT3_EQ( v1_, v0_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, Add)
+{
+    v0_ = v1_ + v2_;
+    EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, Subtract)
+{
+    v0_ = v1_ - v2_;
+    EXPECT_XYZ_VECT3_EQ( 1.5, 3, 6, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, ScalarMult)
+{
+    v0_ = v1_ * 2;
+    EXPECT_XYZ_VECT3_EQ( 2, 4, 8, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, ScalarDivide)
+{
+    v0_ = v1_ / 2;
+    EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+}

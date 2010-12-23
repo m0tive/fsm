@@ -39,4 +39,37 @@ namespace cm2
         z = _z;
         return *this;
     }
+
+    //---------------------------------------
+    const Vector3& Vector3::operator =( const Vector3& _rhs )
+    {
+        x = _rhs.x;
+        y = _rhs.y;
+        z = _rhs.z;
+        return *this;
+    }
+
+    //---------------------------------------
+    Vector3 Vector3::operator +( const Vector3& _rhs ) const
+    {
+        return Vector3( x + _rhs.x, y + _rhs.y, z + _rhs.z );
+    }
+
+    //---------------------------------------
+    Vector3 Vector3::operator -( const Vector3& _rhs ) const
+    {
+        return Vector3( x - _rhs.x, y - _rhs.y, z - _rhs.z );
+    }
+
+    //---------------------------------------
+    Vector3 Vector3::operator *( const Real _rhs ) const
+    {
+        return Vector3( x * _rhs, y * _rhs, z * _rhs );
+    }
+
+    //---------------------------------------
+    Vector3 Vector3::operator /( const Real _rhs ) const
+    {
+        return Vector3( x / _rhs, y / _rhs, z / _rhs );
+    }
 }
