@@ -17,7 +17,20 @@
 
 #include <math.h>
 
-#ifdef USE_MSVC_STDINT
+#ifdef CM2_USE_LOCAL_STDINT
+  #ifdef CM2_USE_MSC_STDINT
+      #undef CM2_USE_MSC_STDINT
+  #endif
+#else
+  #ifndef CM2_USE_MSC_STDINT
+    #if defined(_MSC_VER) && _MSC_VER < 1600
+      #define CM2_USE_MSC_STDINT
+    #endif
+  #endif
+#endif
+
+
+#ifdef CM2_USE_MSC_STDINT
   #include "cm2/stdint.h"
 #else
   #include <stdint.h>

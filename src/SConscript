@@ -7,8 +7,8 @@ env.AppendUnique( CPPPATH = [ '#include' ] )
 env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
 env.AppendUnique( LIBPATH = [ '#lib' ] )
 
-if env['USE_MSVC_STDINT']:
-    env.AppendUnique( CPPDEFINES = [ 'USE_MSVC_STDINT' ] )
+if env['USE_MSC_STDINT']:
+    env.AppendUnique( CPPDEFINES = [ 'CM2_USE_MSC_STDINT' ] )
 
 if GetOption('debug') :
     env.AppendUnique( CPPDEFINES = [ '_DEBUG' ] )

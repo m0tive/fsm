@@ -16,10 +16,16 @@ AddOption("--release",
           help="Compile without debug information and warnings [default]")
 AddOption("--doxygen",
           action="store_true", dest="run_doxygen", default=True,
-          help="Generate the reference documents [defualt]")
+          help="Generate the reference documents [default]")
 AddOption("--no-doxygen",
           action="store_false", dest="run_doxygen",
           help="Don't generate the reference documents")
+AddOption("--tags",
+          action="store_true", dest="run_ctags",
+          help="Generate tags")
+AddOption("--no-tags",
+          action="store_false", dest="run_ctags", default=False,
+          help="Don't generate tags [default]")
 AddOption("--configure",
           action="store_true", dest="run_config_and_quit", default=False,
           help="Run the build configuration process and quit")
@@ -33,8 +39,9 @@ vars.AddVariables(
     BoolVariable('CONFIG_FROM_FILE', '', False),
     ('CONFIG_PLATFORM', '', ''),
     ('WHICH_PATH', '', 'python %s' % os.path.normpath("tools/which.py")),
-    BoolVariable('USE_MSVC_STDINT', '', False),
+    BoolVariable('USE_MSC_STDINT', '', False),
     BoolVariable('HAS_DOXYGEN', '', False),
+    BoolVariable('HAS_CTAGS', '', False),
     )
 vars.Update(env)
 
@@ -83,18 +90,15 @@ if reconfig :
         print "!! You need 'math.h' to compile this library"
         Exit(1)
 
-    # TODO. move this into a macro in the header file
-    # A user of the library shouldn't have to manually define USE_MSVC_STDINT
-    # possible add the option to override 
     if not conf.CheckHeader('stdint.h'):
         if env['CC'] == "cl":
             print "\tUsing local header 'include/cm2/stdint.h'"
-            env['USE_MSVC_STDINT'] = True
+            env['USE_MSC_STDINT'] = True
         else:
             print "!! You need 'stdint.h' to compile this library"
             Exit(1)
     else:
-        env['USE_MSVC_STDINT'] = False
+        env['USE_MSC_STDINT'] = False
 
     if not conf.CheckHeader('float.h'):
         print "!! You need 'float.h' to compile this library"
@@ -105,7 +109,16 @@ if reconfig :
             env['HAS_DOXYGEN'] = True
         else:
             print "\tCannot find doxygen on your system, make sure it is in your PATH"
+            print "\tSkipping doxygen..."
             env['HAS_DOXYGEN'] = False
+
+    if GetOption('run_ctags'):
+        if conf.CheckProgram( 'ctags' ):
+            env['HAS_CTAGS'] = True
+        else:
+            print "\tCannot find ctags on your system, make sure it is in your PATH"
+            print "\tSkipping tags..."
+            env['HAS_CTAGS'] = False
 
     env = conf.Finish()
 
