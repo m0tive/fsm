@@ -146,3 +146,13 @@ if GetOption('run_doxygen') and env['HAS_DOXYGEN'] :
     doxygen_sources.extend( Glob( 'Doxyfile' ) )
     env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
 
+if GetOption('run_ctags') and env['HAS_CTAGS'] :
+    ctags_sources = Glob( 'include/cm2/*.hpp')
+    tags = []
+    env.Command( 'obj', '', Mkdir("$TARGET") )
+    for ctags_src in ctags_sources:
+        t = env.Command( os.path.normpath( 'obj/' + os.path.basename(str(ctags_src)) + '.tags.log'), ctags_src,
+            [ "ctags -a --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --verbose=yes $SOURCES > $TARGET" ])
+        tags.append(t)
+    env.Alias('tags', tags)
+
