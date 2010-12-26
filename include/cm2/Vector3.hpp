@@ -51,6 +51,12 @@ public:
     const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
 
     //---------------------------------------
+    /// \brief Negative operator.
+    /// Make a new Vector3 by making each value of this Vector3 negative.
+    /// \return The resulting vector
+    Vector3 operator -() const;
+
+    //---------------------------------------
     /// \brief Vector assignment.
     /// Copy the value of another Vector3 into this vector
     /// \param _rhs - the vector to copy

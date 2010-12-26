@@ -56,6 +56,14 @@ TEST_F(Vector3Test, Set)
 }
 
 //---------------------------------------
+TEST_F(Vector3Test, Negate)
+{
+    v0_ = -v1_;
+    EXPECT_XYZ_VECT3_EQ( -1, -2, -4, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+}
+
+//---------------------------------------
 TEST_F(Vector3Test, Copy)
 {
     v0_ = v1_ = v2_;

@@ -41,6 +41,12 @@ namespace cm2
     }
 
     //---------------------------------------
+    Vector3 Vector3::operator -() const
+    {
+        return Vector3( -x, -y, -z );
+    }
+
+    //---------------------------------------
     const Vector3& Vector3::operator =( const Vector3& _rhs )
     {
         x = _rhs.x;
