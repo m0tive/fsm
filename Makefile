@@ -2,7 +2,7 @@ SCONSPATH=$(shell python -c 'import os.path; print os.path.normpath("scons-local
 SCONS=python $(SCONSPATH)
 
 all:
-	@$(SCONS) --test --doxygen
+	@$(SCONS) --test --doxygen --tags
 
 clean:
 	@$(SCONS) -c --test

@@ -49,6 +49,12 @@ public:
     const Vector2& set( const Real _x = 0, const Real _y = 0 );
 
     //---------------------------------------
+    /// \brief Negative operator.
+    /// Make a new Vector2 by making each value of this Vector2 negative.
+    /// \return The resulting vector
+    Vector2 operator -() const;
+
+    //---------------------------------------
     /// \brief Vector assignment.
     /// Copy the value of another Vector2 into this vector
     /// \param _rhs - the vector to copy
