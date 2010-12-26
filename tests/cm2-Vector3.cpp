@@ -78,6 +78,10 @@ TEST_F(Vector3Test, Add)
     EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v0_ );
     EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
     EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
+
+    v1_ += v2_;
+    EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
 }
 
 //---------------------------------------
@@ -87,6 +91,10 @@ TEST_F(Vector3Test, Subtract)
     EXPECT_XYZ_VECT3_EQ( 1.5, 3, 6, v0_ );
     EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
     EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
+
+    v1_ -= v2_;
+    EXPECT_XYZ_VECT3_EQ( 1.5, 3, 6, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1,-2, v2_ );
 }
 
 //---------------------------------------
@@ -95,6 +103,9 @@ TEST_F(Vector3Test, ScalarMult)
     v0_ = v1_ * 2;
     EXPECT_XYZ_VECT3_EQ( 2, 4, 8, v0_ );
     EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+
+    v1_ *= 2;
+    EXPECT_XYZ_VECT3_EQ( 2, 4, 8, v1_ );
 }
 
 //---------------------------------------
@@ -103,4 +114,7 @@ TEST_F(Vector3Test, ScalarDivide)
     v0_ = v1_ / 2;
     EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v0_ );
     EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+
+    v1_ /= 2;
+    EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v1_ );
 }

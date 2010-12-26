@@ -77,6 +77,19 @@ public:
     Vector3 operator -( const Vector3& _rhs ) const;
 
     //---------------------------------------
+    /// \brief Vector add.
+    /// Add another Vector3 to this Vector3.
+    /// \param _rhs - the right hand side of the addition
+    /// \return A copy of the resulting vector
+    const Vector3& operator +=( const Vector3& _rhs );
+    //---------------------------------------
+    /// \brief Vector subtract.
+    /// Subtract another Vector3 from this Vector3.
+    /// \param _rhs - the right hand side of the subtraction
+    /// \return A copy of the resulting vector
+    const Vector3& operator -=( const Vector3& _rhs );
+
+    //---------------------------------------
     /// \brief Scalar multiply.
     /// Create a new Vector3 by multiplying this Vector3 by a Real number.
     /// \param _rhs - the right hand side of the multiplication
@@ -88,6 +101,19 @@ public:
     /// \param _rhs - the right hand side of the division
     /// \return The resulting vector
     Vector3 operator /( const Real _rhs ) const;
+
+    //---------------------------------------
+    /// \brief Scalar multiply.
+    /// Multiply each value of this Vector3 by a Real.
+    /// \param _rhs - the right hand side of the multiplication
+    /// \return A copy of the resulting vector
+    const Vector3& operator *=( const Real _rhs );
+    //---------------------------------------
+    /// \brief Scalar divide.
+    /// Divide each value of this Vector3 by a Real.
+    /// \param _rhs - the right hand side of the division
+    /// \return A copy of the resulting vector
+    const Vector3& operator /=( const Real _rhs );
 
     union
     {

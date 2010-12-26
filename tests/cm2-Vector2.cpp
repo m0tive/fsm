@@ -79,7 +79,7 @@ TEST_F(Vector2Test, Add)
     EXPECT_XY_VECT2_EQ( -0.5, -1, v2_ );
 
     v1_ += v2_;
-    EXPECT_XY_VECT2_EQ( 1-0.5, 2-1, v1_ );
+    EXPECT_XY_VECT2_EQ( 0.5, 1, v1_ );
     EXPECT_XY_VECT2_EQ( -0.5, -1, v2_ );
 }
 
