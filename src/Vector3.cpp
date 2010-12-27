@@ -129,4 +129,30 @@ namespace cm2
         return *this;
     }
 
+    //---------------------------------------
+    Real Vector3::magnitude() const
+    {
+        return cm2::sqrt( x * x + y * y + z * z );
+    }
+
+    //---------------------------------------
+    Real Vector3::magnitudeSquared() const
+    {
+        return x * x + y * y + z * z;
+    }
+
+    //---------------------------------------
+    const Vector3& Vector3::normalise()
+    {
+        if( x != 0.0 || y != 0.0 || z != 0.0 )
+        {
+            Real magSquared = magnitudeSquared();
+            if( magSquared != 1.0 )
+            {
+                *this *=  1.0 / cm2::sqrt(magSquared);
+            }
+        }
+        return *this;
+    }
+
 }

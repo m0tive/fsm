@@ -138,3 +138,17 @@ TEST_F(Vector2Test, Magnitude)
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 }
 
+//---------------------------------------
+TEST_F(Vector2Test, Normalise)
+{
+    v0_.normalise();
+    EXPECT_XY_VECT2_EQ( 0, 0, v0_ );
+
+    v1_.normalise();
+    EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
+
+    v1_ = cm2::Vector2( v2_ ).normalise();
+    EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
+    EXPECT_REAL_EQ( 1.25, v2_.magnitudeSquared() );
+}
+

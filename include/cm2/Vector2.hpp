@@ -120,16 +120,23 @@ public:
     /// \return A copy of the resulting vector
     const Vector2& operator /=( const Real _rhs );
 
+    //---------------------------------------
     /// \brief Vector magnitude.
-    /// Calculate the length of this Vector2.
+    /// Calculate the length of this Vector2 using cm2::sqrt
     /// \return The magnitude
     Real magnitude() const;
+    //---------------------------------------
     /// \brief Vector magnitude squared.
     /// Calculate the length of this Vector2 but skip the final cm2::sqrt
     /// \return The magnitude squared
     Real magnitudeSquared() const;
 
-    // normalise
+    //---------------------------------------
+    /// \brief Normalise this vector.
+    /// Set the length of this Vector2 to 1 if the vector is not of
+    /// length zero.
+    /// \return A copy of the resulting vector
+    const Vector2& normalise();
 
     union
     {

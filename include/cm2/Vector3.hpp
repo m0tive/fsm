@@ -129,6 +129,24 @@ public:
     /// \return A copy of the resulting vector
     const Vector3& operator /=( const Real _rhs );
 
+    //---------------------------------------
+    /// \brief Vector magnitude.
+    /// Calculate the length of this Vector3 using cm2::sqrt
+    /// \return The magnitude
+    Real magnitude() const;
+    //---------------------------------------
+    /// \brief Vector magnitude squared.
+    /// Calculate the length of this Vector3 but skip the final cm2::sqrt
+    /// \return The magnitude squared
+    Real magnitudeSquared() const;
+
+    //---------------------------------------
+    /// \brief Normalise this vector.
+    /// Set the length of this Vector3 to 1 if the Vector3 is not of
+    /// length zero.
+    /// \return A copy of the resulting vector
+    const Vector3& normalise();
+
     union
     {
         struct

@@ -117,12 +117,26 @@ namespace cm2
     //---------------------------------------
     Real Vector2::magnitude() const
     {
-      return cm2::sqrt( x * x + y * y );
+        return cm2::sqrt( x * x + y * y );
     }
 
     //---------------------------------------
     Real Vector2::magnitudeSquared() const
     {
         return x * x + y * y;
+    }
+
+    //---------------------------------------
+    const Vector2& Vector2::normalise()
+    {
+        if( x != 0.0 || y != 0.0 )
+        {
+            Real magSquared = magnitudeSquared();
+            if( magSquared != 1.0 )
+            {
+                *this *=  1.0 / cm2::sqrt(magSquared);
+            }
+        }
+        return *this;
     }
 }

@@ -140,3 +140,31 @@ TEST_F(Vector3Test, ScalarDivide)
     v1_ /= 2;
     EXPECT_XYZ_VECT3_EQ( 0.5, 1, 2, v1_ );
 }
+
+//---------------------------------------
+TEST_F(Vector3Test, Magnitude)
+{
+    v1_.set(3,4,12);
+    cm2::Real resA = v1_.magnitudeSquared();
+    EXPECT_REAL_EQ( 169, resA );
+    EXPECT_XYZ_VECT3_EQ( 3, 4, 12, v1_ );
+
+    cm2::Real resB = v1_.magnitude();
+    EXPECT_REAL_EQ( 13, resB );
+    EXPECT_XYZ_VECT3_EQ( 3, 4, 12, v1_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, Normalise)
+{
+    v0_.normalise();
+    EXPECT_XYZ_VECT3_EQ( 0, 0, 0, v0_ );
+
+    v1_.normalise();
+    EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
+
+    v1_ = cm2::Vector3( v2_ ).normalise();
+    EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
+    EXPECT_REAL_EQ( 5.25, v2_.magnitudeSquared() );
+}
+
