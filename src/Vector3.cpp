@@ -86,6 +86,20 @@ namespace cm2
     }
 
     //---------------------------------------
+    Vector3 Vector3::cross( const Vector3& _rhs ) const
+    {
+        return Vector3( y*_rhs.z - z*_rhs.y,
+                        z*_rhs.x - x*_rhs.z,
+                        x*_rhs.y - y*_rhs.x );
+    }
+
+    //---------------------------------------
+    Real Vector3::dot( const Vector3& _rhs ) const
+    {
+        return x * _rhs.x + y * _rhs.y + z * _rhs.z;
+    }
+
+    //---------------------------------------
     Vector3 Vector3::operator *( const Real _rhs ) const
     {
         return Vector3( x * _rhs, y * _rhs, z * _rhs );

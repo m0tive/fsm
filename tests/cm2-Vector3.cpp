@@ -109,6 +109,28 @@ TEST_F(Vector3Test, ScalarMult)
 }
 
 //---------------------------------------
+TEST_F(Vector3Test, CrossProduct)
+{
+    v0_ = v1_.cross(v2_);
+    EXPECT_XYZ_VECT3_EQ( 0, 0, 0, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1, -2, v2_ );
+
+    v2_.z *= -1;
+    v0_ = v1_.cross(v2_);
+    EXPECT_XYZ_VECT3_EQ( 8, -4, 0, v0_ );
+    EXPECT_XYZ_VECT3_EQ( 1, 2, 4, v1_ );
+    EXPECT_XYZ_VECT3_EQ( -0.5,-1, 2, v2_ );
+}
+
+//---------------------------------------
+TEST_F(Vector3Test, DotProduct)
+{
+    cm2::Real result = v1_.dot(v2_);
+    EXPECT_REAL_EQ( -10.5, result );
+}
+
+//---------------------------------------
 TEST_F(Vector3Test, ScalarDivide)
 {
     v0_ = v1_ / 2;

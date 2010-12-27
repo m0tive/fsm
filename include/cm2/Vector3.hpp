@@ -90,6 +90,20 @@ public:
     const Vector3& operator -=( const Vector3& _rhs );
 
     //---------------------------------------
+    /// \brief Vector cross product.
+    /// Calculate the cross product of this Vector3 and another Vector3
+    /// \param _rhs - the right hand side of the cross product
+    /// \return The resulting vector
+    Vector3 cross( const Vector3& _rhs ) const;
+
+    //---------------------------------------
+    /// \brief Vector dot product.
+    /// Calculate the dot product of this Vector3 and another Vector3.
+    /// \param _rhs - the right hand side of the dot product
+    /// \return The dot product
+    Real dot( const Vector3& _rhs ) const;
+
+    //---------------------------------------
     /// \brief Scalar multiply.
     /// Create a new Vector3 by multiplying this Vector3 by a Real number.
     /// \param _rhs - the right hand side of the multiplication
