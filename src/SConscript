@@ -26,6 +26,7 @@ else :
 
 src_files = [ 'Def.cpp',
               'Radian.cpp',
+              'Degree.cpp',
               'Vector2.cpp',
               'Vector3.cpp' ]
 

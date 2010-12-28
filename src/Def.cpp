@@ -30,4 +30,16 @@ namespace cm2
         return ( _a + _delta ) > _b &&
                ( _a - _delta ) < _b;
     }
+
+    const Real g_pi_180 = M_PI / 180.0;
+    Real degreeToRadian( const Real _angle )
+    {
+        return _angle * g_pi_180;
+    }
+
+    const Real g_180_pi = 180.0 * M_1_PI;
+    Real radianToDegree( const Real _angle )
+    {
+        return _angle * g_180_pi;
+    }
 }

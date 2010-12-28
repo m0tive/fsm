@@ -15,6 +15,7 @@
 #define _cm2_Def_hpp_
 // }}}
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 #ifdef CM2_USE_LOCAL_STDINT
@@ -61,6 +62,9 @@ namespace cm2
     /// \param _delta - the difference to consider equal.
     /// \return True if the two numbers are different by less than _delta
     Real realCompare( const Real _a, const Real _b, const Real _delta );
+
+    Real degreeToRadian( const Real _angle );
+    Real radianToDegree( const Real _angle );
 }
 
 #endif

@@ -22,6 +22,8 @@
 
 namespace cm2
 {
+class Degree;
+
 /// \brief
 class Radian
 {
@@ -88,6 +90,84 @@ public:
     /// \return True if this angle is greater.
     /// \see cm2::realCompare
     bool operator >=( const Radian& _rhs ) const;
+
+    //---------------------------------------
+    /// \brief Get as Real.
+    /// \return The angles value.
+    inline Real asReal() const { return m_data; }
+
+protected:
+    Real m_data;
+};
+
+//------------------------------------------------------------------------------
+
+/// \brief
+class Degree
+{
+public:
+    //---------------------------------------
+    /// \details Default constructor
+    Degree( const Real _angle = 0 );
+    //---------------------------------------
+    /// \details Copy constructor
+    /// \param _r
+    Degree( const Degree& _r );
+
+    //---------------------------------------
+    /// \details Destructor
+    ~Degree();
+
+    //---------------------------------------
+    /// \brief Degree assignment.
+    /// Copy the value of another Degree into this Degree
+    /// \param _rhs - the angle to copy
+    /// \return A copy of this angle
+    const Degree& operator =( const Degree& _rhs );
+
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is equal to another Degree using cm2::realCompare
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if the angles are equal
+    /// \see cm2::realCompare
+    bool operator ==( const Degree& _rhs ) const;
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is not equal to another Degree using cm2::realCompare
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if the angles are not equal
+    /// \see cm2::realCompare
+    bool operator !=( const Degree& _rhs ) const;
+
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is less than another radian.
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if this angle is less.
+    bool operator <( const Degree& _rhs ) const;
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is greater than another radian.
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if this angle is greater.
+    bool operator >( const Degree& _rhs ) const;
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is less than or almost equal to another radian
+    /// using cm2::realCompare.
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if this angle is greater.
+    /// \see cm2::realCompare
+    bool operator <=( const Degree& _rhs ) const;
+    //---------------------------------------
+    /// \brief Degree comparison.
+    /// Test if this Degree is greater than or almost equal to another radian
+    /// using cm2::realCompare.
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if this angle is greater.
+    /// \see cm2::realCompare
+    bool operator >=( const Degree& _rhs ) const;
 
     //---------------------------------------
     /// \brief Get as Real.

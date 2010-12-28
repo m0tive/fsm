@@ -25,6 +25,7 @@ if 'msvc' in env['TOOLS'] :
 
 test_files = [ 'cm2-Def.cpp',
                'cm2-Radian.cpp',
+               'cm2-Degree.cpp',
                'cm2-Vector2.cpp',
                'cm2-Vector3.cpp' ]
 
