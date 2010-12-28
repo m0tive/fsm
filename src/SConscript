@@ -25,6 +25,7 @@ else :
         env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc' ] )
 
 src_files = [ 'Def.cpp',
+              'Radian.cpp',
               'Vector2.cpp',
               'Vector3.cpp' ]
 

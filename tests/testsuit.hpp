@@ -68,4 +68,12 @@ enddef
     EXPECT_XYZ_VECT3_EQ( temp.x, temp.y, temp.z, _v2 ); \
 enddef
 
+//------------------------------------------------------------------------------
+
+#define ASSERT_REAL_RADIAN_EQ( _a, _b ) ASSERT_REAL_EQ( _a, (_b).asReal() )
+#define EXPECT_REAL_RADIAN_EQ( _a, _b ) EXPECT_REAL_EQ( _a, (_b).asReal() )
+
+#define ASSERT_RADIAN_EQ( _a, _b ) ASSERT_REAL_RADIAN_EQ( (_a).asReal(), _b )
+#define EXPECT_RADIAN_EQ( _a, _b ) EXPECT_REAL_RADIAN_EQ( (_a).asReal(), _b )
+
 #endif
