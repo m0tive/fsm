@@ -52,7 +52,23 @@ namespace cm2
     inline Real sqrt( const Real r ) { return ::sqrt(r); }
 
     extern const Real g_realEpsilon;
+    //---------------------------------------
+    /// \brief Floating point comparison.
+    /// Test if two Real numbers are almost equal. If there is a difference of
+    /// less than CM2_REAL_EPSILON * 10, they are considered equal.
+    /// \param _a - first floating point number.
+    /// \param _b - second floating point number.
+    /// \return True if the two numbers are almost equal.
     Real realCompare( const Real _a, const Real _b );
+    //---------------------------------------
+    /// \brief Floating point comparison.
+    /// Test if two Real numbers are almost equal. If there is a difference of
+    /// less than _delta, they are considered equal.
+    /// \param _a - first floating point number.
+    /// \param _b - second floating point number.
+    /// \param _delta - the difference to consider equal.
+    /// \return True if the two numbers are different by less than _delta
+    Real realCompare( const Real _a, const Real _b, const Real _delta );
 }
 
 #endif

@@ -138,6 +138,21 @@ public:
     /// \return A copy of the resulting vector
     const Vector2& normalise();
 
+    //---------------------------------------
+    /// \brief Vector comparison.
+    /// Test if this Vector2 is equal to another Vector2 using cm2::realCompare
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if the vectors are equal
+    /// \see cm2::realCompare
+    bool operator ==( const Vector2& _rhs ) const;
+    //---------------------------------------
+    /// \brief Vector comparison.
+    /// Test if this Vector2 is not equal to another Vector2 using cm2::realCompare
+    /// \param _rhs - the right hand side of the comparison
+    /// \return True if the vectors are not equal
+    /// \see cm2::realCompare
+    bool operator !=( const Vector2& _rhs ) const;
+
     union
     {
         struct

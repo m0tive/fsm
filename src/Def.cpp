@@ -24,4 +24,10 @@ namespace cm2
         return ( _a + realCompareDelta ) > _b &&
                ( _a - realCompareDelta ) < _b;
     }
+
+    Real realCompare( const Real _a, const Real _b, const Real _delta )
+    {
+        return ( _a + _delta ) > _b &&
+               ( _a - _delta ) < _b;
+    }
 }

@@ -139,4 +139,18 @@ namespace cm2
         }
         return *this;
     }
+
+    //---------------------------------------
+    bool Vector2::operator ==( const Vector2& _rhs ) const
+    {
+        return realCompare( x, _rhs.x ) &&
+               realCompare( y, _rhs.y );
+    }
+
+    //---------------------------------------
+    bool Vector2::operator !=( const Vector2& _rhs ) const
+    {
+        return !realCompare( x, _rhs.x ) ||
+               !realCompare( y, _rhs.y );
+    }
 }

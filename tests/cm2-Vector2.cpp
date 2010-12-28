@@ -152,3 +152,15 @@ TEST_F(Vector2Test, Normalise)
     EXPECT_REAL_EQ( 1.25, v2_.magnitudeSquared() );
 }
 
+//---------------------------------------
+TEST_F(Vector2Test, Comparison)
+{
+    v0_ = v1_;
+    EXPECT_TRUE( v0_ == v1_ );
+    EXPECT_FALSE( v0_ == v2_ );
+
+    EXPECT_FALSE( v0_ != v1_ );
+    EXPECT_TRUE( v0_ != v2_ );
+}
+
+
