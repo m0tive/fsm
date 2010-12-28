@@ -24,7 +24,7 @@ if 'msvc' in env['TOOLS'] :
     env.AppendUnique( CCFLAGS = [ '/EHsc' ] )
 
 test_files = [ 'cm2-Def.cpp',
-               'cm2-Angles.cpp',
+               'cm2-Radian.cpp',
                'cm2-Vector2.cpp',
                'cm2-Vector3.cpp' ]
 

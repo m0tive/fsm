@@ -49,8 +49,26 @@ namespace cm2
     }
 
     //---------------------------------------
-    Real Radian::asReal()
+    bool Radian::operator <( const Radian& _rhs ) const
     {
-        return m_data;
+        return m_data < _rhs.m_data;
+    }
+
+    //---------------------------------------
+    bool Radian::operator >( const Radian& _rhs ) const
+    {
+        return m_data > _rhs.m_data;
+    }
+
+    //---------------------------------------
+    bool Radian::operator <=( const Radian& _rhs ) const
+    {
+        return m_data < _rhs.m_data || realCompare( m_data, _rhs.m_data );
+    }
+
+    //---------------------------------------
+    bool Radian::operator >=( const Radian& _rhs ) const
+    {
+        return m_data > _rhs.m_data || realCompare( m_data, _rhs.m_data );
     }
 }

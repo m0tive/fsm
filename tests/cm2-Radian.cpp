@@ -48,11 +48,32 @@ TEST_F(RadianTest, AsReal)
 //---------------------------------------
 TEST_F(RadianTest, Comparison)
 {
+    EXPECT_TRUE( r0_ < r1_ );
+    EXPECT_FALSE( r0_ > r1_ );
+
+    EXPECT_TRUE( r0_ <= r1_ );
+    EXPECT_FALSE( r0_ >= r1_ );
+
     EXPECT_TRUE( r0_ != r1_ );
     EXPECT_FALSE( r0_ == r1_ );
 
     r0_ = r1_;
+    EXPECT_TRUE( r0_ <= r1_ );
+    EXPECT_TRUE( r0_ >= r1_ );
+
     EXPECT_TRUE( r0_ == r1_ );
     EXPECT_FALSE( r0_ != r1_ );
+
+    cm2::Radian r2_ ( 5 );
+    EXPECT_FALSE( r2_ < r1_ );
+    EXPECT_TRUE( r2_ > r1_ );
+
+    EXPECT_FALSE( r2_ <= r1_ );
+    EXPECT_TRUE( r2_ >= r1_ );
+
+    EXPECT_TRUE( r2_ != r1_ );
+    EXPECT_FALSE( r2_ == r1_ );
+
+
 }
 
