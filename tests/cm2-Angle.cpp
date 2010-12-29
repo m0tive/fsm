@@ -82,3 +82,25 @@ TEST_F(AngleTest, Comparison)
     EXPECT_TRUE( r2_ != r1_ );
     EXPECT_FALSE( r2_ == r1_ );
 }
+
+#if 0 // convertion, needs merging
+//---------------------------------------
+TEST_F(AnglesTest, Convertion)
+{
+    d0_ = r1_.asDegree();
+    EXPECT_REAL_ANGLE_EQ( 180, d0_ );
+    EXPECT_REAL_ANGLE_EQ( M_PI, r1_ );
+
+    r0_ = d1_.asRadian();
+    EXPECT_REAL_ANGLE_EQ( M_PI, r0_ );
+    EXPECT_REAL_ANGLE_EQ( 180, d1_ );
+
+    r0_ = r1_ = 5;
+    d0_ = r1_.asDegree();
+    EXPECT_ANGLE_EQ( r0_, d0_.asRadian() );
+
+    d0_ = d1_ = 654;
+    r0_ = d1_.asRadian();
+    EXPECT_ANGLE_EQ( d0_, r0_.asDegree() );
+}
+#endif

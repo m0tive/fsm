@@ -41,6 +41,7 @@
 namespace cm2
 {
     typedef double Real;
+
     inline Real pow( const Real r1, const Real r2 ) { return ::pow( r1, r2 ); }
     inline Real sqrt( const Real r ) { return ::sqrt(r); }
 
@@ -63,7 +64,15 @@ namespace cm2
     /// \return True if the two numbers are different by less than _delta
     Real realCompare( const Real _a, const Real _b, const Real _delta );
 
+    //---------------------------------------
+    /// \brief Convert an angle from degrees to radians
+    /// \param _angle - the angle to convert
+    /// \return The angle in radians
     Real degreeToRadian( const Real _angle );
+    //---------------------------------------
+    /// \brief Convert an angle from radians to degrees
+    /// \param _angle - the angle to convert
+    /// \return The angle in degrees
     Real radianToDegree( const Real _angle );
 }
 
