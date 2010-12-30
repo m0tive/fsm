@@ -45,11 +45,14 @@ vars.AddVariables(
     )
 vars.Update(env)
 
+clean_build = GetOption('clean')
+display_help = GetOption('help')
+
 #-------------------------------------------------------------------------------
 
 reconfig = True
 
-if GetOption('clean') or GetOption('help'):
+if clean_build or display_help:
     reconfig = False
 else:
     if GetOption('run_config_and_quit'):
@@ -138,20 +141,21 @@ Export( 'global_env' )
 
 SConscript( 'src/SConscript' )
 
-if GetOption('run_tests') or GetOption('clean'):
+if GetOption('run_tests') or clean_build:
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
-if GetOption('run_doxygen') and env['HAS_DOXYGEN'] :
+if (GetOption('run_doxygen') or clean_build) and env['HAS_DOXYGEN'] :
     doxygen_sources = Glob( 'include/cm2/*.hpp')
     doxygen_sources.extend( Glob( 'Doxyfile' ) )
-    env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
+    docs_target = env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
+    env.Alias('docs', docs_target)
 
-if GetOption('run_ctags') and env['HAS_CTAGS'] :
+if (GetOption('run_ctags') or clean_build) and env['HAS_CTAGS'] :
     ctags_sources = Glob( 'include/cm2/*.hpp')
     tags = []
     env.Command( 'obj', '', Mkdir("$TARGET") )
     for ctags_src in ctags_sources:
-        t = env.Command( os.path.normpath( 'obj/' + os.path.basename(str(ctags_src)) + '.tags.log'), ctags_src,
+        t = env.Command( 'obj/' + os.path.basename(str(ctags_src)) + '.tags.log', ctags_src,
             [ "ctags -a --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --verbose=yes $SOURCES > $TARGET" ])
         tags.append(t)
     env.Alias('tags', tags)

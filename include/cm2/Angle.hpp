@@ -107,21 +107,56 @@ public:
     /// \return The angles value.
     Real as( Unit _u ) const;
 
-    // TODO : set value function...
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/cos.html">cmath cos()</A>
+    friend inline Real cos( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/sin.html">cmath sin()</A>
+    friend inline Real sin( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/tan.html">cmath tan()</A>
+    friend inline Real tan( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/acos.html">cmath acos()</A>
+    friend inline Real acos( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/asin.html">cmath asin()</A>
+    friend inline Real asin( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan.html">cmath atan()</A>
+    friend inline Real atan( const Radian& _r );
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan2.html">cmath atan2()</A>
+    friend inline Real atan2( const Radian& _r1, const Radian& _r2 );
 
 protected:
     Real m_data;
 };
 
-inline Real cos( const Angle r ) { return ::cos(r.as(Angle::kRadian)); }
-inline Real sin( const Angle r ) { return ::sin(r.as(Angle::kRadian)); }
-inline Real tan( const Angle r ) { return ::tan(r.as(Angle::kRadian)); }
-inline Real acos( const Angle r ) { return ::acos(r.as(Angle::kRadian)); }
-inline Real asin( const Angle r ) { return ::asin(r.as(Angle::kRadian)); }
-inline Real atan( const Angle r ) { return ::atan(r.as(Angle::kRadian)); }
-inline Real atan2( const Angle r1, const Angle r2 ) {
-    return ::atan2( r1.as(Angle::kRadian), r2.as(Angle::kRadian) );
-}
+//------------------------------------------------------------------------------
+
+Real cos( const Angle& _r ) { return ::cos(_r.m_data); }
+Real sin( const Angle& _r ) { return ::sin(_r.m_data); }
+Real tan( const Angle& _r ) { return ::tan(_r.m_data); }
+Real acos( const Angle& _r ) { return ::acos(_r.m_data); }
+Real asin( const Angle& _r ) { return ::asin(_r.m_data); }
+Real atan( const Angle& _r ) { return ::atan(_r.m_data); }
+Real atan2( const Angle& _r1, const Angle& _r2 ) {
+    return ::atan2( _r1.m_data, _r2.m_data ); }
 
 }
 
