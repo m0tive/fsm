@@ -1,74 +1,88 @@
 // File Info {{{----------------------------------------------------------------
-/// \file Radian.cpp
+/// \file Angle.cpp
 /// \date 2010 Dec 28
 /// \author Peter Dodds
 /// \brief
 /// \note Copyright (C) 2010 - All Rights Reserved
 //}}}---------------------------------------------------------------------------
 
-#include "cm2/Angles.hpp"
+#include "cm2/Angle.hpp"
 
 //------------------------------------------------------------------------------
 
 namespace cm2
 {
+    const Real g_convertToInternal[2] = { 1.0, M_PI / 180.0 };
+    const Real g_convertToExternal[2] = { 1.0, 180.0 * M_1_PI };
+
     //---------------------------------------
-    Radian::Radian( const Real _angle/*= 0*/)
-        : m_data(_angle)
+    Angle::Angle()
+        : m_data(0.0)
     {
     }
 
+    Angle::Angle( const Real _angle, Unit _unit )
+    {
+      m_data = _angle / g_convertToInternal[_unit];
+    }
+
     //---------------------------------------
-    Radian::Radian( const Radian& _r )
+    Angle::Angle( const Angle& _r )
         : m_data(_r.m_data)
     {
     }
 
     //---------------------------------------
-    Radian::~Radian()
+    Angle::~Angle()
     {
     }
 
     //---------------------------------------
-    const Radian& Radian::operator =( const Radian& _rhs )
+    const Angle& Angle::operator =( const Angle& _rhs )
     {
         m_data = _rhs.m_data;
         return *this;
     }
 
     //---------------------------------------
-    bool Radian::operator ==( const Radian& _rhs ) const
+    bool Angle::operator ==( const Angle& _rhs ) const
     {
         return realCompare( m_data, _rhs.m_data );
     }
 
     //---------------------------------------
-    bool Radian::operator !=( const Radian& _rhs ) const
+    bool Angle::operator !=( const Angle& _rhs ) const
     {
         return !realCompare( m_data, _rhs.m_data );
     }
 
     //---------------------------------------
-    bool Radian::operator <( const Radian& _rhs ) const
+    bool Angle::operator <( const Angle& _rhs ) const
     {
         return m_data < _rhs.m_data;
     }
 
     //---------------------------------------
-    bool Radian::operator >( const Radian& _rhs ) const
+    bool Angle::operator >( const Angle& _rhs ) const
     {
         return m_data > _rhs.m_data;
     }
 
     //---------------------------------------
-    bool Radian::operator <=( const Radian& _rhs ) const
+    bool Angle::operator <=( const Angle& _rhs ) const
     {
         return m_data < _rhs.m_data || realCompare( m_data, _rhs.m_data );
     }
 
     //---------------------------------------
-    bool Radian::operator >=( const Radian& _rhs ) const
+    bool Angle::operator >=( const Angle& _rhs ) const
     {
         return m_data > _rhs.m_data || realCompare( m_data, _rhs.m_data );
+    }
+
+    //---------------------------------------
+    Real Angle::as( Unit _u ) const
+    {
+        return m_data * g_convertToExternal[_u];
     }
 }

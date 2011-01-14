@@ -70,10 +70,10 @@ enddef
 
 //------------------------------------------------------------------------------
 
-#define ASSERT_REAL_RADIAN_EQ( _a, _b ) ASSERT_REAL_EQ( _a, (_b).asReal() )
-#define EXPECT_REAL_RADIAN_EQ( _a, _b ) EXPECT_REAL_EQ( _a, (_b).asReal() )
+#define ASSERT_REAL_RADIAN_EQ( _a, _b ) ASSERT_REAL_EQ( _a, (_b).as(cm2::Angle::kRadian) )
+#define EXPECT_REAL_RADIAN_EQ( _a, _b ) EXPECT_REAL_EQ( _a, (_b).as(cm2::Angle::kRadian) )
 
-#define ASSERT_RADIAN_EQ( _a, _b ) ASSERT_REAL_RADIAN_EQ( (_a).asReal(), _b )
-#define EXPECT_RADIAN_EQ( _a, _b ) EXPECT_REAL_RADIAN_EQ( (_a).asReal(), _b )
+#define ASSERT_RADIAN_EQ( _a, _b ) ASSERT_REAL_RADIAN_EQ( (_a).as(cm2::Angle::kRadian), _b )
+#define EXPECT_RADIAN_EQ( _a, _b ) EXPECT_REAL_RADIAN_EQ( (_a).as(cm2::Angle::kRadian), _b )
 
 #endif
