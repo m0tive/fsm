@@ -1,6 +1,6 @@
 // File Info {{{
 //------------------------------------------------------------------------------
-/// \file Angles.hpp
+/// \file Angle.hpp
 /// \date 2010 Dec 28
 /// \author Peter Dodds
 /// \brief
@@ -52,11 +52,41 @@ public:
     ~Angle();
 
     //---------------------------------------
+    /// \brief Get as Real in a given unit.
+    /// \return The angles value.
+    Real get( Unit _u ) const;
+    /// \todo TODO test
+    const Angle& set( Real _r, Unit _u );
+
+    //---------------------------------------
     /// \brief Angle assignment.
     /// Copy the value of another Angle into this Angle
     /// \param _rhs - the angle to copy
     /// \return A copy of this angle
     const Angle& operator =( const Angle& _rhs );
+
+    /// \todo TODO test
+    Angle operator -();
+
+    /// \todo TODO test
+    Angle operator +( const Angle& _rhs );
+    /// \todo TODO test
+    Angle operator -( const Angle& _rhs );
+
+    /// \todo TODO test
+    const Angle& operator +=( const Angle& _rhs );
+    /// \todo TODO test
+    const Angle& operator -=( const Angle& _rhs );
+
+    /// \todo TODO test
+    Angle operator *( const Real _rhs );
+    /// \todo TODO test
+    Angle operator /( const Real _rhs );
+
+    /// \todo TODO test
+    const Angle& operator *=( const Real _rhs );
+    /// \todo TODO test
+    const Angle& operator /=( const Real _rhs );
 
     //---------------------------------------
     /// \brief Angle comparison.
@@ -103,48 +133,46 @@ public:
     bool operator >=( const Angle& _rhs ) const;
 
     //---------------------------------------
-    /// \brief Get as Real.
-    /// \return The angles value.
-    Real as( Unit _u ) const;
-
-    //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/cos.html">cmath cos()</A>
-    friend inline Real cos( const Radian& _r );
+    friend inline Real cos( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/sin.html">cmath sin()</A>
-    friend inline Real sin( const Radian& _r );
+    friend inline Real sin( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/tan.html">cmath tan()</A>
-    friend inline Real tan( const Radian& _r );
+    friend inline Real tan( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/acos.html">cmath acos()</A>
-    friend inline Real acos( const Radian& _r );
+    friend inline Real acos( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/asin.html">cmath asin()</A>
-    friend inline Real asin( const Radian& _r );
+    friend inline Real asin( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan.html">cmath atan()</A>
-    friend inline Real atan( const Radian& _r );
+    friend inline Real atan( const Angle& _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan2.html">cmath atan2()</A>
-    friend inline Real atan2( const Radian& _r1, const Radian& _r2 );
+    friend inline Real atan2( const Angle& _r1, const Angle& _r2 );
 
 protected:
     Real m_data;
+
+private:
+    Angle( const Real _angle);
 };
 
 //------------------------------------------------------------------------------

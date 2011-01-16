@@ -48,9 +48,9 @@ TEST_F(AngleTest, Copy)
 //---------------------------------------
 TEST_F(AngleTest, AsUnit)
 {
-    ASSERT_REAL_EQ( M_PI, r1_.as(cm2::Angle::kRadian) );
+    ASSERT_REAL_EQ( M_PI, r1_.get(cm2::Angle::kRadian) );
 
-    ASSERT_REAL_EQ( 180, r1_.as(cm2::Angle::kDegree) );
+    ASSERT_REAL_EQ( 180, r1_.get(cm2::Angle::kDegree) );
 }
 
 //---------------------------------------
