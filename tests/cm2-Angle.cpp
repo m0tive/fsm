@@ -46,6 +46,20 @@ TEST_F(AngleTest, Copy)
 }
 
 //---------------------------------------
+TEST_F(AngleTest, Constants)
+{
+    EXPECT_REAL_RADIAN_EQ( 2.0 * M_PI, cm2::Angle::_2_PI );
+    EXPECT_REAL_RADIAN_EQ( M_PI, cm2::Angle::PI );
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, cm2::Angle::PI_2 );
+    EXPECT_REAL_RADIAN_EQ( M_PI_4, cm2::Angle::PI_4 );
+
+    EXPECT_REAL_DEGREE_EQ( 360.0, cm2::Angle::_360_D );
+    EXPECT_REAL_DEGREE_EQ( 180.0, cm2::Angle::_180_D );
+    EXPECT_REAL_DEGREE_EQ( 90.0, cm2::Angle::_90_D );
+    EXPECT_REAL_DEGREE_EQ( 45.0, cm2::Angle::_45_D );
+}
+
+//---------------------------------------
 TEST_F(AngleTest, AsUnit)
 {
     ASSERT_REAL_EQ( M_PI, r1_.get(cm2::Angle::kRadian) );

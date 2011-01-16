@@ -22,12 +22,12 @@
 
 namespace cm2
 {
-//class Degree;
-
-/// \brief
+/// \brief A rotation or portion of a circle.
 class Angle
 {
 public:
+    //---------------------------------------
+    /// \brief Angle units of measurement.
     enum Unit
     {
         kRadian = 0,
@@ -35,12 +35,25 @@ public:
     };
 
     //---------------------------------------
+    // Constants
+
+    static const Angle _2_PI;   ///< 2Pi
+    static const Angle PI;      ///< Pi
+    static const Angle PI_2;    ///< Pi/2
+    static const Angle PI_4;    ///< Pi/4
+
+    static const Angle _360_D;  ///< 360 degrees
+    static const Angle _180_D;  ///< 180 degrees
+    static const Angle _90_D;   ///< 90 degrees
+    static const Angle _45_D;   ///< 45 degrees
+
+    //---------------------------------------
     /// \details Default constructor
     Angle();
     //---------------------------------------
     /// \details By value constructor
     /// \param _angle - angle
-    /// \param _unit - unit of messurement to use.
+    /// \param _unit - unit of measurement to use.
     Angle( const Real _angle, Unit _unit );
     //---------------------------------------
     /// \details Copy constructor
@@ -52,9 +65,17 @@ public:
     ~Angle();
 
     //---------------------------------------
-    /// \brief Get as Real in a given unit.
-    /// \return The angles value.
+    /// \brief Get the angles size.
+    /// Convert this Angle into a Real of the given Angle::Unit.
+    /// \param _u - the angle type to get this angle as.
+    /// \return The angle, in the desired unit.
     Real get( Unit _u ) const;
+    //---------------------------------------
+    /// \brief Set the angles size.
+    /// Set the value of this Angle to a given Real of a given Angle::Unit.
+    /// \param _r - the new value of this angle.
+    /// \param _u - the angle type of _r.
+    /// \return A copy of this angle
     /// \todo TODO test
     const Angle& set( Real _r, Unit _u );
 
@@ -65,26 +86,70 @@ public:
     /// \return A copy of this angle
     const Angle& operator =( const Angle& _rhs );
 
+    //---------------------------------------
+    /// \brief Negative operator.
+    /// Create a new Angle that is the negative of this Angle.
+    /// \return The resulting angle.
     /// \todo TODO test
     Angle operator -();
 
+    //---------------------------------------
+    /// \brief Addition operator.
+    /// Create a new Angle by adding two angles together.
+    /// \param _rhs - the right hand side of the addition.
+    /// \return The resulting angle.
     /// \todo TODO test
     Angle operator +( const Angle& _rhs );
+    //---------------------------------------
+    /// \brief Subtraction operator.
+    /// Create a new Angle by subtracting another angle from this angle.
+    /// \param _rhs - the right hand side of the subtraction.
+    /// \return The resulting angle.
     /// \todo TODO test
     Angle operator -( const Angle& _rhs );
 
+    //---------------------------------------
+    /// \brief Addition operator.
+    /// Change the value of this Angle by adding an Angle to it.
+    /// \param _rhs - the right hand side of the addition.
+    /// \return A copy of this angle.
     /// \todo TODO test
     const Angle& operator +=( const Angle& _rhs );
+    //---------------------------------------
+    /// \brief Subtraction operator.
+    /// Change the value of this Angle by subtracting an Angle from it.
+    /// \param _rhs - the right hand side of the subtraction.
+    /// \return A copy of this angle.
     /// \todo TODO test
     const Angle& operator -=( const Angle& _rhs );
 
+    //---------------------------------------
+    /// \brief Multiply operator.
+    /// Create a new Angle from this Angle multiplied by a Real.
+    /// \param _rhs - the right hand side of the multiplication.
+    /// \return The resulting angle.
     /// \todo TODO test
     Angle operator *( const Real _rhs );
+    //---------------------------------------
+    /// \brief Divide operator.
+    /// Create a new Angle from this Angle divided by a Real.
+    /// \param _rhs - the right hand side of the division.
+    /// \return The resulting angle.
     /// \todo TODO test
     Angle operator /( const Real _rhs );
 
+    //---------------------------------------
+    /// \brief Multiply operator.
+    /// Change the value of this Angle by multiplying it be a Real.
+    /// \param _rhs - the right hand side of the multiplication
+    /// \return A copy of this angle
     /// \todo TODO test
     const Angle& operator *=( const Real _rhs );
+    //---------------------------------------
+    /// \brief Divide operator.
+    /// Change the value of this Angle by dividing it be a Real.
+    /// \param _rhs - the right hand side of the division.
+    /// \return A copy of this angle.
     /// \todo TODO test
     const Angle& operator /=( const Real _rhs );
 
@@ -169,9 +234,14 @@ public:
     friend inline Real atan2( const Angle& _r1, const Angle& _r2 );
 
 protected:
+    //---------------------------------------
+    /// \brief The internal angle data.
     Real m_data;
 
 private:
+    //---------------------------------------
+    // Private direct constructor.
+    // For setting the value of new angles directly using the internal data type
     Angle( const Real _angle);
 };
 

@@ -166,11 +166,11 @@ public:
     {
         struct
         {
-            Real x; //< x-axis component.
-            Real y; //< y-axis component.
-            Real z; //< z-axis component.
+            Real x; ///< x-axis component.
+            Real y; ///< y-axis component.
+            Real z; ///< z-axis component.
         };
-        Real data[3]; //< data in array format.
+        Real data[3]; ///< data in array format.
     };
 };
 }
