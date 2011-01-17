@@ -5,10 +5,13 @@
 class AngleTest : public testing::Test
 {
   protected:
-    AngleTest() : r1_(M_PI, cm2::Angle::kRadian) {}
+    AngleTest()
+        : r1_(M_PI, cm2::Angle::kRadian),
+          r2_(cm2::Angle::_90_D) {}
 
     cm2::Angle r0_;
     cm2::Angle r1_;
+    cm2::Angle r2_;
 };
 
 //---------------------------------------
@@ -37,9 +40,26 @@ TEST_F(AngleTest, Constructor)
 }
 
 //---------------------------------------
+TEST_F(AngleTest, GetSet)
+{
+    ASSERT_REAL_EQ( 0, r0_.get(cm2::Angle::kRadian) );
+    ASSERT_REAL_EQ( 0, r0_.get(cm2::Angle::kDegree) );
+
+    ASSERT_REAL_EQ( M_PI, r1_.get(cm2::Angle::kRadian) );
+    ASSERT_REAL_EQ( 180, r1_.get(cm2::Angle::kDegree) );
+
+    r0_.set( M_PI+M_PI_4, cm2::Angle::kRadian);
+    ASSERT_REAL_EQ( M_PI+M_PI_4, r0_.get(cm2::Angle::kRadian) );
+    ASSERT_REAL_EQ( 225.0, r0_.get(cm2::Angle::kDegree) );
+
+    r1_.set( 60.0, cm2::Angle::kDegree );
+    ASSERT_REAL_EQ( M_PI/3.0, r1_.get(cm2::Angle::kRadian) );
+    ASSERT_REAL_EQ( 60.0, r1_.get(cm2::Angle::kDegree) );
+}
+
+//---------------------------------------
 TEST_F(AngleTest, Copy)
 {
-    cm2::Angle r2_;
     r2_ = r0_ = r1_;
     EXPECT_RADIAN_EQ( r1_, r0_ );
     EXPECT_RADIAN_EQ( r0_, r2_ );
@@ -60,11 +80,59 @@ TEST_F(AngleTest, Constants)
 }
 
 //---------------------------------------
-TEST_F(AngleTest, AsUnit)
+TEST_F(AngleTest, Negative)
 {
-    ASSERT_REAL_EQ( M_PI, r1_.get(cm2::Angle::kRadian) );
+    r0_ = -r1_;
+    ASSERT_REAL_RADIAN_EQ( -M_PI, r0_ );
+    ASSERT_REAL_RADIAN_EQ( M_PI, r1_ );
+}
 
-    ASSERT_REAL_EQ( 180, r1_.get(cm2::Angle::kDegree) );
+//---------------------------------------
+TEST_F(AngleTest, Add)
+{
+    r0_ = r1_ + r2_;
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI, r1_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI + M_PI_2, r0_ );
+
+    r1_ += r2_;
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI + M_PI_2, r1_ );
+}
+
+//---------------------------------------
+TEST_F(AngleTest, Subtract)
+{
+    r0_ = r1_ - r2_;
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI, r1_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI - M_PI_2, r0_ );
+
+    r1_ -= r2_;
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI - M_PI_2, r1_ );
+}
+
+//---------------------------------------
+TEST_F(AngleTest, Multiply)
+{
+    r0_ = r2_ * cm2::Real(3.0);
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI_2 * 3.0, r0_ );
+
+    r1_ *= cm2::Real(-0.3);
+    EXPECT_REAL_RADIAN_EQ( M_PI * -0.3, r1_ );
+}
+
+//---------------------------------------
+TEST_F(AngleTest, Divide)
+{
+    r0_ = r2_ / cm2::Real(3.0);
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, r2_ );
+    EXPECT_REAL_RADIAN_EQ( M_PI_2 / 3.0, r0_ );
+
+    r1_ /= cm2::Real(-0.3);
+    EXPECT_REAL_RADIAN_EQ( M_PI / -0.3, r1_ );
 }
 
 //---------------------------------------

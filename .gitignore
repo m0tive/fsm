@@ -31,3 +31,4 @@ tests/*.passed
 docs/html
 
 tags
+*.tmp
