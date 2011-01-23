@@ -26,7 +26,8 @@ if 'msvc' in env['TOOLS'] :
 test_files = [ 'cm2-Def.cpp',
                'cm2-Angle.cpp',
                'cm2-Vector2.cpp',
-               'cm2-Vector3.cpp' ]
+               'cm2-Vector3.cpp',
+               'cm2-Matrix3.cpp' ]
 
 unittest = env.Program( '#bin/test', test_files )
 env.Test( "test.passed", unittest )

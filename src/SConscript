@@ -27,6 +27,7 @@ else :
 src_files = [ 'Def.cpp',
               'Angle.cpp',
               'Vector2.cpp',
-              'Vector3.cpp' ]
+              'Vector3.cpp',
+              'Matrix3.cpp' ]
 
 env.Library( '#lib/cm2', src_files )

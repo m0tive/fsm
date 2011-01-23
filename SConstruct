@@ -107,6 +107,10 @@ if reconfig :
         print "!! You need 'float.h' to compile this library"
         Exit(1)
 
+    if not conf.CheckHeader('string.h'):
+        print"!! You need 'string.h' to compile this library"
+        Exit(1)
+
     if GetOption('run_doxygen'):
         if conf.CheckProgram( 'doxygen' ):
             env['HAS_DOXYGEN'] = True
