@@ -206,22 +206,22 @@ public:
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/acos.html">cmath acos()</A>
-    friend inline Real acos( const Angle& _r );
+    friend inline Angle acos( const Real _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/asin.html">cmath asin()</A>
-    friend inline Real asin( const Angle& _r );
+    friend inline Angle asin( const Real _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan.html">cmath atan()</A>
-    friend inline Real atan( const Angle& _r );
+    friend inline Angle atan( const Real _r );
     //---------------------------------------
     /// \brief Maths function interface
     /// \par See also:
     /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/atan2.html">cmath atan2()</A>
-    friend inline Real atan2( const Angle& _r1, const Angle& _r2 );
+    friend inline Angle atan2( const Real _r1, const Real _r2 );
 
 protected:
     //---------------------------------------
@@ -240,11 +240,11 @@ private:
 Real cos( const Angle& _r ) { return ::cos(_r.m_data); }
 Real sin( const Angle& _r ) { return ::sin(_r.m_data); }
 Real tan( const Angle& _r ) { return ::tan(_r.m_data); }
-Real acos( const Angle& _r ) { return ::acos(_r.m_data); }
-Real asin( const Angle& _r ) { return ::asin(_r.m_data); }
-Real atan( const Angle& _r ) { return ::atan(_r.m_data); }
-Real atan2( const Angle& _r1, const Angle& _r2 ) {
-    return ::atan2( _r1.m_data, _r2.m_data ); }
+Angle acos( const Real _r ) { return Angle(::acos(_r)); }
+Angle asin( const Real _r ) { return Angle(::asin(_r)); }
+Angle atan( const Real _r ) { return Angle(::atan(_r)); }
+Angle atan2( const Real _r1, const Real _r2 ) {
+    return Angle(::atan2( _r1, _r2 )); }
 
 }
 
