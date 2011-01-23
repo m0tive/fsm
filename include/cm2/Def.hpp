@@ -37,14 +37,32 @@
   #include <stdint.h>
 #endif
 #include <float.h>
+#include <stddef.h>
 
+/// \brief Library namespace
 namespace cm2
 {
+    //---------------------------------------
+    /// \brief A real number.
     typedef double Real;
 
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/pow.html">cmath pow()</A>
     inline Real pow( const Real r1, const Real r2 ) { return ::pow( r1, r2 ); }
+    //---------------------------------------
+    /// \brief Maths function interface
+    /// \par See also:
+    /// <A TARGET="_parent" HREF="http://www.cplusplus.com/reference/clibrary/cmath/sqrt.html">cmath sqrt()</A>
     inline Real sqrt( const Real r ) { return ::sqrt(r); }
 
+    //---------------------------------------
+    /// \brief Not a number value.
+    extern const Real g_realNaN;
+
+    //---------------------------------------
+    /// \brief Smallest possible real number.
     extern const Real g_realEpsilon;
     //---------------------------------------
     /// \brief Floating point comparison.

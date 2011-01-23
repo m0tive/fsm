@@ -126,4 +126,23 @@ namespace cm2
 
         return s_mat;
     }
+
+    //---------------------------------------
+    Vector3 Matrix3::r( size_t _row ) const
+    {
+        switch (_row)
+        {
+            case 0:
+                return Vector3( m00, m01, m02 );
+
+            case 1:
+                return Vector3( m10, m11, m12 );
+
+            case 2:
+                return Vector3( m20, m21, m22 );
+        }
+
+        // return a bad vector
+        return Vector3( g_realNaN, g_realNaN, g_realNaN );
+    }
 }

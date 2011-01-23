@@ -89,10 +89,6 @@ if reconfig :
         print('!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
-    if not conf.CheckHeader('math.h'):
-        print "!! You need 'math.h' to compile this library"
-        Exit(1)
-
     if not conf.CheckHeader('stdint.h'):
         if env['CC'] == "cl":
             print "\tUsing local header 'include/cm2/stdint.h'"
@@ -103,12 +99,24 @@ if reconfig :
     else:
         env['USE_MSC_STDINT'] = False
 
+    if not conf.CheckHeader('stddef.h'):
+        print "!! You need 'stddef.h' to compile this library"
+        Exit(1)
+
+    if not conf.CheckHeader('math.h'):
+        print "!! You need 'math.h' to compile this library"
+        Exit(1)
+
     if not conf.CheckHeader('float.h'):
         print "!! You need 'float.h' to compile this library"
         Exit(1)
 
     if not conf.CheckHeader('string.h'):
         print"!! You need 'string.h' to compile this library"
+        Exit(1)
+
+    if not conf.CheckHeader('limits', language="C++"):
+        print"!! You need 'limits' to compile this library"
         Exit(1)
 
     if GetOption('run_doxygen'):

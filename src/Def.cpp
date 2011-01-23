@@ -7,6 +7,7 @@
 //}}}---------------------------------------------------------------------------
 
 #include "cm2/Def.hpp"
+#include <limits>
 
 //------------------------------------------------------------------------------
 
@@ -16,6 +17,8 @@
 
 namespace cm2
 {
+    const Real g_realNaN = std::numeric_limits<double>::quiet_NaN();
+
     const Real g_realEpsilon = CM2_REAL_EPSILON;
     Real realCompareDelta = CM2_REAL_EPSILON * 10;
 

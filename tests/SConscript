@@ -23,11 +23,11 @@ env.AppendUnique( LIBS = [ 'gtest_main', 'cm2' ] )
 if 'msvc' in env['TOOLS'] :
     env.AppendUnique( CCFLAGS = [ '/EHsc' ] )
 
-test_files = [ 'cm2-Def.cpp',
-               'cm2-Angle.cpp',
-               'cm2-Vector2.cpp',
-               'cm2-Vector3.cpp',
-               'cm2-Matrix3.cpp' ]
+test_files = [ 'Def.cpp',
+               'Angle.cpp',
+               'Vector2.cpp',
+               'Vector3.cpp',
+               'Matrix3.cpp' ]
 
 unittest = env.Program( '#bin/test', test_files )
-env.Test( "test.passed", unittest )
+env.Test( "passed", unittest )

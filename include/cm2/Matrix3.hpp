@@ -16,6 +16,7 @@
 // }}}
 
 #include "cm2/Def.hpp"
+#include "cm2/Vector3.hpp"
 
 //------------------------------------------------------------------------------
 
@@ -26,11 +27,15 @@ namespace cm2
 class Matrix3
 {
 public:
+    //---------------------------------------
+    /// \brief One-dimensional matrix array layout.
     enum Order
     {
         kRowMajor = 0,
         kColumnMajor
     };
+
+    // Matrix3::Order dox {{{
 
     /// \var Matrix3::kRowMajor
     /// \brief Row major matrix array order.\n
@@ -49,6 +54,8 @@ public:
     /// <tt>| 1 4 7 |</tt>\n
     /// <tt>| 2 5 8 |</tt>\n
     /// \note This is the format used by OpenGL
+
+    // }}}
 
     //---------------------------------------
     /// \brief The identity matrix
@@ -116,6 +123,9 @@ public:
     /// \param _layout - matrix layout [default Matrix3::kRowMajor]
     /// \return A temporary array containing the matrix.
     Real* toArray( Order _layout ) const;
+
+    Vector3 r( size_t _row ) const;
+//    Vector3 c( size_t _row ) const;
 
 protected:
     union

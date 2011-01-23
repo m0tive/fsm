@@ -7,6 +7,9 @@ all:
 clean:
 	@$(SCONS) -c --test
 
+configure:
+	@$(SCONS) --configure --test --doxygen --tags
+
 %:
 	@$(SCONS) $@
 

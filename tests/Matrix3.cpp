@@ -1,5 +1,4 @@
-
-#include "testsuit.hpp"
+#include "suit.hpp"
 
 #include <cm2/Matrix3.hpp>
 
@@ -20,6 +19,6 @@ class Matrix3Test : public testing::Test
 //---------------------------------------
 TEST_F(Matrix3Test, DefaultConstructor)
 {
-    //ASSERT_VAL_MAT2_EQ( 0, 0, m0_ );
+    ASSERT_9REALS_MAT_EQ( 0,0,0, 0,0,0, 0,0,0, m0_ );
 }
 
