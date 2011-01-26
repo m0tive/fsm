@@ -12,6 +12,8 @@
 
 namespace cm2
 {
+    const Vector2 Vector2::cNaN( g_realNaN );
+
     //---------------------------------------
     Vector2::Vector2( const Real _x/* = 0*/, const Real _y/*= 0*/)
         : x(_x), y(_y)
@@ -29,6 +31,11 @@ namespace cm2
     {
     }
 
+    //---------------------------------------
+    bool Vector2::isNaN() const
+    {
+        return isnan(x) || isnan(y);
+    }
 
     //---------------------------------------
     const Vector2& Vector2::set( const Real _x/*= 0*/, const Real _y/*= 0*/ )

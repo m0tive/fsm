@@ -42,6 +42,23 @@ TEST_F(Vector2Test, DataAccess)
     ASSERT_REAL_EQ( v0_.y, v0_.data[1] );
 }
 
+//---------------------------------------
+TEST_F(Vector2Test, IsNaN)
+{
+    ASSERT_FALSE(v0_.isNaN());
+    ASSERT_FALSE(v1_.isNaN());
+    ASSERT_FALSE(v2_.isNaN());
+
+    v0_.x = cm2::g_realNaN;
+    ASSERT_TRUE(v0_.isNaN());
+
+    v1_.y = cm2::g_realNaN;
+    ASSERT_TRUE(v1_.isNaN());
+
+    v2_.x = cm2::g_realNaN;
+    v2_.y = cm2::g_realNaN;
+    ASSERT_TRUE(v2_.isNaN());
+}
 
 //---------------------------------------
 TEST_F(Vector2Test, Set)

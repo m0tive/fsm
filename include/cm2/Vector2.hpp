@@ -25,6 +25,8 @@ namespace cm2
 class Vector2
 {
 public:
+    static const Vector2 cNaN;
+
     //---------------------------------------
     /// \details Default constructor.
     /// \param _x - x-axis component.
@@ -38,6 +40,9 @@ public:
     //---------------------------------------
     /// \details Destructor
     ~Vector2();
+
+
+    bool isNaN() const;
 
 
     //---------------------------------------
