@@ -15,15 +15,22 @@ namespace cm2
     const Real g_convertToInternal[2] = { 1.0, M_PI / 180.0 };
     const Real g_convertToExternal[2] = { 1.0, 180.0 * M_1_PI };
 
-    const Angle Angle::_2_PI( 2.0 * M_PI );
-    const Angle Angle::PI( M_PI );
-    const Angle Angle::PI_2( M_PI_2 );
-    const Angle Angle::PI_4( M_PI_4 );
+    const Angle Angle::cWhole( 2.0 * M_PI );
+    const Angle Angle::cHalf( M_PI );
+    const Angle Angle::cQuarter( M_PI_2 );
+    const Angle Angle::cEighth( M_PI_4 );
 
-    const Angle Angle::_360_D( Angle::_2_PI );
-    const Angle Angle::_180_D( Angle::PI );
-    const Angle Angle::_90_D( Angle::PI_2 );
-    const Angle Angle::_45_D( Angle::PI_4 );
+    const Angle Angle::cNaN( g_realNaN );
+
+    const Angle Angle::Radian::c2PI( Angle::cWhole );
+    const Angle Angle::Radian::cPI( Angle::cHalf );
+    const Angle Angle::Radian::cPI_2( Angle::cQuarter );
+    const Angle Angle::Radian::cPI_4( Angle::cEighth );
+
+    const Angle Angle::Degree::c360( Angle::cWhole );
+    const Angle Angle::Degree::c180( Angle::cHalf );
+    const Angle Angle::Degree::c90( Angle::cQuarter );
+    const Angle Angle::Degree::c45( Angle::cEighth );
 
     //---------------------------------------
     Angle::Angle()

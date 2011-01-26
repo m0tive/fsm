@@ -37,15 +37,28 @@ public:
     //---------------------------------------
     // Constants
 
-    static const Angle _2_PI;   ///< 2Pi
-    static const Angle PI;      ///< Pi
-    static const Angle PI_2;    ///< Pi/2
-    static const Angle PI_4;    ///< Pi/4
+    static const Angle cWhole;  ///< 2Pi
+    static const Angle cHalf;   ///< Pi
+    static const Angle cQuarter; ///< Pi/2
+    static const Angle cEighth; ///< Pi/4
 
-    static const Angle _360_D;  ///< 360 degrees
-    static const Angle _180_D;  ///< 180 degrees
-    static const Angle _90_D;   ///< 90 degrees
-    static const Angle _45_D;   ///< 45 degrees
+    static const Angle cNaN;
+
+    struct Radian ///< Radian constants
+    {
+        static const Angle c2PI;  ///< 2Pi
+        static const Angle cPI;   ///< Pi
+        static const Angle cPI_2; ///< Pi/2
+        static const Angle cPI_4; ///< Pi/4
+    };
+
+    struct Degree ///< Degree constants
+    {
+        static const Angle c360; ///< 360 degrees
+        static const Angle c180; ///< 180 degrees
+        static const Angle c90;  ///< 90 degrees
+        static const Angle c45;  ///< 45 degrees
+    };
 
     //---------------------------------------
     /// \details Default constructor

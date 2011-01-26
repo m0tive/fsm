@@ -7,7 +7,7 @@ class AngleTest : public testing::Test
   protected:
     AngleTest()
         : r1_(M_PI, cm2::Angle::kRadian),
-          r2_(cm2::Angle::_90_D) {}
+          r2_(cm2::Angle::Degree::c90) {}
 
     cm2::Angle r0_;
     cm2::Angle r1_;
@@ -68,15 +68,15 @@ TEST_F(AngleTest, Copy)
 //---------------------------------------
 TEST_F(AngleTest, Constants)
 {
-    EXPECT_REAL_RADIAN_EQ( 2.0 * M_PI, cm2::Angle::_2_PI );
-    EXPECT_REAL_RADIAN_EQ( M_PI, cm2::Angle::PI );
-    EXPECT_REAL_RADIAN_EQ( M_PI_2, cm2::Angle::PI_2 );
-    EXPECT_REAL_RADIAN_EQ( M_PI_4, cm2::Angle::PI_4 );
+    EXPECT_REAL_RADIAN_EQ( 2.0 * M_PI, cm2::Angle::Radian::c2PI );
+    EXPECT_REAL_RADIAN_EQ( M_PI,   cm2::Angle::Radian::cPI );
+    EXPECT_REAL_RADIAN_EQ( M_PI_2, cm2::Angle::Radian::cPI_2 );
+    EXPECT_REAL_RADIAN_EQ( M_PI_4, cm2::Angle::Radian::cPI_4 );
 
-    EXPECT_REAL_DEGREE_EQ( 360.0, cm2::Angle::_360_D );
-    EXPECT_REAL_DEGREE_EQ( 180.0, cm2::Angle::_180_D );
-    EXPECT_REAL_DEGREE_EQ( 90.0, cm2::Angle::_90_D );
-    EXPECT_REAL_DEGREE_EQ( 45.0, cm2::Angle::_45_D );
+    EXPECT_REAL_DEGREE_EQ( 360.0, cm2::Angle::Degree::c360 );
+    EXPECT_REAL_DEGREE_EQ( 180.0, cm2::Angle::Degree::c180 );
+    EXPECT_REAL_DEGREE_EQ( 90.0,  cm2::Angle::Degree::c90 );
+    EXPECT_REAL_DEGREE_EQ( 45.0,  cm2::Angle::Degree::c45 );
 }
 
 //---------------------------------------
