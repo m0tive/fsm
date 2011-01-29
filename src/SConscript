@@ -7,6 +7,9 @@ env.AppendUnique( CPPPATH = [ '#include' ] )
 env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
 env.AppendUnique( LIBPATH = [ '#lib' ] )
 
+if env['FSM_ISNAN']:
+    env.AppendUnique( CPPDEFINES = [ 'FSM_ISNAN=' + env['FSM_ISNAN'] ] )
+
 if env['USE_MSC_STDINT']:
     env.AppendUnique( CPPDEFINES = [ 'FSM_USE_MSC_STDINT' ] )
 

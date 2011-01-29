@@ -40,6 +40,7 @@ vars.AddVariables(
     ('CONFIG_PLATFORM', '', ''),
     ('WHICH_PATH', '', 'python %s' % os.path.normpath("tools/which.py")),
     BoolVariable('USE_MSC_STDINT', '', False),
+    ('FSM_ISNAN', '', ''),
     BoolVariable('HAS_DOXYGEN', '', False),
     BoolVariable('HAS_CTAGS', '', False),
     )
@@ -78,15 +79,15 @@ if reconfig :
     conf = Configure(env, custom_tests = conf_tests)
 
     if not conf.CheckCC() :
-        print('!! Your compiler and/or environment is not correctly configured.')
+        print('\t!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
     if not conf.CheckCXX() :
-        print('!! Your compiler and/or environment is not correctly configured.')
+        print('\t!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
     if not conf.CheckFunc('printf') :
-        print('!! Your compiler and/or environment is not correctly configured.')
+        print('\t!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
     if not conf.CheckHeader('stdint.h'):
@@ -94,30 +95,38 @@ if reconfig :
             print "\tUsing local header 'include/fsm/stdint.h'"
             env['USE_MSC_STDINT'] = True
         else:
-            print "!! You need 'stdint.h' to compile this library"
+            print "\t!! You need 'stdint.h' to compile this library"
             Exit(1)
     else:
         env['USE_MSC_STDINT'] = False
 
     if not conf.CheckHeader('stddef.h'):
-        print "!! You need 'stddef.h' to compile this library"
+        print "\t!! You need 'stddef.h' to compile this library"
         Exit(1)
 
     if not conf.CheckHeader('math.h'):
-        print "!! You need 'math.h' to compile this library"
+        print "\t!! You need 'math.h' to compile this library"
         Exit(1)
 
     if not conf.CheckHeader('float.h'):
-        print "!! You need 'float.h' to compile this library"
+        print "\t!! You need 'float.h' to compile this library"
         Exit(1)
 
     if not conf.CheckHeader('string.h'):
-        print"!! You need 'string.h' to compile this library"
+        print "\t!! You need 'string.h' to compile this library"
         Exit(1)
 
     if not conf.CheckHeader('limits', language="C++"):
-        print"!! You need 'limits' to compile this library"
+        print "\t!! You need 'limits' to compile this library"
         Exit(1)
+
+    if not conf.CheckFunc('isnan', language="C++"):
+        if not conf.CheckFunc('_isnan', language="C++"):
+            print "\t!! You nee the function 'isnan' or '_isnan' to compile this library"
+            Exit(1)
+        else:
+            env['FSM_ISNAN'] = '_isnan'
+
 
     if GetOption('run_doxygen'):
         if conf.CheckProgram( 'doxygen' ):

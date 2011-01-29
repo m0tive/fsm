@@ -15,9 +15,17 @@
     #define FSM_REAL_EPSILON DBL_EPSILON
 #endif
 
+#ifndef FSM_ISNAN
+    #define FSM_ISNAN isnan
+#endif
+
 namespace fsm
 {
     const Real g_realNaN = std::numeric_limits<double>::quiet_NaN();
+    bool fsm_isnan( const Real r )
+    {
+        return FSM_ISNAN( r );
+    }
 
     const Real g_realEpsilon = FSM_REAL_EPSILON;
     Real realCompareDelta = FSM_REAL_EPSILON * 10;

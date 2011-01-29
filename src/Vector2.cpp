@@ -34,7 +34,7 @@ namespace fsm
     //---------------------------------------
     bool Vector2::isNaN() const
     {
-        return isnan(x) || isnan(y);
+        return fsm_isnan(x) || fsm_isnan(y);
     }
 
     //---------------------------------------

@@ -35,7 +35,7 @@ namespace fsm
     //---------------------------------------
     bool Vector3::isNaN() const
     {
-        return isnan(x) || isnan(y) || isnan(z);
+        return fsm_isnan(x) || fsm_isnan(y) || fsm_isnan(z);
     }
 
     //---------------------------------------

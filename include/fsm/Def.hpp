@@ -60,6 +60,7 @@ namespace fsm
     //---------------------------------------
     /// \brief Not a number value.
     extern const Real g_realNaN;
+    bool fsm_isnan( const Real r );
 
     //---------------------------------------
     /// \brief Smallest possible real number.
