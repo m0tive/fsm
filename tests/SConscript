@@ -18,7 +18,7 @@ bld = Builder( action = builder_unit_test )
 env.Append( BUILDERS = { 'Test' : bld } )
 
 env.AppendUnique( CPPPATH = [ '#googletest/include', '#include' ] )
-env.AppendUnique( LIBS = [ 'gtest_main', 'cm2' ] )
+env.AppendUnique( LIBS = [ 'gtest_main', 'fsm' ] )
 
 if 'msvc' in env['TOOLS'] :
     env.AppendUnique( CCFLAGS = [ '/EHsc' ] )

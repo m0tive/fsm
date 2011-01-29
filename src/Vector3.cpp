@@ -6,11 +6,11 @@
 /// \note Copyright (C) 2010 - All Rights Reserved
 //}}}---------------------------------------------------------------------------
 
-#include "cm2/Vector3.hpp"
+#include "fsm/Vector3.hpp"
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
     const Vector3 Vector3::cNaN( g_realNaN, g_realNaN, g_realNaN );
 
@@ -140,7 +140,7 @@ namespace cm2
     //---------------------------------------
     Real Vector3::magnitude() const
     {
-        return cm2::sqrt( x * x + y * y + z * z );
+        return fsm::sqrt( x * x + y * y + z * z );
     }
 
     //---------------------------------------
@@ -157,7 +157,7 @@ namespace cm2
             Real magSquared = magnitudeSquared();
             if( magSquared != 1.0 )
             {
-                *this *=  1.0 / cm2::sqrt(magSquared);
+                *this *=  1.0 / fsm::sqrt(magSquared);
             }
         }
         return *this;

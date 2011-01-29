@@ -6,21 +6,21 @@
 /// \note Copyright (C) 2010 - All Rights Reserved
 //}}}---------------------------------------------------------------------------
 
-#include "cm2/Def.hpp"
+#include "fsm/Def.hpp"
 #include <limits>
 
 //------------------------------------------------------------------------------
 
-#ifndef CM2_REAL_EPSILON
-    #define CM2_REAL_EPSILON DBL_EPSILON
+#ifndef FSM_REAL_EPSILON
+    #define FSM_REAL_EPSILON DBL_EPSILON
 #endif
 
-namespace cm2
+namespace fsm
 {
     const Real g_realNaN = std::numeric_limits<double>::quiet_NaN();
 
-    const Real g_realEpsilon = CM2_REAL_EPSILON;
-    Real realCompareDelta = CM2_REAL_EPSILON * 10;
+    const Real g_realEpsilon = FSM_REAL_EPSILON;
+    Real realCompareDelta = FSM_REAL_EPSILON * 10;
 
     Real realCompare( const Real _a, const Real _b )
     {

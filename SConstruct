@@ -1,4 +1,4 @@
-# scons script for cm2
+# scons script for fsm
 
 import os
 
@@ -91,7 +91,7 @@ if reconfig :
 
     if not conf.CheckHeader('stdint.h'):
         if env['CC'] == "cl":
-            print "\tUsing local header 'include/cm2/stdint.h'"
+            print "\tUsing local header 'include/fsm/stdint.h'"
             env['USE_MSC_STDINT'] = True
         else:
             print "!! You need 'stdint.h' to compile this library"
@@ -157,13 +157,13 @@ if GetOption('run_tests') or clean_build:
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
 if (GetOption('run_doxygen') or clean_build) and env['HAS_DOXYGEN'] :
-    doxygen_sources = Glob( 'include/cm2/*.hpp')
+    doxygen_sources = Glob( 'include/fsm/*.hpp')
     doxygen_sources.extend( Glob( 'Doxyfile' ) )
     docs_target = env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
     env.Alias('docs', docs_target)
 
 if (GetOption('run_ctags') or clean_build) and env['HAS_CTAGS'] :
-    ctags_sources = Glob( 'include/cm2/*.hpp')
+    ctags_sources = Glob( 'include/fsm/*.hpp')
     tags = []
     env.Command( 'obj', '', Mkdir("$TARGET") )
     for ctags_src in ctags_sources:

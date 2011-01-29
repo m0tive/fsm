@@ -11,16 +11,16 @@
 #pragma once
 #endif
 
-#ifndef _cm2_Matrix3_hpp_
-#define _cm2_Matrix3_hpp_
+#ifndef _fsm_Matrix3_hpp_
+#define _fsm_Matrix3_hpp_
 // }}}
 
-#include "cm2/Def.hpp"
-#include "cm2/Vector3.hpp"
+#include "fsm/Def.hpp"
+#include "fsm/Vector3.hpp"
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
 /// \brief A matix with 3 rows and 3 columns.
 /// \note The matrix is stored internally as a row major Real array
@@ -124,8 +124,8 @@ public:
     /// \return A temporary array containing the matrix.
     Real* toArray( Order _layout ) const;
 
-    Vector3 r( size_t _row ) const;
-//    Vector3 c( size_t _row ) const;
+    Vector3 row( size_t _index ) const;
+    Vector3 col( size_t _index ) const;
 
 protected:
     union

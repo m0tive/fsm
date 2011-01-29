@@ -11,28 +11,28 @@
 #pragma once
 #endif
 
-#ifndef _cm2_Def_hpp_
-#define _cm2_Def_hpp_
+#ifndef _fsm_Def_hpp_
+#define _fsm_Def_hpp_
 // }}}
 
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#ifdef CM2_USE_LOCAL_STDINT
-  #ifdef CM2_USE_MSC_STDINT
-      #undef CM2_USE_MSC_STDINT
+#ifdef FSM_USE_LOCAL_STDINT
+  #ifdef FSM_USE_MSC_STDINT
+      #undef FSM_USE_MSC_STDINT
   #endif
 #else
-  #ifndef CM2_USE_MSC_STDINT
+  #ifndef FSM_USE_MSC_STDINT
     #if defined(_MSC_VER) && _MSC_VER < 1600
-      #define CM2_USE_MSC_STDINT
+      #define FSM_USE_MSC_STDINT
     #endif
   #endif
 #endif
 
 
-#ifdef CM2_USE_MSC_STDINT
-  #include "cm2/stdint.h"
+#ifdef FSM_USE_MSC_STDINT
+  #include "fsm/stdint.h"
 #else
   #include <stdint.h>
 #endif
@@ -40,7 +40,7 @@
 #include <stddef.h>
 
 /// \brief Library namespace
-namespace cm2
+namespace fsm
 {
     //---------------------------------------
     /// \brief A real number.
@@ -67,7 +67,7 @@ namespace cm2
     //---------------------------------------
     /// \brief Floating point comparison.
     /// Test if two Real numbers are almost equal. If there is a difference of
-    /// less than CM2_REAL_EPSILON * 10, they are considered equal.
+    /// less than FSM_REAL_EPSILON * 10, they are considered equal.
     /// \param _a - first floating point number.
     /// \param _b - second floating point number.
     /// \return True if the two numbers are almost equal.

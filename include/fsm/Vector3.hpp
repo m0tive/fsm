@@ -11,15 +11,15 @@
 #pragma once
 #endif
 
-#ifndef _cm2_Vector3_hpp_
-#define _cm2_Vector3_hpp_
+#ifndef _fsm_Vector3_hpp_
+#define _fsm_Vector3_hpp_
 // }}}
 
-#include "cm2/Def.hpp"
+#include "fsm/Def.hpp"
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
 /// \brief A three dimensional point or vector
 class Vector3
@@ -140,12 +140,12 @@ public:
 
     //---------------------------------------
     /// \brief Vector magnitude.
-    /// Calculate the length of this Vector3 using cm2::sqrt
+    /// Calculate the length of this Vector3 using fsm::sqrt
     /// \return The magnitude
     Real magnitude() const;
     //---------------------------------------
     /// \brief Vector magnitude squared.
-    /// Calculate the length of this Vector3 but skip the final cm2::sqrt
+    /// Calculate the length of this Vector3 but skip the final fsm::sqrt
     /// \return The magnitude squared
     Real magnitudeSquared() const;
 
@@ -158,17 +158,17 @@ public:
 
     //---------------------------------------
     /// \brief Vector comparison.
-    /// Test if this Vector3 is equal to another Vector3 using cm2::realCompare
+    /// Test if this Vector3 is equal to another Vector3 using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the vectors are equal
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator ==( const Vector3& _rhs ) const;
     //---------------------------------------
     /// \brief Vector comparison.
-    /// Test if this Vector3 is not equal to another Vector3 using cm2::realCompare
+    /// Test if this Vector3 is not equal to another Vector3 using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the vectors are not equal
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator !=( const Vector3& _rhs ) const;
 
     union

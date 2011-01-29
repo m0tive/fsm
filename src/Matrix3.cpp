@@ -6,13 +6,13 @@
 /// \note
 //}}}---------------------------------------------------------------------------
 
-#include "cm2/Matrix3.hpp"
+#include "fsm/Matrix3.hpp"
 
 #include <string.h>
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
     const Matrix3 Matrix3::kIdentity (1,0,0, 0,1,0, 0,0,1);
 
@@ -128,9 +128,9 @@ namespace cm2
     }
 
     //---------------------------------------
-    Vector3 Matrix3::r( size_t _row ) const
+    Vector3 Matrix3::row( size_t _index ) const
     {
-        switch (_row)
+        switch (_index)
         {
             case 0:
                 return Vector3( m00, m01, m02 );

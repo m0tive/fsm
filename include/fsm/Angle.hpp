@@ -12,15 +12,15 @@
 #pragma once
 #endif
 
-#ifndef _cm2_Angle_hpp_
-#define _cm2_Angle_hpp_
+#ifndef _fsm_Angle_hpp_
+#define _fsm_Angle_hpp_
 // }}}
 
-#include "cm2/Def.hpp"
+#include "fsm/Def.hpp"
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
 /// \brief A rotation or portion of a circle.
 class Angle
@@ -158,17 +158,17 @@ public:
 
     //---------------------------------------
     /// \brief Angle comparison.
-    /// Test if this Angle is equal to another Angle using cm2::realCompare
+    /// Test if this Angle is equal to another Angle using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the angles are equal
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator ==( const Angle& _rhs ) const;
     //---------------------------------------
     /// \brief Angle comparison.
-    /// Test if this Angle is not equal to another Angle using cm2::realCompare
+    /// Test if this Angle is not equal to another Angle using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the angles are not equal
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator !=( const Angle& _rhs ) const;
 
     //---------------------------------------
@@ -186,18 +186,18 @@ public:
     //---------------------------------------
     /// \brief Angle comparison.
     /// Test if this Angle is less than or almost equal to another radian
-    /// using cm2::realCompare.
+    /// using fsm::realCompare.
     /// \param _rhs - the right hand side of the comparison
     /// \return True if this angle is greater.
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator <=( const Angle& _rhs ) const;
     //---------------------------------------
     /// \brief Angle comparison.
     /// Test if this Angle is greater than or almost equal to another radian
-    /// using cm2::realCompare.
+    /// using fsm::realCompare.
     /// \param _rhs - the right hand side of the comparison
     /// \return True if this angle is greater.
-    /// \see cm2::realCompare
+    /// \see fsm::realCompare
     bool operator >=( const Angle& _rhs ) const;
 
     //---------------------------------------

@@ -1,15 +1,15 @@
 #include "suit.hpp"
 
-#include <cm2/Vector3.hpp>
+#include <fsm/Vector3.hpp>
 
 class Vector3Test : public testing::Test
 {
   protected:
     Vector3Test() : v1_(1,2,4), v2_(-0.5,-1,-2) {}
 
-    cm2::Vector3 v0_;
-    cm2::Vector3 v1_;
-    cm2::Vector3 v2_;
+    fsm::Vector3 v0_;
+    fsm::Vector3 v1_;
+    fsm::Vector3 v2_;
 };
 
 //---------------------------------------
@@ -21,7 +21,7 @@ TEST_F(Vector3Test, DefaultConstructor)
 //---------------------------------------
 TEST_F(Vector3Test, CopyConstructor)
 {
-    cm2::Vector3 v (v1_);
+    fsm::Vector3 v (v1_);
     // the copy contructor is used in the assert_vect3_eq test
     // so we need to use the basic comparison...
     ASSERT_REAL_EQ( v1_.x, v.x );
@@ -51,13 +51,13 @@ TEST_F(Vector3Test, IsNaN)
     ASSERT_FALSE(v1_.isNaN());
     ASSERT_FALSE(v2_.isNaN());
 
-    v0_.x = cm2::g_realNaN;
+    v0_.x = fsm::g_realNaN;
     ASSERT_TRUE(v0_.isNaN());
 
-    v1_.y = cm2::g_realNaN;
+    v1_.y = fsm::g_realNaN;
     ASSERT_TRUE(v1_.isNaN());
 
-    v2_.z = cm2::g_realNaN;
+    v2_.z = fsm::g_realNaN;
     ASSERT_TRUE(v2_.isNaN());
 }
 
@@ -143,7 +143,7 @@ TEST_F(Vector3Test, CrossProduct)
 //---------------------------------------
 TEST_F(Vector3Test, DotProduct)
 {
-    cm2::Real result = v1_.dot(v2_);
+    fsm::Real result = v1_.dot(v2_);
     EXPECT_REAL_EQ( -10.5, result );
 }
 
@@ -162,11 +162,11 @@ TEST_F(Vector3Test, ScalarDivide)
 TEST_F(Vector3Test, Magnitude)
 {
     v1_.set(3,4,12);
-    cm2::Real resA = v1_.magnitudeSquared();
+    fsm::Real resA = v1_.magnitudeSquared();
     EXPECT_REAL_EQ( 169, resA );
     EXPECT_XYZ_VECT3_EQ( 3, 4, 12, v1_ );
 
-    cm2::Real resB = v1_.magnitude();
+    fsm::Real resB = v1_.magnitude();
     EXPECT_REAL_EQ( 13, resB );
     EXPECT_XYZ_VECT3_EQ( 3, 4, 12, v1_ );
 }
@@ -180,7 +180,7 @@ TEST_F(Vector3Test, Normalise)
     v1_.normalise();
     EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
 
-    v1_ = cm2::Vector3( v2_ ).normalise();
+    v1_ = fsm::Vector3( v2_ ).normalise();
     EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
     EXPECT_REAL_EQ( 5.25, v2_.magnitudeSquared() );
 }

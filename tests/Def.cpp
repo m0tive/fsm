@@ -1,34 +1,34 @@
 #include "suit.hpp"
 
-#include <cm2/Def.hpp>
+#include <fsm/Def.hpp>
 
 //---------------------------------------
 TEST(DefTest, RealEpsilon)
 {
-    EXPECT_EQ( 1.0, 1.0 + cm2::g_realEpsilon * 0.5 );
-    EXPECT_NE( 1.0, 1.0 + cm2::g_realEpsilon );
+    EXPECT_EQ( 1.0, 1.0 + fsm::g_realEpsilon * 0.5 );
+    EXPECT_NE( 1.0, 1.0 + fsm::g_realEpsilon );
 }
 
 //---------------------------------------
 TEST(DefTest, RealCompare)
 {
-    cm2::Real a = 1.0 + 2.0;
-    EXPECT_TRUE( cm2::realCompare( a, 3.0 ) );
+    fsm::Real a = 1.0 + 2.0;
+    EXPECT_TRUE( fsm::realCompare( a, 3.0 ) );
 
-    EXPECT_FALSE( cm2::realCompare( a, 3.0 + cm2::g_realEpsilon*10) );
-    EXPECT_FALSE( cm2::realCompare( a, 3.0 - cm2::g_realEpsilon*10) );
+    EXPECT_FALSE( fsm::realCompare( a, 3.0 + fsm::g_realEpsilon*10) );
+    EXPECT_FALSE( fsm::realCompare( a, 3.0 - fsm::g_realEpsilon*10) );
 }
 
 //---------------------------------------
 TEST(DefTest, RealPow)
 {
-    EXPECT_REAL_EQ( 25, cm2::pow(5.0,2.0) );
-    EXPECT_REAL_EQ( 25, cm2::pow(-5.0,2.0) );
+    EXPECT_REAL_EQ( 25, fsm::pow(5.0,2.0) );
+    EXPECT_REAL_EQ( 25, fsm::pow(-5.0,2.0) );
 }
 
 //---------------------------------------
 TEST(DefTest, RealSqrt)
 {
-    EXPECT_REAL_EQ( 5, cm2::sqrt(25.0) );
+    EXPECT_REAL_EQ( 5, fsm::sqrt(25.0) );
 }
 

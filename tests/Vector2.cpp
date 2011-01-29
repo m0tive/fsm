@@ -1,15 +1,15 @@
 #include "suit.hpp"
 
-#include <cm2/Vector2.hpp>
+#include <fsm/Vector2.hpp>
 
 class Vector2Test : public testing::Test
 {
   protected:
     Vector2Test() : v1_(1,2), v2_(-0.5,-1) {}
 
-    cm2::Vector2 v0_;
-    cm2::Vector2 v1_;
-    cm2::Vector2 v2_;
+    fsm::Vector2 v0_;
+    fsm::Vector2 v1_;
+    fsm::Vector2 v2_;
 };
 
 //---------------------------------------
@@ -21,7 +21,7 @@ TEST_F(Vector2Test, DefaultConstructor)
 //---------------------------------------
 TEST_F(Vector2Test, CopyConstructor)
 {
-    cm2::Vector2 v (v1_);
+    fsm::Vector2 v (v1_);
     // the copy contructor is used in the assert_vect2_eq test
     // so we need to use the basic comparison...
     ASSERT_REAL_EQ( v1_.x, v.x );
@@ -49,14 +49,14 @@ TEST_F(Vector2Test, IsNaN)
     ASSERT_FALSE(v1_.isNaN());
     ASSERT_FALSE(v2_.isNaN());
 
-    v0_.x = cm2::g_realNaN;
+    v0_.x = fsm::g_realNaN;
     ASSERT_TRUE(v0_.isNaN());
 
-    v1_.y = cm2::g_realNaN;
+    v1_.y = fsm::g_realNaN;
     ASSERT_TRUE(v1_.isNaN());
 
-    v2_.x = cm2::g_realNaN;
-    v2_.y = cm2::g_realNaN;
+    v2_.x = fsm::g_realNaN;
+    v2_.y = fsm::g_realNaN;
     ASSERT_TRUE(v2_.isNaN());
 }
 
@@ -138,7 +138,7 @@ TEST_F(Vector2Test, ScalarDivide)
 //---------------------------------------
 TEST_F(Vector2Test, DotProduct)
 {
-    cm2::Real result = v1_.dot(v2_);
+    fsm::Real result = v1_.dot(v2_);
     EXPECT_REAL_EQ( -2.5, result );
 }
 
@@ -146,11 +146,11 @@ TEST_F(Vector2Test, DotProduct)
 TEST_F(Vector2Test, Magnitude)
 {
     v1_.set(3,4);
-    cm2::Real resA = v1_.magnitudeSquared();
+    fsm::Real resA = v1_.magnitudeSquared();
     EXPECT_REAL_EQ( 25, resA );
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 
-    cm2::Real resB = v1_.magnitude();
+    fsm::Real resB = v1_.magnitude();
     EXPECT_REAL_EQ( 5, resB );
     EXPECT_XY_VECT2_EQ( 3, 4, v1_ );
 }
@@ -164,7 +164,7 @@ TEST_F(Vector2Test, Normalise)
     v1_.normalise();
     EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
 
-    v1_ = cm2::Vector2( v2_ ).normalise();
+    v1_ = fsm::Vector2( v2_ ).normalise();
     EXPECT_REAL_EQ( 1, v1_.magnitudeSquared() );
     EXPECT_REAL_EQ( 1.25, v2_.magnitudeSquared() );
 }

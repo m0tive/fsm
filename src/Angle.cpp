@@ -6,11 +6,11 @@
 /// \note Copyright (C) 2010 - All Rights Reserved
 //}}}---------------------------------------------------------------------------
 
-#include "cm2/Angle.hpp"
+#include "fsm/Angle.hpp"
 
 //------------------------------------------------------------------------------
 
-namespace cm2
+namespace fsm
 {
     const Real g_convertToInternal[2] = { 1.0, M_PI / 180.0 };
     const Real g_convertToExternal[2] = { 1.0, 180.0 * M_1_PI };

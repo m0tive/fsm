@@ -1,4 +1,4 @@
-# cm2 library scons script
+# fsm library scons script
 
 Import('global_env')
 
@@ -8,7 +8,7 @@ env.AppendUnique( CPPDEFINES = [ env['PLATFORM'].upper() ] )
 env.AppendUnique( LIBPATH = [ '#lib' ] )
 
 if env['USE_MSC_STDINT']:
-    env.AppendUnique( CPPDEFINES = [ 'CM2_USE_MSC_STDINT' ] )
+    env.AppendUnique( CPPDEFINES = [ 'FSM_USE_MSC_STDINT' ] )
 
 if GetOption('debug') :
     env.AppendUnique( CPPDEFINES = [ '_DEBUG' ] )
@@ -30,4 +30,4 @@ src_files = [ 'Def.cpp',
               'Vector3.cpp',
               'Matrix3.cpp' ]
 
-env.Library( '#lib/cm2', src_files )
+env.Library( '#lib/fsm', src_files )
