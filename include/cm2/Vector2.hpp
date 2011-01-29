@@ -42,6 +42,10 @@ public:
     ~Vector2();
 
 
+    //---------------------------------------
+    /// \brief Test is invalid.
+    /// Checks if the components x or y are NaN.
+    /// \return True if either parts of the vector are NaN.
     bool isNaN() const;
 
 

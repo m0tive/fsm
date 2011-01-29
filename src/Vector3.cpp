@@ -12,6 +12,8 @@
 
 namespace cm2
 {
+    const Vector3 Vector3::cNaN( g_realNaN, g_realNaN, g_realNaN );
+
     //---------------------------------------
     Vector3::Vector3(
             const Real _x/* = 0*/, const Real _y/*= 0*/, const Real _z/*= 0*/)
@@ -28,6 +30,12 @@ namespace cm2
     //---------------------------------------
     Vector3::~Vector3()
     {
+    }
+
+    //---------------------------------------
+    bool Vector3::isNaN() const
+    {
+        return isnan(x) || isnan(y) || isnan(z);
     }
 
     //---------------------------------------

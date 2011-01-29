@@ -45,6 +45,23 @@ TEST_F(Vector3Test, DataAccess)
 }
 
 //---------------------------------------
+TEST_F(Vector3Test, IsNaN)
+{
+    ASSERT_FALSE(v0_.isNaN());
+    ASSERT_FALSE(v1_.isNaN());
+    ASSERT_FALSE(v2_.isNaN());
+
+    v0_.x = cm2::g_realNaN;
+    ASSERT_TRUE(v0_.isNaN());
+
+    v1_.y = cm2::g_realNaN;
+    ASSERT_TRUE(v1_.isNaN());
+
+    v2_.z = cm2::g_realNaN;
+    ASSERT_TRUE(v2_.isNaN());
+}
+
+//---------------------------------------
 TEST_F(Vector3Test, Set)
 {
     v0_ = v1_.set(1,2,4);

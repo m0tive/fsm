@@ -25,6 +25,8 @@ namespace cm2
 class Vector3
 {
 public:
+    static const Vector3 cNaN;
+
     //---------------------------------------
     /// \details Default constructor.
     /// \param _x - x-axis component.
@@ -39,6 +41,13 @@ public:
     //---------------------------------------
     /// \details Destructor
     ~Vector3();
+
+
+    //---------------------------------------
+    /// \brief Test is invalid.
+    /// Checks if the components x, y or z are NaN.
+    /// \return True if either parts of the vector are NaN.
+    bool isNaN() const;
 
 
     //---------------------------------------
