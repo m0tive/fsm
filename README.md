@@ -34,7 +34,9 @@ The documentation can be built using [Doxygen][1].
 
 [1]: http://www.stack.nl/~dimitri/doxygen/
 
-Usage
------
+License
+-------
 
-Link it, use it.
+*Fsm* uses the [MIT license][2], see the LICENSE file for details.
+
+[2]: http://www.opensource.org/licenses/mit-license
