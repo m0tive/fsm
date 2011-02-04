@@ -1,5 +1,4 @@
-#include "suit.hpp"
-
+#include "tools/Vector2.hpp"
 #include <fsm/Vector2.hpp>
 
 class Vector2Test : public testing::Test

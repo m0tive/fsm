@@ -1,5 +1,4 @@
-#include "suit.hpp"
-
+#include "tools/Angle.hpp"
 #include <fsm/Angle.hpp>
 
 class AngleTest : public testing::Test
