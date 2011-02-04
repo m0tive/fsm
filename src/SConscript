@@ -25,7 +25,7 @@ else :
     if 'g++' in env['TOOLS'] :
         env.AppendUnique( CCFLAGS = [ '-O3', '-funroll-loops', '-ffast-math' ] )
     elif 'msvc' in env['TOOLS'] :
-        env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc' ] )
+        env.AppendUnique( CCFLAGS = [ '/Ox', '/EHsc', '/fp:fast' ] )
 
 src_files = [ 'Def.cpp',
               'Angle.cpp',

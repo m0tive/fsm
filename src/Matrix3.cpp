@@ -143,6 +143,25 @@ namespace fsm
         }
 
         // return a bad vector
-        return Vector3( g_realNaN, g_realNaN, g_realNaN );
+        return Vector3::cNaN;
+    }
+
+    //---------------------------------------
+    Vector3 Matrix3::col( size_t _index ) const
+    {
+        switch (_index)
+        {
+            case 0:
+                return Vector3( m00, m10, m20 );
+
+            case 1:
+                return Vector3( m01, m11, m21 );
+
+            case 2:
+                return Vector3( m02, m12, m22 );
+        }
+
+        // return a bad vector
+        return Vector3::cNaN;
     }
 }

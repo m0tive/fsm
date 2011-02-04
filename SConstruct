@@ -8,24 +8,28 @@ AddOption("--test",
 AddOption("--no-test",
           action="store_false", dest="run_tests",
           help="Don't compile and run unit tests")
+
 AddOption("--debug-build",
           action="store_true", dest="debug",
           help="Compile with debug information and warnings")
 AddOption("--release",
           action="store_false", dest="debug", default=False,
           help="Compile without debug information and warnings [default]")
+
 AddOption("--doxygen",
           action="store_true", dest="run_doxygen", default=True,
           help="Generate the reference documents [default]")
 AddOption("--no-doxygen",
           action="store_false", dest="run_doxygen",
           help="Don't generate the reference documents")
+
 AddOption("--tags",
           action="store_true", dest="run_ctags",
           help="Generate tags")
 AddOption("--no-tags",
           action="store_false", dest="run_ctags", default=False,
           help="Don't generate tags [default]")
+
 AddOption("--configure",
           action="store_true", dest="run_config_and_quit", default=False,
           help="Run the build configuration process and quit")
@@ -78,19 +82,15 @@ if reconfig :
     conf_tests = { 'CheckProgram' : CheckProgram }
     conf = Configure(env, custom_tests = conf_tests)
 
-    if not conf.CheckCC() :
-        print('\t!! Your compiler and/or environment is not correctly configured.')
-        Exit(1)
-
     if not conf.CheckCXX() :
         print('\t!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
-    if not conf.CheckFunc('printf') :
+    if not conf.CheckFunc('printf', language="C++") :
         print('\t!! Your compiler and/or environment is not correctly configured.')
         Exit(1)
 
-    if not conf.CheckHeader('stdint.h'):
+    if not conf.CheckHeader('stdint.h', language="C++"):
         if env['CC'] == "cl":
             print "\tUsing local header 'include/fsm/stdint.h'"
             env['USE_MSC_STDINT'] = True
@@ -100,19 +100,19 @@ if reconfig :
     else:
         env['USE_MSC_STDINT'] = False
 
-    if not conf.CheckHeader('stddef.h'):
+    if not conf.CheckHeader('stddef.h', language="C++"):
         print "\t!! You need 'stddef.h' to compile this library"
         Exit(1)
 
-    if not conf.CheckHeader('math.h'):
+    if not conf.CheckHeader('math.h', language="C++"):
         print "\t!! You need 'math.h' to compile this library"
         Exit(1)
 
-    if not conf.CheckHeader('float.h'):
+    if not conf.CheckHeader('float.h', language="C++"):
         print "\t!! You need 'float.h' to compile this library"
         Exit(1)
 
-    if not conf.CheckHeader('string.h'):
+    if not conf.CheckHeader('string.h', language="C++"):
         print "\t!! You need 'string.h' to compile this library"
         Exit(1)
 
@@ -120,6 +120,7 @@ if reconfig :
         print "\t!! You need 'limits' to compile this library"
         Exit(1)
 
+    env['FSM_ISNAN'] = ''
     if not conf.CheckFunc('isnan', language="C++"):
         if not conf.CheckFunc('_isnan', language="C++"):
             print "\t!! You nee the function 'isnan' or '_isnan' to compile this library"
