@@ -10,10 +10,6 @@
 #include <gtest/gtest.h>
 #include "Real.hpp"
 
-// define wrappers
-#define __do do {
-#define enddef } while (0)
-
 #define ASSERT_REAL_RADIAN_EQ( _a, _b ) ASSERT_REAL_EQ( _a, (_b).get(fsm::Angle::kRadian) )
 #define EXPECT_REAL_RADIAN_EQ( _a, _b ) EXPECT_REAL_EQ( _a, (_b).get(fsm::Angle::kRadian) )
 
