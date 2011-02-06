@@ -7,6 +7,7 @@
 //}}}---------------------------------------------------------------------------
 
 #include "fsm/Vector3.hpp"
+#include "internal.hpp"
 
 //------------------------------------------------------------------------------
 
@@ -18,6 +19,12 @@ namespace fsm
     Vector3::Vector3(
             const Real _x/* = 0*/, const Real _y/*= 0*/, const Real _z/*= 0*/)
         : x(_x), y(_y), z(_z)
+    {
+    }
+
+    //---------------------------------------
+    Vector3::Vector3( const Real _a[] )
+        : x(_a[0]), y(_a[1]), z(_a[2])
     {
     }
 
@@ -46,6 +53,25 @@ namespace fsm
         y = _y;
         z = _z;
         return *this;
+    }
+
+    //---------------------------------------
+    Real Vector3::operator []( const size_t _i ) const
+    {
+        switch (_i)
+        {
+            case 0:
+                return x;
+
+            case 1:
+                return y;
+
+            case 2:
+                return z;
+        }
+
+        FSM_ASSERT_FAIL();
+        return g_realNaN;
     }
 
     //---------------------------------------

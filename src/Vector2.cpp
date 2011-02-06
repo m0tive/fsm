@@ -21,6 +21,12 @@ namespace fsm
     }
 
     //---------------------------------------
+    Vector2::Vector2( const Real _a[] )
+        : x(_a[0]), y(_a[1])
+    {
+    }
+
+    //---------------------------------------
     Vector2::Vector2( const Vector2& _v )
         : x(_v.x), y(_v.y)
     {

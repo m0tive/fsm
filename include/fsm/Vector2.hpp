@@ -33,6 +33,11 @@ public:
     /// \param _y - y-axis component.
     Vector2( const Real _x = 0, const Real _y = 0 );
     //---------------------------------------
+    /// \details Set constructor.
+    /// \param _a - an array of two Reals.
+    /// \todo test TODO
+    Vector2( const Real _a[] );
+    //---------------------------------------
     /// \details Copy constructor.
     /// \param _v - the Vector2 to copy.
     Vector2( const Vector2& _v );

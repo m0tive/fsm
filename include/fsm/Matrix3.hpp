@@ -28,36 +28,6 @@ class Matrix3
 {
 public:
     //---------------------------------------
-    /// \brief One-dimensional matrix array layout.
-    enum Order
-    {
-        kRowMajor = 0,
-        kColumnMajor
-    };
-
-    // Matrix3::Order dox {{{
-
-    /// \var Matrix3::kRowMajor
-    /// \brief Row major matrix array order.\n
-    /// A one-dimensional array is mapped to a matrix in the following order:
-    /// \par
-    /// <tt>| 0 1 2 |</tt>\n
-    /// <tt>| 3 4 5 |</tt>\n
-    /// <tt>| 6 7 8 |</tt>\n
-    /// \note This is the format used by DirectX
-
-    /// \var Matrix3::kColumnMajor
-    /// \brief Column major matrix array order.\n
-    /// A one-dimensional array is mapped to a matrix in the following order:
-    /// \par
-    /// <tt>| 0 3 6 |</tt>\n
-    /// <tt>| 1 4 7 |</tt>\n
-    /// <tt>| 2 5 8 |</tt>\n
-    /// \note This is the format used by OpenGL
-
-    // }}}
-
-    //---------------------------------------
     /// \brief The identity matrix
     /// \par
     /// <tt>| 1 0 0 |</tt>\n
@@ -68,6 +38,58 @@ public:
     //---------------------------------------
     /// \details Default constructor.
     Matrix3();
+    //---------------------------------------
+    /// \details Set constructor. Parameters are in the following format:
+    /// \par
+    /// <tt>| _m00 _m01 _m02 |</tt>\n
+    /// <tt>| _m10 _m11 _m12 |</tt>\n
+    /// <tt>| _m20 _m21 _m22 |</tt>\n
+    /// \param _m00 \param _m01 \param _m02
+    /// \param _m10 \param _m11 \param _m12
+    /// \param _m20 \param _m21 \param _m22
+    /// \param _colMajor - specify input is column major layout: \par
+    /// <tt>| _m00 _m10 _m20 |</tt>\n
+    /// <tt>| _m01 _m11 _m21 |</tt>\n
+    /// <tt>| _m02 _m12 _m22 |</tt>\n
+    Matrix3( Real _m00, Real _m01, Real _m02,
+             Real _m10, Real _m11, Real _m12,
+             Real _m20, Real _m21, Real _m22,
+             bool _colMajor = false );
+    //---------------------------------------
+    /// \details Set constructor. Create a matrix from a one-dimensional array
+    /// of Reals. The default layout is: \par
+    /// <tt>| 0 1 2 |</tt>\n
+    /// <tt>| 3 4 5 |</tt>\n
+    /// <tt>| 6 7 8 |</tt>\n
+    /// \param _mat[] - The matrix as an one-dimensional array of Reals.
+    /// \param _colMajor - specify input is column major layout: \par
+    /// <tt>| 0 3 6 |</tt>\n
+    /// <tt>| 1 4 7 |</tt>\n
+    /// <tt>| 2 5 8 |</tt>\n
+    Matrix3( Real _mat[], bool _colMajor = false );
+    //---------------------------------------
+    /// \brief Copy constructor
+    /// \param _mat - Matrix to copy.
+    Matrix3( const Matrix3& _mat );
+
+    //---------------------------------------
+    /// \details Destructor
+    ~Matrix3();
+
+    //---------------------------------------
+    /// \brief Convert to one-dimensional array.
+    /// The default layout is: \par
+    /// <tt>| 0 1 2 |</tt>\n
+    /// <tt>| 3 4 5 |</tt>\n
+    /// <tt>| 6 7 8 |</tt>\n
+    /// \param _colMajor - specify input is column major layout: \par
+    /// <tt>| 0 3 6 |</tt>\n
+    /// <tt>| 1 4 7 |</tt>\n
+    /// <tt>| 2 5 8 |</tt>\n
+    /// \return A temporary array containing the matrix.
+    Real* serialise( bool _colMajor = false ) const;
+
+#if 0 // {{{
     //---------------------------------------
     /// \details Set constructor. Parameters are in the following format:
     /// \par
@@ -122,22 +144,14 @@ public:
     /// \brief Convert to one-dimensional array.
     /// \param _layout - matrix layout [default Matrix3::kRowMajor]
     /// \return A temporary array containing the matrix.
-    Real* toArray( Order _layout ) const;
+    Real* serialise( Order _layout ) const;
 
-    Vector3 row( size_t _index ) const;
-    Vector3 col( size_t _index ) const;
+    Vector3 column( size_t _index ) const;
+#endif // }}}
 
-protected:
-    union
-    {
-        struct
-        {
-            Real m00, m01, m02;
-            Real m10, m11, m12;
-            Real m20, m21, m22;
-        };
-        Real m_data[9]; ///< m_data in array format.
-    };
+    Vector3 r0;
+    Vector3 r1;
+    Vector3 r2;
 };
 }
 

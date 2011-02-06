@@ -120,6 +120,10 @@ if reconfig :
         print "\t!! You need 'limits' to compile this library"
         Exit(1)
 
+    if not conf.CheckHeader('assert.h', language="C++"):
+        print "\t!! You need 'assert.h' to compile this library"
+        Exit(1)
+
     env['FSM_ISNAN'] = ''
     if not conf.CheckFunc('isnan', language="C++"):
         if not conf.CheckFunc('_isnan', language="C++"):

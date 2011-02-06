@@ -34,6 +34,11 @@ public:
     /// \param _z - z-axis component.
     Vector3( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
     //---------------------------------------
+    /// \details Set constructor.
+    /// \param _a - an array of three Reals.
+    /// \todo test TODO
+    Vector3( const Real _a[] );
+    //---------------------------------------
     /// \details Copy constructor.
     /// \param _v - the Vector3 to copy.
     Vector3( const Vector3& _v );
@@ -58,6 +63,8 @@ public:
     /// \param _z - z-axis component
     /// \return A copy of the resulting vector
     const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
+
+    Real operator []( const size_t _i ) const;
 
     //---------------------------------------
     /// \brief Negative operator.
