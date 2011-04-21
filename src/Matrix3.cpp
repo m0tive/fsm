@@ -68,6 +68,7 @@ namespace fsm
     {
     }
 
+#if 0 // unfinished
     //---------------------------------------
     const Matrix3& Matrix3::set(
             Real _m00, Real _m01, Real _m02,
@@ -99,6 +100,8 @@ namespace fsm
             r2.set( _mat[2], _mat[5], _mat[8] );
         }
     }
+#endif
+
     //---------------------------------------
     Real* Matrix3::serialise( Layout _layout/*= kRowMajor*/) const
     {

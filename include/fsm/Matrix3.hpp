@@ -83,12 +83,14 @@ public:
     /// \details Destructor
     ~Matrix3();
 
+#if 0 // unfinished
     const Matrix3& set(
             Real _m00, Real _m01, Real _m02,
             Real _m10, Real _m11, Real _m12,
             Real _m20, Real _m21, Real _m22,
             Layout _layout = kRowMajor );
     const Matrix3& set( Real _mat, Layout _layout = kRowMajor );
+#endif
 
     //---------------------------------------
     /// \brief Convert to one-dimensional array.
