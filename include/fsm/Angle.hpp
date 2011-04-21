@@ -42,7 +42,9 @@ public:
     static const Angle cQuarter; ///< Pi/2
     static const Angle cEighth; ///< Pi/4
 
+#if 0
     static const Angle cNaN;
+#endif
 
     struct Radian ///< Radian constants
     {

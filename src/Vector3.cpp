@@ -13,7 +13,9 @@
 
 namespace fsm
 {
+#if 0
     const Vector3 Vector3::cNaN( g_realNaN, g_realNaN, g_realNaN );
+#endif
 
     //---------------------------------------
     Vector3::Vector3(
@@ -39,11 +41,13 @@ namespace fsm
     {
     }
 
+#if 0
     //---------------------------------------
     bool Vector3::isNaN() const
     {
         return fsm_isnan(x) || fsm_isnan(y) || fsm_isnan(z);
     }
+#endif
 
     //---------------------------------------
     const Vector3& Vector3::set(

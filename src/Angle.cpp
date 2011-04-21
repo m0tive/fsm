@@ -20,7 +20,9 @@ namespace fsm
     const Angle Angle::cQuarter( M_PI_2 );
     const Angle Angle::cEighth( M_PI_4 );
 
+#if 0
     const Angle Angle::cNaN( g_realNaN );
+#endif
 
     const Angle Angle::Radian::c2PI( Angle::cWhole );
     const Angle Angle::Radian::cPI( Angle::cHalf );

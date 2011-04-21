@@ -12,7 +12,9 @@
 
 namespace fsm
 {
+#if 0
     const Vector2 Vector2::cNaN( g_realNaN );
+#endif
 
     //---------------------------------------
     Vector2::Vector2( const Real _x/* = 0*/, const Real _y/*= 0*/)
@@ -37,11 +39,13 @@ namespace fsm
     {
     }
 
+#if 0
     //---------------------------------------
     bool Vector2::isNaN() const
     {
         return fsm_isnan(x) || fsm_isnan(y);
     }
+#endif
 
     //---------------------------------------
     const Vector2& Vector2::set( const Real _x/*= 0*/, const Real _y/*= 0*/ )

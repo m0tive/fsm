@@ -25,7 +25,9 @@ namespace fsm
 class Vector3
 {
 public:
+#if 0
     static const Vector3 cNaN;
+#endif
 
     //---------------------------------------
     /// \details Default constructor.

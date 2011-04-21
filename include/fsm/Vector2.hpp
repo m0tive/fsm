@@ -25,7 +25,9 @@ namespace fsm
 class Vector2
 {
 public:
+#if 0
     static const Vector2 cNaN;
+#endif
 
     //---------------------------------------
     /// \details Default constructor.
@@ -46,13 +48,13 @@ public:
     /// \details Destructor
     ~Vector2();
 
-
+#if 0
     //---------------------------------------
     /// \brief Test is invalid.
     /// Checks if the components x or y are NaN.
     /// \return True if either parts of the vector are NaN.
     bool isNaN() const;
-
+#endif
 
     //---------------------------------------
     /// \brief Value set.

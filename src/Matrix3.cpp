@@ -14,7 +14,7 @@
 
 namespace fsm
 {
-    const Matrix3 Matrix3::kIdentity (1,0,0, 0,1,0, 0,0,1);
+    const Matrix3 Matrix3::cIdentity (1,0,0, 0,1,0, 0,0,1);
 
     //---------------------------------------
     Matrix3::Matrix3()
@@ -28,12 +28,12 @@ namespace fsm
     Matrix3::Matrix3( Real _m00, Real _m01, Real _m02,
                       Real _m10, Real _m11, Real _m12,
                       Real _m20, Real _m21, Real _m22,
-                      bool _colMajor/*= false*/)
+                      Layout _layout/*= kRowMajor*/)
         : r0( _m00, _m01, _m02 ),
           r1( _m10, _m11, _m12 ),
           r2( _m20, _m21, _m22 )
     {
-        if( _colMajor )
+        if( _layout ) // if kColMajor
         {
             r0.set( _m00, _m10, _m20 );
             r1.set( _m01, _m11, _m21 );
@@ -42,12 +42,12 @@ namespace fsm
     }
 
     //---------------------------------------
-    Matrix3::Matrix3( Real _mat[], bool _colMajor/*= false*/)
+    Matrix3::Matrix3( Real _mat[], Layout _layout/*= kRowMajor*/)
         : r0( _mat ),
           r1( _mat+3 ),
           r2( _mat+6 )
     {
-        if( _colMajor )
+        if( _layout ) // if kColMajor
         {
             r0.set( _mat[0], _mat[3], _mat[6] );
             r1.set( _mat[1], _mat[4], _mat[7] );
@@ -69,11 +69,42 @@ namespace fsm
     }
 
     //---------------------------------------
-    Real* Matrix3::serialise( bool _colMajor/*= false*/) const
+    const Matrix3& Matrix3::set(
+            Real _m00, Real _m01, Real _m02,
+            Real _m10, Real _m11, Real _m12,
+            Real _m20, Real _m21, Real _m22,
+            Layout _layout/*= kRowMajor*/)
+        : r0( _m00, _m01, _m02 ),
+          r1( _m10, _m11, _m12 ),
+          r2( _m20, _m21, _m22 )
+    {
+        if( _layout ) // if kColMajor
+        {
+            r0.set( _m00, _m10, _m20 );
+            r1.set( _m01, _m11, _m21 );
+            r2.set( _m02, _m12, _m22 );
+        }
+    }
+
+    //---------------------------------------
+    Matrix3::Matrix3( Real _mat[], Layout _layout/*= kRowMajor*/)
+        : r0( _mat ),
+          r1( _mat+3 ),
+          r2( _mat+6 )
+    {
+        if( _layout ) // if kColMajor
+        {
+            r0.set( _mat[0], _mat[3], _mat[6] );
+            r1.set( _mat[1], _mat[4], _mat[7] );
+            r2.set( _mat[2], _mat[5], _mat[8] );
+        }
+    }
+    //---------------------------------------
+    Real* Matrix3::serialise( Layout _layout/*= kRowMajor*/) const
     {
         static Real s_mat[9];
 
-        if( _colMajor )
+        if( _layout ) // if kColMajor
         {
             s_mat[0] = r0[0]; s_mat[3] = r0[1]; s_mat[6] = r0[2];
             s_mat[1] = r1[0]; s_mat[4] = r1[1]; s_mat[7] = r1[2];

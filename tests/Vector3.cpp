@@ -43,6 +43,7 @@ TEST_F(Vector3Test, DataAccess)
     ASSERT_REAL_EQ( 4, v0_.data[2] );
 }
 
+#if 0
 //---------------------------------------
 TEST_F(Vector3Test, IsNaN)
 {
@@ -59,6 +60,7 @@ TEST_F(Vector3Test, IsNaN)
     v2_.z = fsm::g_realNaN;
     ASSERT_TRUE(v2_.isNaN());
 }
+#endif
 
 //---------------------------------------
 TEST_F(Vector3Test, Set)
