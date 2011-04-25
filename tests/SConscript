@@ -27,6 +27,7 @@ test_files = [ 'Def.cpp',
                'Angle.cpp',
                'Vector2.cpp',
                'Vector3.cpp',
+               'Vector4.cpp',
                'Matrix3.cpp' ]
 
 unittest = env.Program( '#bin/test', test_files )

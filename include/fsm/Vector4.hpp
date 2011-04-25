@@ -1,5 +1,5 @@
 // File Info {{{----------------------------------------------------------------
-/// \file Vector3.hpp
+/// \file Vector4.hpp
 /// \date 2010 Dec 19
 /// \author 
 /// \brief
@@ -11,8 +11,8 @@
 #pragma once
 #endif
 
-#ifndef _fsm_Vector3_hpp_
-#define _fsm_Vector3_hpp_
+#ifndef _fsm_Vector4_hpp_
+#define _fsm_Vector4_hpp_
 // }}}
 
 #include "fsm/Def.hpp"
@@ -21,12 +21,12 @@
 
 namespace fsm
 {
-/// \brief A three dimensional point or vector
-class Vector3
+/// \brief A four dimensional point or vector
+class Vector4
 {
 public:
 #if 0
-    static const Vector3 cNaN;
+    static const Vector4 cNaN;
 #endif
 
     //---------------------------------------
@@ -34,20 +34,25 @@ public:
     /// \param _x - x-axis component.
     /// \param _y - y-axis component.
     /// \param _z - z-axis component.
-    Vector3( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
+    /// \param _w - w-axis component.
+    Vector4(
+        const Real _x = 0,
+        const Real _y = 0,
+        const Real _z = 0,
+        const Real _w = 0 );
     //---------------------------------------
     /// \details Set constructor.
-    /// \param _a - an array of three Reals.
+    /// \param _a - an array of four Reals.
     /// \todo test TODO
-    Vector3( const Real _a[] );
+    Vector4( const Real _a[] );
     //---------------------------------------
     /// \details Copy constructor.
-    /// \param _v - the Vector3 to copy.
-    Vector3( const Vector3& _v );
+    /// \param _v - the Vector4 to copy.
+    Vector4( const Vector4& _v );
 
     //---------------------------------------
     /// \details Destructor
-    ~Vector3();
+    ~Vector4();
 
 #if 0
     //---------------------------------------
@@ -60,126 +65,133 @@ public:
 
     //---------------------------------------
     /// \brief Value set.
-    /// Set the vectors value to a given x, y and z
+    /// Set the vectors value to a given x, y, z and w
     /// \param _x - x-axis component
     /// \param _y - y-axis component
     /// \param _z - z-axis component
+    /// \param _w - w-axis component
     /// \return A copy of the resulting vector
-    const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
+    const Vector4& set(
+        const Real _x = 0,
+        const Real _y = 0,
+        const Real _z = 0,
+        const Real _w = 0 );
 
     Real operator []( const size_t _i ) const;
 
     //---------------------------------------
     /// \brief Negative operator.
-    /// Make a new Vector3 by making each value of this Vector3 negative.
+    /// Make a new Vector4 by making each value of this Vector4 negative.
     /// \return The resulting vector
-    Vector3 operator -() const;
+    Vector4 operator -() const;
 
     //---------------------------------------
     /// \brief Vector assignment.
-    /// Copy the value of another Vector3 into this vector
+    /// Copy the value of another Vector4 into this vector
     /// \param _rhs - the vector to copy
     /// \return A copy of the resulting vector
-    const Vector3& operator =( const Vector3& _rhs );
+    const Vector4& operator =( const Vector4& _rhs );
 
     //---------------------------------------
     /// \brief Vector add.
-    /// Create a new Vector3 by adding two Vector3 together
+    /// Create a new Vector4 by adding two Vector4 together
     /// \param _rhs - the right hand side of the addition
     /// \return The resulting vector
-    Vector3 operator +( const Vector3& _rhs ) const;
+    Vector4 operator +( const Vector4& _rhs ) const;
     //---------------------------------------
     /// \brief Vector subtract.
-    /// Create a new Vector3 by subtracted one Vector3 from anther.
+    /// Create a new Vector4 by subtracted one Vector4 from anther.
     /// \param _rhs - the right hand side of the subtraction
     /// \return The resulting vector
-    Vector3 operator -( const Vector3& _rhs ) const;
+    Vector4 operator -( const Vector4& _rhs ) const;
 
     //---------------------------------------
     /// \brief Vector add.
-    /// Add another Vector3 to this Vector3.
+    /// Add another Vector4 to this Vector4.
     /// \param _rhs - the right hand side of the addition
     /// \return A copy of the resulting vector
-    const Vector3& operator +=( const Vector3& _rhs );
+    const Vector4& operator +=( const Vector4& _rhs );
     //---------------------------------------
     /// \brief Vector subtract.
-    /// Subtract another Vector3 from this Vector3.
+    /// Subtract another Vector4 from this Vector4.
     /// \param _rhs - the right hand side of the subtraction
     /// \return A copy of the resulting vector
-    const Vector3& operator -=( const Vector3& _rhs );
+    const Vector4& operator -=( const Vector4& _rhs );
 
+#if 0 // don't think vect4 has this...
     //---------------------------------------
     /// \brief Vector cross product.
-    /// Calculate the cross product of this Vector3 and another Vector3
+    /// Calculate the cross product of this Vector4 and another Vector4
     /// \param _rhs - the right hand side of the cross product
     /// \return The resulting vector
-    Vector3 cross( const Vector3& _rhs ) const;
+    Vector4 cross( const Vector4& _rhs ) const;
+#endif
 
     //---------------------------------------
     /// \brief Vector dot product.
-    /// Calculate the dot product of this Vector3 and another Vector3.
+    /// Calculate the dot product of this Vector4 and another Vector4.
     /// \param _rhs - the right hand side of the dot product
     /// \return The dot product
-    Real dot( const Vector3& _rhs ) const;
+    Real dot( const Vector4& _rhs ) const;
 
     //---------------------------------------
     /// \brief Scalar multiply.
-    /// Create a new Vector3 by multiplying this Vector3 by a Real number.
+    /// Create a new Vector4 by multiplying this Vector4 by a Real number.
     /// \param _rhs - the right hand side of the multiplication
     /// \return The resulting vector
-    Vector3 operator *( const Real _rhs ) const;
+    Vector4 operator *( const Real _rhs ) const;
     //---------------------------------------
     /// \brief Scalar division.
-    /// Create a new Vector3 by dividing this Vector3 by a Real number.
+    /// Create a new Vector4 by dividing this Vector4 by a Real number.
     /// \param _rhs - the right hand side of the division
     /// \return The resulting vector
-    Vector3 operator /( const Real _rhs ) const;
+    Vector4 operator /( const Real _rhs ) const;
 
     //---------------------------------------
     /// \brief Scalar multiply.
-    /// Multiply each value of this Vector3 by a Real.
+    /// Multiply each value of this Vector4 by a Real.
     /// \param _rhs - the right hand side of the multiplication
     /// \return A copy of the resulting vector
-    const Vector3& operator *=( const Real _rhs );
+    const Vector4& operator *=( const Real _rhs );
     //---------------------------------------
     /// \brief Scalar divide.
-    /// Divide each value of this Vector3 by a Real.
+    /// Divide each value of this Vector4 by a Real.
     /// \param _rhs - the right hand side of the division
     /// \return A copy of the resulting vector
-    const Vector3& operator /=( const Real _rhs );
+    const Vector4& operator /=( const Real _rhs );
 
     //---------------------------------------
     /// \brief Vector magnitude.
-    /// Calculate the length of this Vector3 using fsm::sqrt
+    /// Calculate the length of this Vector4 using fsm::sqrt
     /// \return The magnitude
     Real magnitude() const;
     //---------------------------------------
     /// \brief Vector magnitude squared.
-    /// Calculate the length of this Vector3 but skip the final fsm::sqrt
+    /// Calculate the length of this Vector4 but skip the final fsm::sqrt
     /// \return The magnitude squared
     Real magnitudeSquared() const;
 
     //---------------------------------------
     /// \brief Normalise this vector.
-    /// Set the length of this Vector3 to 1 if the Vector3 is not of
+    /// Set the length of this Vector4 to 1 if the Vector4 is not of
     /// length zero.
     /// \return A copy of the resulting vector
-    const Vector3& normalise();
+    const Vector4& normalise();
 
     //---------------------------------------
     /// \brief Vector comparison.
-    /// Test if this Vector3 is equal to another Vector3 using fsm::realCompare
+    /// Test if this Vector4 is equal to another Vector4 using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the vectors are equal
     /// \see fsm::realCompare
-    bool operator ==( const Vector3& _rhs ) const;
+    bool operator ==( const Vector4& _rhs ) const;
     //---------------------------------------
     /// \brief Vector comparison.
-    /// Test if this Vector3 is not equal to another Vector3 using fsm::realCompare
+    /// Test if this Vector4 is not equal to another Vector4 using fsm::realCompare
     /// \param _rhs - the right hand side of the comparison
     /// \return True if the vectors are not equal
     /// \see fsm::realCompare
-    bool operator !=( const Vector3& _rhs ) const;
+    bool operator !=( const Vector4& _rhs ) const;
 
     union
     {
@@ -188,8 +200,9 @@ public:
             Real x; ///< x-axis component.
             Real y; ///< y-axis component.
             Real z; ///< z-axis component.
+            Real w; ///< w-axis component.
         };
-        Real data[3]; ///< data in array format.
+        Real data[4]; ///< data in array format.
     };
 };
 }
