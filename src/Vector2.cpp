@@ -56,6 +56,14 @@ namespace fsm
     }
 
     //---------------------------------------
+    const Vector2& Vector2::set( const Real _a[] )
+    {
+        x = _a[0];
+        y = _a[1];
+        return *this;
+    }
+
+    //---------------------------------------
     Vector2 Vector2::operator -() const
     {
         return Vector2( -x, -y );

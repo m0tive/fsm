@@ -42,7 +42,7 @@ namespace fsm
     }
 
     //---------------------------------------
-    Matrix3::Matrix3( Real _mat[], Layout _layout/*= kRowMajor*/)
+    Matrix3::Matrix3( const Real _mat[], Layout _layout/*= kRowMajor*/)
         : r0( _mat ),
           r1( _mat+3 ),
           r2( _mat+6 )
@@ -68,16 +68,12 @@ namespace fsm
     {
     }
 
-#if 0 // unfinished
     //---------------------------------------
     const Matrix3& Matrix3::set(
             Real _m00, Real _m01, Real _m02,
             Real _m10, Real _m11, Real _m12,
             Real _m20, Real _m21, Real _m22,
             Layout _layout/*= kRowMajor*/)
-        : r0( _m00, _m01, _m02 ),
-          r1( _m10, _m11, _m12 ),
-          r2( _m20, _m21, _m22 )
     {
         if( _layout ) // if kColMajor
         {
@@ -85,13 +81,18 @@ namespace fsm
             r1.set( _m01, _m11, _m21 );
             r2.set( _m02, _m12, _m22 );
         }
+        else
+        {
+            r0.set( _m00, _m01, _m02 );
+            r1.set( _m10, _m11, _m12 );
+            r2.set( _m20, _m21, _m22 );
+        }
+
+        return *this;
     }
 
     //---------------------------------------
-    Matrix3::Matrix3( Real _mat[], Layout _layout/*= kRowMajor*/)
-        : r0( _mat ),
-          r1( _mat+3 ),
-          r2( _mat+6 )
+    const Matrix3& Matrix3::set( const Real _mat[], Layout _layout/*= kRowMajor*/)
     {
         if( _layout ) // if kColMajor
         {
@@ -99,8 +100,15 @@ namespace fsm
             r1.set( _mat[1], _mat[4], _mat[7] );
             r2.set( _mat[2], _mat[5], _mat[8] );
         }
+        else
+        {
+            r0.set( _mat );
+            r1.set( _mat+3 );
+            r2.set( _mat+6 );
+        }
+
+        return *this;
     }
-#endif
 
     //---------------------------------------
     Real* Matrix3::serialise( Layout _layout/*= kRowMajor*/) const
@@ -121,6 +129,101 @@ namespace fsm
         }
 
         return s_mat;
+    }
+
+    //---------------------------------------
+    const Matrix3& Matrix3::operator =( const Matrix3& _rhs )
+    {
+        r0 = _rhs.r0;
+        r1 = _rhs.r1;
+        r2 = _rhs.r2;
+        return *this;
+    }
+
+    //---------------------------------------
+    Matrix3 Matrix3::operator *( const Matrix3& _rhs ) const
+    {
+        Matrix3 ret;
+
+        // row 0
+        //
+        ret.r0.data[0]  = r0.data[0] * _rhs.r0.data[0];
+        ret.r0.data[1]  = r0.data[1] * _rhs.r0.data[0];
+        ret.r0.data[2]  = r0.data[2] * _rhs.r0.data[0];
+
+        ret.r0.data[0] += r1.data[0] * _rhs.r0.data[1];
+        ret.r0.data[1] += r1.data[1] * _rhs.r0.data[1];
+        ret.r0.data[2] += r1.data[2] * _rhs.r0.data[1];
+
+        ret.r0.data[0] += r2.data[0] * _rhs.r0.data[2];
+        ret.r0.data[1] += r2.data[1] * _rhs.r0.data[2];
+        ret.r0.data[2] += r2.data[2] * _rhs.r0.data[2];
+
+        // row 1
+        //
+        ret.r1.data[0]  = r0.data[0] * _rhs.r1.data[0];
+        ret.r1.data[1]  = r0.data[1] * _rhs.r1.data[0];
+        ret.r1.data[2]  = r0.data[2] * _rhs.r1.data[0];
+
+        ret.r1.data[0] += r1.data[0] * _rhs.r1.data[1];
+        ret.r1.data[1] += r1.data[1] * _rhs.r1.data[1];
+        ret.r1.data[2] += r1.data[2] * _rhs.r1.data[1];
+
+        ret.r1.data[0] += r2.data[0] * _rhs.r1.data[2];
+        ret.r1.data[1] += r2.data[1] * _rhs.r1.data[2];
+        ret.r1.data[2] += r2.data[2] * _rhs.r1.data[2];
+
+        // row 2
+        //
+        ret.r2.data[0]  = r0.data[0] * _rhs.r2.data[0];
+        ret.r2.data[1]  = r0.data[1] * _rhs.r2.data[0];
+        ret.r2.data[2]  = r0.data[2] * _rhs.r2.data[0];
+
+        ret.r2.data[0] += r1.data[0] * _rhs.r2.data[1];
+        ret.r2.data[1] += r1.data[1] * _rhs.r2.data[1];
+        ret.r2.data[2] += r1.data[2] * _rhs.r2.data[1];
+
+        ret.r2.data[0] += r2.data[0] * _rhs.r2.data[2];
+        ret.r2.data[1] += r2.data[1] * _rhs.r2.data[2];
+        ret.r2.data[2] += r2.data[2] * _rhs.r2.data[2];
+
+        return ret;
+    }
+
+    //---------------------------------------
+    const Matrix3& Matrix3::preMultiply( const Matrix3& _rhs )
+    {
+        return *this = _rhs * (*this);
+    }
+
+    //---------------------------------------
+    const Matrix3& Matrix3::postMultiply( const Matrix3& _rhs )
+    {
+        return *this = (*this) * _rhs;
+    }
+
+    //---------------------------------------
+    Matrix3 Matrix3::transpose() const
+    {
+        return Matrix3(
+                r0.data[0], r1.data[0], r2.data[0],
+                r0.data[1], r1.data[1], r2.data[1],
+                r0.data[2], r1.data[2], r2.data[2] );
+    }
+
+    //---------------------------------------
+    const Matrix3& Matrix3::transpose( Matrix3& _m )
+    {
+        return _m.set(
+                _m.r0.data[0], _m.r1.data[0], _m.r2.data[0],
+                _m.r0.data[1], _m.r1.data[1], _m.r2.data[1],
+                _m.r0.data[2], _m.r1.data[2], _m.r2.data[2] );
+    }
+
+    //---------------------------------------
+    Real Matrix3::determinate() const
+    {
+        return r0.dot( r1.cross( r2 ) );
     }
 
 #if 0 // {{{

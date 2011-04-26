@@ -73,7 +73,7 @@ public:
     /// <tt>| 0 3 6 |</tt>\n
     /// <tt>| 1 4 7 |</tt>\n
     /// <tt>| 2 5 8 |</tt>\n
-    Matrix3( Real _mat[], Layout _layout = kRowMajor );
+    Matrix3( const Real _mat[], Layout _layout = kRowMajor );
     //---------------------------------------
     /// \brief Copy constructor
     /// \param _mat - Matrix to copy.
@@ -83,14 +83,23 @@ public:
     /// \details Destructor
     ~Matrix3();
 
-#if 0 // unfinished
     const Matrix3& set(
             Real _m00, Real _m01, Real _m02,
             Real _m10, Real _m11, Real _m12,
             Real _m20, Real _m21, Real _m22,
             Layout _layout = kRowMajor );
-    const Matrix3& set( Real _mat, Layout _layout = kRowMajor );
-#endif
+    const Matrix3& set( const Real _mat[], Layout _layout = kRowMajor );
+
+    //---------------------------------------
+    /// \brief Matrix assignment.
+    /// Copy the value of another Matrix3 into this matrix
+    /// \param _rhs - the matrix to copy
+    /// \return A copy of the resulting matrix
+    const Matrix3& operator =( const Matrix3& _rhs );
+
+    Matrix3 operator *( const Matrix3& _rhs ) const;
+    const Matrix3& preMultiply( const Matrix3& _rhs );
+    const Matrix3& postMultiply( const Matrix3& _rhs );
 
     //---------------------------------------
     /// \brief Convert to one-dimensional array.
@@ -105,9 +114,14 @@ public:
     /// \return A temporary array containing the matrix.
     Real* serialise( Layout _layout = kRowMajor ) const;
 
-    Vector3 r0;
-    Vector3 r1;
-    Vector3 r2;
+    Matrix3 transpose() const;
+    static const Matrix3& transpose( Matrix3& _m );
+
+    Real determinate() const;
+
+    Vector3 r0; ///< first row
+    Vector3 r1; ///< second row
+    Vector3 r2; ///< third row
 };
 }
 

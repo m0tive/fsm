@@ -66,6 +66,8 @@ public:
     /// \param _z - z-axis component
     /// \return A copy of the resulting vector
     const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
+    /// \todo test TODO
+    const Vector3& set( const Real _a[] );
 
     Real operator []( const size_t _i ) const;
 

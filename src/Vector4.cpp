@@ -67,6 +67,16 @@ namespace fsm
     }
 
     //---------------------------------------
+    const Vector4& Vector4::set( const Real _a[] )
+    {
+        x = _a[0];
+        y = _a[1];
+        z = _a[2];
+        w = _a[3];
+        return *this;
+    }
+
+    //---------------------------------------
     Real Vector4::operator []( const size_t _i ) const
     {
         switch (_i)

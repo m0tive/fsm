@@ -60,6 +60,15 @@ namespace fsm
     }
 
     //---------------------------------------
+    const Vector3& Vector3::set( const Real _a[] )
+    {
+        x = _a[0];
+        y = _a[1];
+        z = _a[2];
+        return *this;
+    }
+
+    //---------------------------------------
     Real Vector3::operator []( const size_t _i ) const
     {
         switch (_i)
