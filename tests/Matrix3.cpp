@@ -67,22 +67,65 @@ TEST_F(Matrix3Test, Constructor)
 }
 
 //---------------------------------------
+TEST_F(Matrix3Test, Set)
+{
+    EXPECT_TRUE(false);
+}
+
+//---------------------------------------
+TEST_F(Matrix3Test, Assignment)
+{
+    EXPECT_TRUE(false);
+}
+
+//---------------------------------------
+TEST_F(Matrix3Test, Multiply)
+{
+    EXPECT_TRUE(false);
+}
+
+//---------------------------------------
 TEST_F(Matrix3Test, Serialise)
 {
     fsm::Real* set;
     set = m2_.serialise();
 
-    ASSERT_9REALS_MAT_EQ( set[0], set[1], set[2],
+    EXPECT_9REALS_MAT_EQ( set[0], set[1], set[2],
                           set[3], set[4], set[5],
                           set[6], set[7], set[8],
                           m2_ );
 
     set = m2_.serialise( fsm::Matrix3::kColMajor );
 
-    ASSERT_9REALS_MAT_EQ( set[0], set[3], set[6],
+    EXPECT_9REALS_MAT_EQ( set[0], set[3], set[6],
                           set[1], set[4], set[7],
                           set[2], set[5], set[8],
                           m2_ );
+}
+
+//---------------------------------------
+TEST_F(Matrix3Test, Transpose)
+{
+    fsm::Matrix3 mA;
+    fsm::Matrix3 mB = m1_.transpose();
+    EXPECT_MAT_EQ( m1_, mB );
+    mA = fsm::Matrix3::transpose( mB );
+    EXPECT_MAT_EQ( m1_, mA );
+    EXPECT_MAT_EQ( m1_, mB );
+
+    mA = m2_.transpose();
+    EXPECT_9REALS_MAT_EQ( 0,3,6, 1,4,7, 2,5,8, mA );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    mB = fsm::Matrix3::transpose( mA );
+
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, mA );
+    EXPECT_MAT_EQ( mA, mB );
+}
+
+//---------------------------------------
+TEST_F(Matrix3Test, Determinate)
+{
+    EXPECT_TRUE(false);
 }
 
 #endif
