@@ -1,7 +1,6 @@
 #include "tools/Matrix3.hpp"
 #include <fsm/Matrix3.hpp>
 
-#if 1
 class Matrix3Test : public testing::Test
 {
   protected:
@@ -69,13 +68,26 @@ TEST_F(Matrix3Test, Constructor)
 //---------------------------------------
 TEST_F(Matrix3Test, Set)
 {
-    EXPECT_TRUE(false);
+    m0_ = m1_.set( 2,3,4,
+                   5,6,7,
+                   8,9,0 );
+    EXPECT_9REALS_MAT_EQ( 2,3,4, 5,6,7, 8,9,0, m1_ );
+    EXPECT_MAT_EQ( m0_, m1_ );
+
+
+    fsm::Real s[9] = { 9,8,7,
+                       6,5,4,
+                       3,2,1 };
+    m2_.set( s );
+    EXPECT_9REALS_MAT_EQ( 9,8,7, 6,5,4, 3,2,1, m2_ );
 }
 
 //---------------------------------------
-TEST_F(Matrix3Test, Assignment)
+TEST_F(Matrix3Test, Copy)
 {
-    EXPECT_TRUE(false);
+    m0_ = m1_ = m2_;
+    EXPECT_MAT_EQ( m2_, m1_ );
+    EXPECT_MAT_EQ( m1_, m0_ );
 }
 
 //---------------------------------------
@@ -125,7 +137,16 @@ TEST_F(Matrix3Test, Transpose)
 //---------------------------------------
 TEST_F(Matrix3Test, Determinate)
 {
-    EXPECT_TRUE(false);
+    fsm::Real d = m0_.determinate();
+    EXPECT_REAL_EQ( 0, d );
+
+    d = m1_.determinate();
+    EXPECT_REAL_EQ( 1, d );
+
+    d = m2_.determinate();
+    EXPECT_REAL_EQ( 0, d );
+
+    d = fsm::Matrix3( 1,4,3, 2,5,6, 7,3,9 ).determinate();
+    EXPECT_REAL_EQ( 36, d );
 }
 
-#endif
