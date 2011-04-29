@@ -148,43 +148,43 @@ namespace fsm
         // row 0
         //
         ret.r0.data[0]  = r0.data[0] * _rhs.r0.data[0];
-        ret.r0.data[1]  = r0.data[1] * _rhs.r0.data[0];
-        ret.r0.data[2]  = r0.data[2] * _rhs.r0.data[0];
+        ret.r0.data[1]  = r0.data[0] * _rhs.r0.data[1];
+        ret.r0.data[2]  = r0.data[0] * _rhs.r0.data[2];
 
-        ret.r0.data[0] += r1.data[0] * _rhs.r0.data[1];
-        ret.r0.data[1] += r1.data[1] * _rhs.r0.data[1];
-        ret.r0.data[2] += r1.data[2] * _rhs.r0.data[1];
+        ret.r0.data[0] += r0.data[1] * _rhs.r1.data[0];
+        ret.r0.data[1] += r0.data[1] * _rhs.r1.data[1];
+        ret.r0.data[2] += r0.data[1] * _rhs.r1.data[2];
 
-        ret.r0.data[0] += r2.data[0] * _rhs.r0.data[2];
-        ret.r0.data[1] += r2.data[1] * _rhs.r0.data[2];
-        ret.r0.data[2] += r2.data[2] * _rhs.r0.data[2];
+        ret.r0.data[0] += r0.data[2] * _rhs.r2.data[0];
+        ret.r0.data[1] += r0.data[2] * _rhs.r2.data[1];
+        ret.r0.data[2] += r0.data[2] * _rhs.r2.data[2];
 
         // row 1
         //
-        ret.r1.data[0]  = r0.data[0] * _rhs.r1.data[0];
-        ret.r1.data[1]  = r0.data[1] * _rhs.r1.data[0];
-        ret.r1.data[2]  = r0.data[2] * _rhs.r1.data[0];
+        ret.r1.data[0]  = r1.data[0] * _rhs.r0.data[0];
+        ret.r1.data[1]  = r1.data[0] * _rhs.r0.data[1];
+        ret.r1.data[2]  = r1.data[0] * _rhs.r0.data[2];
 
-        ret.r1.data[0] += r1.data[0] * _rhs.r1.data[1];
+        ret.r1.data[0] += r1.data[1] * _rhs.r1.data[0];
         ret.r1.data[1] += r1.data[1] * _rhs.r1.data[1];
-        ret.r1.data[2] += r1.data[2] * _rhs.r1.data[1];
+        ret.r1.data[2] += r1.data[1] * _rhs.r1.data[2];
 
-        ret.r1.data[0] += r2.data[0] * _rhs.r1.data[2];
-        ret.r1.data[1] += r2.data[1] * _rhs.r1.data[2];
-        ret.r1.data[2] += r2.data[2] * _rhs.r1.data[2];
+        ret.r1.data[0] += r1.data[2] * _rhs.r2.data[0];
+        ret.r1.data[1] += r1.data[2] * _rhs.r2.data[1];
+        ret.r1.data[2] += r1.data[2] * _rhs.r2.data[2];
 
         // row 2
         //
-        ret.r2.data[0]  = r0.data[0] * _rhs.r2.data[0];
-        ret.r2.data[1]  = r0.data[1] * _rhs.r2.data[0];
-        ret.r2.data[2]  = r0.data[2] * _rhs.r2.data[0];
+        ret.r2.data[0]  = r2.data[0] * _rhs.r0.data[0];
+        ret.r2.data[1]  = r2.data[0] * _rhs.r0.data[1];
+        ret.r2.data[2]  = r2.data[0] * _rhs.r0.data[2];
 
-        ret.r2.data[0] += r1.data[0] * _rhs.r2.data[1];
-        ret.r2.data[1] += r1.data[1] * _rhs.r2.data[1];
-        ret.r2.data[2] += r1.data[2] * _rhs.r2.data[1];
+        ret.r2.data[0] += r2.data[1] * _rhs.r1.data[0];
+        ret.r2.data[1] += r2.data[1] * _rhs.r1.data[1];
+        ret.r2.data[2] += r2.data[1] * _rhs.r1.data[2];
 
-        ret.r2.data[0] += r2.data[0] * _rhs.r2.data[2];
-        ret.r2.data[1] += r2.data[1] * _rhs.r2.data[2];
+        ret.r2.data[0] += r2.data[2] * _rhs.r2.data[0];
+        ret.r2.data[1] += r2.data[2] * _rhs.r2.data[1];
         ret.r2.data[2] += r2.data[2] * _rhs.r2.data[2];
 
         return ret;

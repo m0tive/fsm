@@ -93,7 +93,47 @@ TEST_F(Matrix3Test, Copy)
 //---------------------------------------
 TEST_F(Matrix3Test, Multiply)
 {
-    EXPECT_TRUE(false);
+    m0_ = m1_ * m2_;
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_MAT_EQ( m1_, fsm::Matrix3::cIdentity );
+    EXPECT_MAT_EQ( m0_, fsm::Matrix3::cIdentity );
+
+    m0_ = m2_ * m1_;
+    EXPECT_MAT_EQ( m0_, fsm::Matrix3::cIdentity );
+
+    m0_ = m1_.postMultiply( m2_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_MAT_EQ( m1_, fsm::Matrix3::cIdentity );
+    EXPECT_MAT_EQ( m0_, m1_ );
+
+    m0_ = m1_.preMultiply( m2_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_MAT_EQ( m1_, fsm::Matrix3::cIdentity );
+    EXPECT_MAT_EQ( m0_, m1_ );
+
+    m1_.set( 2,5,7, 4,6,9, 1,3,2 );
+
+    m0_ = m1_ * m2_;
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_9REALS_MAT_EQ( 2,5,7, 4,6,9, 1,3,2, m1_ );
+    EXPECT_9REALS_MAT_EQ( 57,71,85, 72,91,110, 21,27,33, m0_ );
+
+    m0_ = m2_ * m1_;
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_9REALS_MAT_EQ( 2,5,7, 4,6,9, 1,3,2, m1_ );
+    EXPECT_9REALS_MAT_EQ( 6,12,13, 27,54,67, 48,96,121, m0_ );
+
+    m1_.set( 2,5,7, 4,6,9, 1,3,2 );
+    m0_ = m1_.postMultiply( m2_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_9REALS_MAT_EQ( 57,71,85, 72,91,110, 21,27,33, m1_ );
+    EXPECT_MAT_EQ( m0_, m1_ );
+
+    m1_.set( 2,5,7, 4,6,9, 1,3,2 );
+    m0_ = m1_.preMultiply( m2_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_9REALS_MAT_EQ( 6,12,13, 27,54,67, 48,96,121, m1_ );
+    EXPECT_MAT_EQ( m0_, m1_ );
 }
 
 //---------------------------------------
