@@ -36,7 +36,7 @@ AddOption("--configure",
 
 #-------------------------------------------------------------------------------
 
-env = Environment(ENV = os.environ)
+env = Environment(ENV = os.environ, tools=['default', 'doxygen'], toolpath='.')
 
 vars = Variables('build-setup.conf');
 vars.AddVariables(
@@ -171,10 +171,7 @@ if GetOption('run_tests') or clean_build:
     SConscript( [ 'googletest.SConscript', 'tests/SConscript' ] )
 
 if (GetOption('run_doxygen') or clean_build) and env['HAS_DOXYGEN'] :
-    doxygen_sources = Glob( 'include/fsm/*.hpp')
-    doxygen_sources.extend( Glob( 'Doxyfile' ) )
-    docs_target = env.Command( 'docs/html/index.html', doxygen_sources, "doxygen" )
-    env.Alias('docs', docs_target)
+    env.Doxygen('Doxyfile')
 
 if (GetOption('run_ctags') or clean_build) and env['HAS_CTAGS'] :
     ctags_sources = Glob( 'include/fsm/*.hpp')
