@@ -1,29 +1,35 @@
 :: Run python scons, if possible
 
-@set sconsPath=site_scons\local\scons.py
-@if not exist %sconsPath% @goto error_no_scons_local
+@setlocal
 
-@set tempfile=.pythondir.tmp
-@dir /b \python* > %tempfile%
+@if not defined SconsPath @set SconsPath=site_scons\local
+@if not exist "%SconsPath%\scons.py" @(
+    echo.Cannot find scons.py in `%SconsPath%'
+    echo.You can get it from:
+    echo.    http://www.scons.org/download.php
+    echo.or set the correct path in %%SconsPath%%
+    goto quit
+)
 
-@set /p pythonDir=<%tempfile%
-@set pythonPath=%SYSTEMDRIVE%\%pythonDir%\python.exe
+@if not defined PythonPath @(
+    for %%I in ("python.exe") do @set PythonPath=%%~dp$PATH:I
+)
+@if not defined PythonPath @(
+    for /f "delims=" %%I in ('dir /b %SYSTEMDRIVE%\python*') do @(
+        for %%J in ("%SYSTEMDRIVE%\%%~I") do @set PythonPath=%%~sfJ
+    )
+)
 
-@if not exist %pythonPath% @goto error_no_python
+@if not exist "%PythonPath%\python.exe" @(
+    echo.Cannot find python.exe in `%PythonPath%`, try running:
+    echo.    python site_scons\local\scons.py %*
+    echo.or set the correct path in %%PythonPath%%
+    goto quit
+)
 
-%pythonPath% %sconsPath% %*
-
-:: skip the errors...
-@goto quit
-
-:error_no_scons_local
-@echo Cannot find site_scons\local\scons.py
-@echo You can get it from:
-@echo     http://www.scons.org/download.php
-@goto quit
-
-:error_no_python
-@echo Cannot find python directory, try running:
-@echo     python site_scons\local\scons.py %*
+"%PythonPath%\python.exe" "%SconsPath%\scons.py" %*
 
 :quit
+@endlocal
+
+:End
