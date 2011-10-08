@@ -89,6 +89,7 @@ public:
             Real _m20, Real _m21, Real _m22,
             Layout _layout = kRowMajor );
     const Matrix3& set( const Real _mat[], Layout _layout = kRowMajor );
+    const Matrix3& set( const Matrix3& _mat );
 
     //---------------------------------------
     /// \brief Matrix assignment.
@@ -118,6 +119,9 @@ public:
     static const Matrix3& transpose( Matrix3& _m );
 
     Real determinate() const;
+
+    Matrix3 inverse() const;
+    static bool invert( Matrix3& _m );
 
     Vector3 r0; ///< first row
     Vector3 r1; ///< second row

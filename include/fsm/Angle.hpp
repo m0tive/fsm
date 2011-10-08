@@ -37,10 +37,10 @@ public:
     //---------------------------------------
     // Constants
 
-    static const Angle cWhole;  ///< 2Pi
-    static const Angle cHalf;   ///< Pi
+    static const Angle cWhole;   ///< 2Pi
+    static const Angle cHalf;    ///< Pi
     static const Angle cQuarter; ///< Pi/2
-    static const Angle cEighth; ///< Pi/4
+    static const Angle cEighth;  ///< Pi/4
 
 #if 0
     static const Angle cNaN;

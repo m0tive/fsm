@@ -48,7 +48,7 @@ namespace fsm
 
     Angle::Angle( const Real _angle, Unit _unit )
     {
-      m_data = _angle / g_convertToInternal[_unit];
+        m_data = _angle / g_convertToInternal[_unit];
     }
 
     //---------------------------------------
