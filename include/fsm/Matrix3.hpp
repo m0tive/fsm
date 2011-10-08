@@ -89,7 +89,6 @@ public:
             Real _m20, Real _m21, Real _m22,
             Layout _layout = kRowMajor );
     const Matrix3& set( const Real _mat[], Layout _layout = kRowMajor );
-    const Matrix3& set( const Matrix3& _mat );
 
     //---------------------------------------
     /// \brief Matrix assignment.
@@ -99,7 +98,7 @@ public:
     const Matrix3& operator =( const Matrix3& _rhs );
 
     Matrix3 operator *( const Matrix3& _rhs ) const;
-    const Matrix3& preMultiply( const Matrix3& _rhs );
+    const Matrix3& preMultiply( const Matrix3& _lhs );
     const Matrix3& postMultiply( const Matrix3& _rhs );
 
     //---------------------------------------
@@ -115,8 +114,14 @@ public:
     /// \return A temporary array containing the matrix.
     Real* serialise( Layout _layout = kRowMajor ) const;
 
+    //---------------------------------------
+    /// \brief Get the transpose of this matrix.
+    /// \return A copy of this matrix is returned.
     Matrix3 transpose() const;
-    static const Matrix3& transpose( Matrix3& _m );
+    //---------------------------------------
+    /// \brief Transpose a matrix _m.
+    /// \param _m - the Matrix3 to be transposed.
+    static void transpose( Matrix3& _m );
 
     Real determinate() const;
 

@@ -161,17 +161,14 @@ TEST_F(Matrix3Test, Transpose)
     fsm::Matrix3 mA;
     fsm::Matrix3 mB = m1_.transpose();
     EXPECT_MAT_EQ( m1_, mB );
-    mA = fsm::Matrix3::transpose( mB );
-    EXPECT_MAT_EQ( m1_, mA );
+    fsm::Matrix3::transpose( mB );
     EXPECT_MAT_EQ( m1_, mB );
 
     mA = m2_.transpose();
     EXPECT_9REALS_MAT_EQ( 0,3,6, 1,4,7, 2,5,8, mA );
     EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
-    mB = fsm::Matrix3::transpose( mA );
-
+    fsm::Matrix3::transpose( mA );
     EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, mA );
-    EXPECT_MAT_EQ( mA, mB );
 }
 
 //---------------------------------------
@@ -188,5 +185,28 @@ TEST_F(Matrix3Test, Determinate)
 
     d = fsm::Matrix3( 1,4,3, 2,5,6, 7,3,9 ).determinate();
     EXPECT_REAL_EQ( 36, d );
+}
+
+//---------------------------------------
+TEST_F(Matrix3Test, Invert)
+{
+    bool result = fsm::Matrix3::invert( m0_ );
+    EXPECT_FALSE(result);
+    EXPECT_9REALS_MAT_EQ( 0,0,0, 0,0,0, 0,0,0, m0_ );
+
+    result = fsm::Matrix3::invert( m1_ );
+    EXPECT_TRUE(result);
+    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m1_ );
+
+    m0_ = m2_.inverse();
+    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m0_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+
+    m2_.set( 1,4,3, 2,5,6, 7,3,9 );
+    m1_ = m2_.inverse();
+    EXPECT_9REALS_MAT_EQ( 1,4,3, 2,5,6, 7,3,9, m2_ );
+    EXPECT_9REALS_MAT_EQ( 0.75,-0.75, 0.25,
+                        2.0/3.0, -1.0/3.0, 0,
+                        -29.0/36.0, 25.0/36.0, -1.0/12.0, m1_ );
 }
 

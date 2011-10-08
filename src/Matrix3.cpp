@@ -111,16 +111,6 @@ namespace fsm
     }
 
     //---------------------------------------
-    const Matrix3& Matrix3::set( const Matrix3& _mat )
-    {
-        r0.set( _mat.r0.data );
-        r1.set( _mat.r1.data );
-        r2.set( _mat.r2.data );
-
-        return *this;
-    }
-
-    //---------------------------------------
     Real* Matrix3::serialise( Layout _layout/*= kRowMajor*/) const
     {
         static Real s_mat[9];
@@ -201,9 +191,9 @@ namespace fsm
     }
 
     //---------------------------------------
-    const Matrix3& Matrix3::preMultiply( const Matrix3& _rhs )
+    const Matrix3& Matrix3::preMultiply( const Matrix3& _lhs )
     {
-        return *this = _rhs * (*this);
+        return *this = _lhs * (*this);
     }
 
     //---------------------------------------
@@ -222,10 +212,9 @@ namespace fsm
     }
 
     //---------------------------------------
-    const Matrix3& Matrix3::transpose( Matrix3& _m )
+    void Matrix3::transpose( Matrix3& _m )
     {
-        return _m.set(
-                _m.r0.data[0], _m.r1.data[0], _m.r2.data[0],
+        _m.set( _m.r0.data[0], _m.r1.data[0], _m.r2.data[0],
                 _m.r0.data[1], _m.r1.data[1], _m.r2.data[1],
                 _m.r0.data[2], _m.r1.data[2], _m.r2.data[2] );
     }
@@ -237,10 +226,10 @@ namespace fsm
     }
 
     //---------------------------------------
-    void doInvert( const Matrix3& s, Matrix3& d )
+    void doInvert( const Matrix3& s, Matrix3& d, const Real& det )
     {
         const Real m00 = s.r1.data[1]*s.r2.data[2] - s.r1.data[2]*s.r2.data[1];
-        const Real m01 = s.r0.data[1]*s.r2.data[1] - s.r0.data[1]*s.r2.data[2];
+        const Real m01 = s.r0.data[2]*s.r2.data[1] - s.r0.data[1]*s.r2.data[2];
         const Real m02 = s.r0.data[1]*s.r1.data[2] - s.r0.data[2]*s.r1.data[1];
 
         const Real m10 = s.r1.data[2]*s.r2.data[0] - s.r1.data[0]*s.r2.data[2];
@@ -251,17 +240,17 @@ namespace fsm
         const Real m21 = s.r0.data[1]*s.r2.data[0] - s.r0.data[0]*s.r2.data[1];
         const Real m22 = s.r0.data[0]*s.r1.data[1] - s.r0.data[1]*s.r1.data[0];
 
-        d.r0.data[0] = m00;
-        d.r0.data[1] = m01;
-        d.r0.data[2] = m02;
+        d.r0.data[0] = m00 / det;
+        d.r0.data[1] = m01 / det;
+        d.r0.data[2] = m02 / det;
 
-        d.r1.data[0] = m10;
-        d.r1.data[1] = m11;
-        d.r1.data[2] = m12;
+        d.r1.data[0] = m10 / det;
+        d.r1.data[1] = m11 / det;
+        d.r1.data[2] = m12 / det;
 
-        d.r2.data[0] = m20;
-        d.r2.data[1] = m21;
-        d.r2.data[2] = m22;
+        d.r2.data[0] = m20 / det;
+        d.r2.data[1] = m21 / det;
+        d.r2.data[2] = m22 / det;
     }
 
     //---------------------------------------
@@ -274,7 +263,7 @@ namespace fsm
         }
 
         Matrix3 ret;
-        doInvert( *this, ret );
+        doInvert( *this, ret, det );
 
         return ret;
     }
@@ -288,7 +277,7 @@ namespace fsm
             return false;
         }
 
-        doInvert( _m, _m );
+        doInvert( _m, _m, det );
 
         return true;
     }
