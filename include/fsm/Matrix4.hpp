@@ -28,12 +28,68 @@ class Matrix4
 {
 public:
     //---------------------------------------
+    /// \brief The identity matrix
+    /// \par
+    /// <tt>| 1 0 0 0 |</tt>\n
+    /// <tt>| 0 1 0 0 |</tt>\n
+    /// <tt>| 0 0 1 0 |</tt>\n
+    /// <tt>| 0 0 0 1 |</tt>\n
+    static const Matrix4 cIdentity;
+
+    enum Layout
+    {
+        kRowMajor = 0,
+        kColMajor
+    };
+
+    //---------------------------------------
     /// \details Default constructor
     Matrix4();
 
     //---------------------------------------
     /// \details Destructor
     ~Matrix4();
+
+    //---------------------------------------
+    /// \details Set constructor. Parameters are in the following format:
+    /// \par
+    /// <tt>| _m00 _m01 _m02 _m03 |</tt>\n
+    /// <tt>| _m10 _m11 _m12 _m13 |</tt>\n
+    /// <tt>| _m20 _m21 _m22 _m23 |</tt>\n
+    /// <tt>| _m30 _m31 _m32 _m33 |</tt>\n
+    /// \param _m00 \param _m01 \param _m02 \param _m03
+    /// \param _m10 \param _m11 \param _m12 \param _m13
+    /// \param _m20 \param _m21 \param _m22 \param _m23
+    /// \param _m30 \param _m31 \param _m32 \param _m33
+    /// \param _layout - specify input is column major layout: \par
+    /// <tt>| _m00 _m10 _m20 _m30 |</tt>\n
+    /// <tt>| _m01 _m11 _m21 _m31 |</tt>\n
+    /// <tt>| _m02 _m12 _m22 _m32 |</tt>\n
+    /// <tt>| _m03 _m13 _m23 _m33 |</tt>\n
+    Matrix4(
+            Real _m00, Real _m01, Real _m02, Real _m03,
+            Real _m10, Real _m11, Real _m12, Real _m13,
+            Real _m20, Real _m21, Real _m22, Real _m23,
+            Real _m30, Real _m31, Real _m32, Real _m33,
+            Layout _layout = kRowMajor );
+    //---------------------------------------
+    /// \details Set constructor. Create a matrix from a one-dimensional array
+    /// of Reals. The default layout is: \par
+    /// <tt>|  0  1  2  3 |</tt>\n
+    /// <tt>|  4  5  6  7 |</tt>\n
+    /// <tt>|  8  9 10 11 |</tt>\n
+    /// <tt>| 12 13 14 15 |</tt>\n
+    /// \param _mat[] - The matrix as an one-dimensional array of Reals.
+    /// \param _layout - specify input is column major layout: \par
+    /// <tt>|  0  4  8 12 |</tt>\n
+    /// <tt>|  1  5  9 13 |</tt>\n
+    /// <tt>|  2  6 10 14 |</tt>\n
+    /// <tt>|  3  7 11 15 |</tt>\n
+    Matrix4( const Real _mat[], Layout _layout = kRowMajor );
+    //---------------------------------------
+    /// \brief Copy constructor
+    /// \param _mat - Matrix to copy.
+    Matrix4( const Matrix4& _mat );
 
     Vector4 r0; ///< first row
     Vector4 r1; ///< second row
