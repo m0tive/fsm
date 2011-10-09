@@ -47,10 +47,6 @@ public:
     Matrix4();
 
     //---------------------------------------
-    /// \details Destructor
-    ~Matrix4();
-
-    //---------------------------------------
     /// \details Set constructor. Parameters are in the following format:
     /// \par
     /// <tt>| _m00 _m01 _m02 _m03 |</tt>\n
@@ -90,6 +86,38 @@ public:
     /// \brief Copy constructor
     /// \param _mat - Matrix to copy.
     Matrix4( const Matrix4& _mat );
+
+    //---------------------------------------
+    /// \details Destructor
+    ~Matrix4();
+
+    const Matrix4& set(
+            Real _m00, Real _m01, Real _m02, Real _m03,
+            Real _m10, Real _m11, Real _m12, Real _m13,
+            Real _m20, Real _m21, Real _m22, Real _m23,
+            Real _m30, Real _m31, Real _m32, Real _m33,
+            Layout _layout = kRowMajor );
+    const Matrix4& set( const Real _mat[], Layout _layout = kRowMajor );
+
+    //---------------------------------------
+    /// \brief Matrix assignment.
+    /// Copy the value of another Matrix4 into this matrix
+    /// \param _rhs - the matrix to copy
+    /// \return A copy of the resulting matrix
+    const Matrix4& operator =( const Matrix4& _rhs );
+
+    Matrix4 operator *( const Matrix4& _rhs ) const;
+    const Matrix4& preMultiply( const Matrix4& _lhs );
+    const Matrix4& postMultiply( const Matrix4& _rhs );
+
+    //---------------------------------------
+    /// \brief Get the transpose of this matrix.
+    /// \return A copy of this matrix is returned.
+    Matrix4 transpose() const;
+    //---------------------------------------
+    /// \brief Transpose a matrix _m.
+    /// \param _m - the Matrix4 to be transposed.
+    static void transpose( Matrix4& _m );
 
     Vector4 r0; ///< first row
     Vector4 r1; ///< second row

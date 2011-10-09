@@ -18,7 +18,7 @@
     ASSERT_XYZW_VECT4_EQ( _30, _31, _32, _33, t1.r3 ); \
 } while (0)
 
-#define EXPECT_9REALS_MAT_EQ( _00, _01, _02, _03, _10, _11, _12, _13, _20, _21, _22, _23, _30, _31, _32, _33, _m ) do { \
+#define EXPECT_16REALS_MAT_EQ( _00, _01, _02, _03, _10, _11, _12, _13, _20, _21, _22, _23, _30, _31, _32, _33, _m ) do { \
     fsm::Matrix4 t1 (_m); \
     EXPECT_XYZW_VECT4_EQ( _00, _01, _02, _03, t1.r0 ); \
     EXPECT_XYZW_VECT4_EQ( _10, _11, _12, _13, t1.r1 ); \
