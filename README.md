@@ -1,16 +1,8 @@
-FreeSceneMaths Library
+FsMath Library
 ======================
 
-A free, open-source maths library for computer graphics and other stuff.
-
-Types
------
-
-* Real
-* Angle
-* Vector2
-* Vector3
-* Matrix3 *a 3x3 matrix*
+A free, open-source maths library designed for computer graphics and other
+stuff.
 
 Building
 --------
@@ -23,7 +15,7 @@ or
 
     $ python scons-local/scons.py
 
-To also run the unit tests, add `--test` to the command line
+To also run the unit tests, add `--test` to the command line.
 
 Documentation
 -------------
@@ -40,3 +32,4 @@ License
 *Fsm* uses the [MIT license][2], see the LICENSE file for details.
 
 [2]: http://www.opensource.org/licenses/mit-license
+
