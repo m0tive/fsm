@@ -42,8 +42,7 @@ public:
         const Real _w = 0 );
     //---------------------------------------
     /// \details Set constructor.
-    /// \param _a - an array of four Reals.
-    /// \todo test TODO
+    /// \param _a - an array of four Reals { x, y, z, w }
     Vector4( const Real _a[] );
     //---------------------------------------
     /// \details Copy constructor.
@@ -77,7 +76,11 @@ public:
         const Real _y = 0,
         const Real _z = 0,
         const Real _w = 0 );
-    /// \todo test TODO
+    //---------------------------------------
+    /// \brief Value set.
+    /// Set the vectors value to a given array.
+    /// \param _a - an array of four Reals { x, y, z, w }
+    /// \return A copy of the resulting vector
     const Vector4& set( const Real _a[] );
 
     Real operator []( const size_t _i ) const;

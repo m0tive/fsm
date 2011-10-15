@@ -31,6 +31,11 @@ TEST_F(Vector2Test, CopyConstructor)
 TEST_F(Vector2Test, Constructor)
 {
     ASSERT_XY_VECT2_EQ( 1, 2, v1_ );
+
+    fsm::Real set[] = { 9,8 };
+
+    fsm::Vector2 vect (set);
+    ASSERT_XY_VECT2_EQ( 9, 8, vect );
 }
 
 //---------------------------------------
@@ -70,6 +75,12 @@ TEST_F(Vector2Test, Set)
 
     v2_.set();
     EXPECT_XY_VECT2_EQ( 0, 0, v2_ );
+
+    fsm::Real set[] = { 9,8 };
+
+    v0_ = v1_.set(set);
+    EXPECT_XY_VECT2_EQ( 9, 8, v1_ );
+    EXPECT_VECT2_EQ( v1_, v0_ );
 }
 
 //---------------------------------------

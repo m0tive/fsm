@@ -37,8 +37,7 @@ public:
     Vector3( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
     //---------------------------------------
     /// \details Set constructor.
-    /// \param _a - an array of three Reals.
-    /// \todo test TODO
+    /// \param _a - an array of three Reals { x, y, z }
     Vector3( const Real _a[] );
     //---------------------------------------
     /// \details Copy constructor.
@@ -60,13 +59,17 @@ public:
 
     //---------------------------------------
     /// \brief Value set.
-    /// Set the vectors value to a given x, y and z
+    /// Set the vectors value to a given x, y and z.
     /// \param _x - x-axis component
     /// \param _y - y-axis component
     /// \param _z - z-axis component
     /// \return A copy of the resulting vector
     const Vector3& set( const Real _x = 0, const Real _y = 0, const Real _z = 0 );
-    /// \todo test TODO
+    //---------------------------------------
+    /// \brief Value set.
+    /// Set the vectors value to a given array.
+    /// \param _a - an array of three Reals { x, y, z }
+    /// \return A copy of the resulting vector
     const Vector3& set( const Real _a[] );
 
     Real operator []( const size_t _i ) const;

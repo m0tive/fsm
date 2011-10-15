@@ -36,8 +36,7 @@ public:
     Vector2( const Real _x = 0, const Real _y = 0 );
     //---------------------------------------
     /// \details Set constructor.
-    /// \param _a - an array of two Reals.
-    /// \todo test TODO
+    /// \param _a - an array of two Reals { x, y }.
     Vector2( const Real _a[] );
     //---------------------------------------
     /// \details Copy constructor.
@@ -58,12 +57,16 @@ public:
 
     //---------------------------------------
     /// \brief Value set.
-    /// Set the vectors value to a given x and y
+    /// Set the vectors value to a given x and y.
     /// \param _x - x-axis component
     /// \param _y - y-axis component
     /// \return A copy of the resulting vector
     const Vector2& set( const Real _x = 0, const Real _y = 0 );
-    /// \todo test TODO
+    //---------------------------------------
+    /// \brief Value set.
+    /// Set the vectors value to a given array.
+    /// \param _a - an array of two Reals { x, y }
+    /// \return A copy of the resulting vector
     const Vector2& set( const Real _a[] );
 
     //---------------------------------------

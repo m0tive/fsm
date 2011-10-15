@@ -33,6 +33,11 @@ TEST_F(Vector4Test, CopyConstructor)
 TEST_F(Vector4Test, Constructor)
 {
     ASSERT_XYZW_VECT4_EQ( 1, 2, 4, 8, v1_ );
+
+    fsm::Real set[] = { 9,8,7,6 };
+
+    fsm::Vector4 vect (set);
+    ASSERT_XYZW_VECT4_EQ( 9, 8, 7, 6, vect );
 }
 
 //---------------------------------------
@@ -73,6 +78,12 @@ TEST_F(Vector4Test, Set)
 
     v2_.set();
     EXPECT_XYZW_VECT4_EQ( 0, 0, 0, 0, v2_ );
+
+    fsm::Real set[] = { 9,8,7,6 };
+
+    v0_ = v1_.set(set);
+    EXPECT_XYZW_VECT4_EQ( 9, 8, 7, 6, v1_ );
+    EXPECT_VECT4_EQ( v1_, v0_ );
 }
 
 //---------------------------------------
