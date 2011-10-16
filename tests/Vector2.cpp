@@ -44,6 +44,23 @@ TEST_F(Vector2Test, DataAccess)
     v0_.x = 1; v0_.y = 2;
     ASSERT_REAL_EQ( v0_.x, v0_.data[0] );
     ASSERT_REAL_EQ( v0_.y, v0_.data[1] );
+
+    ASSERT_REAL_EQ( 1, v0_[0] );
+    ASSERT_REAL_EQ( 2, v0_[1] );
+
+    v0_[0] = 3; v0_[1] = 4;
+    ASSERT_REAL_EQ( 3, v0_.data[0] );
+    ASSERT_REAL_EQ( 4, v0_.data[1] );
+
+    ASSERT_REAL_EQ( 3, v0_.x );
+    ASSERT_REAL_EQ( 4, v0_.y );
+
+    v0_.data[0] = -1; v0_.data[1] = 0;
+    ASSERT_REAL_EQ(-1, v0_[0] );
+    ASSERT_REAL_EQ( 0, v0_[1] );
+
+    ASSERT_REAL_EQ(-1, v0_.x );
+    ASSERT_REAL_EQ( 0, v0_.y );
 }
 
 #if 0

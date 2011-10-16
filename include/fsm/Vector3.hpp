@@ -72,7 +72,16 @@ public:
     /// \return A copy of the resulting vector
     const Vector3& set( const Real _a[] );
 
-    Real operator []( const size_t _i ) const;
+    //---------------------------------------
+    /// \brief Array access.
+    /// \param _i - the index to access elements in the array { x, y, z }
+    /// \return The vector element
+    inline Real& operator []( const size_t _i ) { return data[_i]; };
+    //---------------------------------------
+    /// \brief Array access.
+    /// \param _i - the index to access elements in the array { x, y, z }
+    /// \return The vector element
+    inline const Real& operator []( const size_t _i ) const { return data[_i]; };
 
     //---------------------------------------
     /// \brief Negative operator.

@@ -77,28 +77,6 @@ namespace fsm
     }
 
     //---------------------------------------
-    Real Vector4::operator []( const size_t _i ) const
-    {
-        switch (_i)
-        {
-            case 0:
-                return x;
-
-            case 1:
-                return y;
-
-            case 2:
-                return z;
-
-            case 3:
-                return w;
-        }
-
-        FSM_ASSERT_FAIL();
-        return g_realNaN;
-    }
-
-    //---------------------------------------
     Vector4 Vector4::operator -() const
     {
         return Vector4( -x, -y, -z, -w );

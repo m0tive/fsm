@@ -70,6 +70,17 @@ public:
     const Vector2& set( const Real _a[] );
 
     //---------------------------------------
+    /// \brief Array access.
+    /// \param _i - the index to access elements in the array { x, y }
+    /// \return The vector element
+    inline Real& operator []( const size_t _i ) { return data[_i]; };
+    //---------------------------------------
+    /// \brief Array access.
+    /// \param _i - the index to access elements in the array { x, y }
+    /// \return The vector element
+    inline const Real& operator []( const size_t _i ) const { return data[_i]; };
+
+    //---------------------------------------
     /// \brief Negative operator.
     /// Make a new Vector2 by making each value of this Vector2 negative.
     /// \return The resulting vector

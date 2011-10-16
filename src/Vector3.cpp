@@ -69,25 +69,6 @@ namespace fsm
     }
 
     //---------------------------------------
-    Real Vector3::operator []( const size_t _i ) const
-    {
-        switch (_i)
-        {
-            case 0:
-                return x;
-
-            case 1:
-                return y;
-
-            case 2:
-                return z;
-        }
-
-        FSM_ASSERT_FAIL();
-        return g_realNaN;
-    }
-
-    //---------------------------------------
     Vector3 Vector3::operator -() const
     {
         return Vector3( -x, -y, -z );

@@ -48,6 +48,33 @@ TEST_F(Vector4Test, DataAccess)
     ASSERT_REAL_EQ( 2, v0_.data[1] );
     ASSERT_REAL_EQ( 4, v0_.data[2] );
     ASSERT_REAL_EQ( 5, v0_.data[3] );
+
+    ASSERT_REAL_EQ( 1, v0_[0] );
+    ASSERT_REAL_EQ( 2, v0_[1] );
+    ASSERT_REAL_EQ( 4, v0_[2] );
+    ASSERT_REAL_EQ( 5, v0_[3] );
+
+    v0_[0] = 3; v0_[1] = 4; v0_[2] = 6; v0_[3] = 7;
+    ASSERT_REAL_EQ( 3, v0_.data[0] );
+    ASSERT_REAL_EQ( 4, v0_.data[1] );
+    ASSERT_REAL_EQ( 6, v0_.data[2] );
+    ASSERT_REAL_EQ( 7, v0_.data[3] );
+
+    ASSERT_REAL_EQ( 3, v0_.x );
+    ASSERT_REAL_EQ( 4, v0_.y );
+    ASSERT_REAL_EQ( 6, v0_.z );
+    ASSERT_REAL_EQ( 7, v0_.w );
+
+    v0_.data[0] = -1; v0_.data[1] = 0; v0_.data[2] = 2; v0_.data[3] = 3;
+    ASSERT_REAL_EQ(-1, v0_[0] );
+    ASSERT_REAL_EQ( 0, v0_[1] );
+    ASSERT_REAL_EQ( 2, v0_[2] );
+    ASSERT_REAL_EQ( 3, v0_[3] );
+
+    ASSERT_REAL_EQ(-1, v0_.x );
+    ASSERT_REAL_EQ( 0, v0_.y );
+    ASSERT_REAL_EQ( 2, v0_.z );
+    ASSERT_REAL_EQ( 3, v0_.w );
 }
 
 #if 0
