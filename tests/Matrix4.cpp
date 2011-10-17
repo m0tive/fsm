@@ -146,6 +146,25 @@ TEST_F(Matrix4Test, Multiply)
 }
 
 //---------------------------------------
+TEST_F(Matrix4Test, Serialise)
+{
+    fsm::Real* set;
+    set = m2_.serialise();
+
+    EXPECT_16REALS_MAT_EQ(  set[0],  set[1],  set[2],  set[3],
+                            set[4],  set[5],  set[6],  set[7],
+                            set[8],  set[9], set[10], set[11],
+                           set[12], set[13], set[14], set[15], m2_ );
+
+    set = m2_.serialise( fsm::Matrix4::kColMajor );
+
+    EXPECT_16REALS_MAT_EQ( set[0], set[4],  set[8], set[12],
+                           set[1], set[5],  set[9], set[13],
+                           set[2], set[6], set[10], set[14],
+                           set[3], set[7], set[11], set[15], m2_ );
+}
+
+//---------------------------------------
 TEST_F(Matrix4Test, Transpose)
 {
     fsm::Matrix4 mA;
@@ -162,4 +181,46 @@ TEST_F(Matrix4Test, Transpose)
     EXPECT_16REALS_MAT_EQ( 0,1,2,3, 4,5,6,7, 8,9,10,11, 12,13,14,15, m2_ );
     fsm::Matrix4::transpose( mA );
     EXPECT_16REALS_MAT_EQ( 0,1,2,3, 4,5,6,7, 8,9,10,11, 12,13,14,15, mA );
+}
+
+//---------------------------------------
+TEST_F(Matrix4Test, Determinate)
+{
+    fsm::Real d = m0_.determinate();
+    EXPECT_REAL_EQ( 0, d );
+
+    d = m1_.determinate();
+    EXPECT_REAL_EQ( 1, d );
+
+    d = m2_.determinate();
+    EXPECT_REAL_EQ( 0, d );
+
+    d = fsm::Matrix4( 2,5,7,8, 4,6,9,7, 1,3,2,6, 2,5,1,5 ).determinate();
+    EXPECT_REAL_EQ( -93, d );
+}
+
+//---------------------------------------
+TEST_F(Matrix4Test, Invert)
+{
+    EXPECT_TRUE(false);
+#if 0
+    bool result = fsm::Matrix4::invert( m0_ );
+    EXPECT_FALSE(result);
+    EXPECT_16REALS_MAT_EQ( 0,0,0, 0,0,0, 0,0,0, m0_ );
+
+    result = fsm::Matrix3::invert( m1_ );
+    EXPECT_TRUE(result);
+    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m1_ );
+
+    m0_ = m2_.inverse();
+    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m0_ );
+    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+
+    m2_.set( 1,4,3, 2,5,6, 7,3,9 );
+    m1_ = m2_.inverse();
+    EXPECT_9REALS_MAT_EQ( 1,4,3, 2,5,6, 7,3,9, m2_ );
+    EXPECT_9REALS_MAT_EQ( 0.75,-0.75, 0.25,
+                        2.0/3.0, -1.0/3.0, 0,
+                        -29.0/36.0, 25.0/36.0, -1.0/12.0, m1_ );
+#endif
 }

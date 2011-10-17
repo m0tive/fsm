@@ -239,6 +239,29 @@ namespace fsm
     }
 
     //---------------------------------------
+    Real* Matrix4::serialise( Layout _layout/*= kRowMajor*/) const
+    {
+        static Real s_mat[16];
+
+        if( _layout ) // if kColMajor
+        {
+            s_mat[0]=r0[0]; s_mat[4]=r0[1];  s_mat[8]=r0[2]; s_mat[12]=r0[3];
+            s_mat[1]=r1[0]; s_mat[5]=r1[1];  s_mat[9]=r1[2]; s_mat[13]=r1[3];
+            s_mat[2]=r2[0]; s_mat[6]=r2[1]; s_mat[10]=r2[2]; s_mat[14]=r2[3];
+            s_mat[3]=r3[0]; s_mat[7]=r3[1]; s_mat[11]=r3[2]; s_mat[15]=r3[3];
+        }
+        else
+        {
+            memcpy( s_mat,    r0.data, 4*sizeof(Real) );
+            memcpy( s_mat+4,  r1.data, 4*sizeof(Real) );
+            memcpy( s_mat+8,  r2.data, 4*sizeof(Real) );
+            memcpy( s_mat+12, r3.data, 4*sizeof(Real) );
+        }
+
+        return s_mat;
+    }
+
+    //---------------------------------------
     Matrix4 Matrix4::transpose() const
     {
         return Matrix4(
@@ -255,5 +278,150 @@ namespace fsm
                 _m.r0.data[1], _m.r1.data[1], _m.r2.data[1], _m.r3.data[1],
                 _m.r0.data[2], _m.r1.data[2], _m.r2.data[2], _m.r3.data[2],
                 _m.r0.data[3], _m.r1.data[3], _m.r2.data[3], _m.r3.data[3] );
+    }
+
+    //---------------------------------------
+    Real Matrix4::determinate() const
+    {
+        Real ret;
+
+        ret  = r0.data[0]*r1.data[1]*r2.data[2]*r3.data[3];
+        ret += r0.data[0]*r1.data[2]*r1.data[3]*r3.data[1];
+        ret += r0.data[0]*r1.data[3]*r2.data[1]*r3.data[2];
+
+        ret += r0.data[1]*r1.data[0]*r2.data[3]*r3.data[2];
+        ret += r0.data[1]*r1.data[2]*r2.data[0]*r3.data[3];
+        ret += r0.data[1]*r1.data[3]*r2.data[2]*r3.data[0];
+
+        ret += r0.data[2]*r1.data[0]*r2.data[1]*r3.data[3];
+        ret += r0.data[2]*r1.data[1]*r2.data[3]*r3.data[0];
+        ret += r0.data[2]*r1.data[3]*r2.data[0]*r3.data[1];
+
+        ret += r0.data[3]*r1.data[0]*r2.data[2]*r3.data[1];
+        ret += r0.data[3]*r1.data[1]*r2.data[0]*r3.data[2];
+        ret += r0.data[3]*r1.data[2]*r2.data[1]*r3.data[0];
+
+        ret -= r0.data[0]*r1.data[1]*r2.data[3]*r3.data[2];
+        ret -= r0.data[0]*r1.data[2]*r2.data[1]*r3.data[3];
+        ret -= r0.data[0]*r1.data[3]*r2.data[2]*r3.data[1];
+
+        ret -= r0.data[1]*r1.data[0]*r2.data[2]*r3.data[3];
+        ret -= r0.data[1]*r1.data[2]*r2.data[3]*r3.data[0];
+        ret -= r0.data[1]*r1.data[3]*r2.data[0]*r3.data[2];
+
+        ret -= r0.data[2]*r1.data[0]*r2.data[3]*r3.data[1];
+        ret -= r0.data[2]*r1.data[1]*r2.data[0]*r3.data[3];
+        ret -= r0.data[2]*r1.data[3]*r2.data[1]*r3.data[0];
+
+        ret -= r0.data[3]*r1.data[0]*r2.data[1]*r3.data[2];
+        ret -= r0.data[3]*r1.data[1]*r2.data[2]*r3.data[0];
+        ret -= r0.data[3]*r1.data[2]*r2.data[0]*r3.data[1];
+
+        return ret;
+    }
+
+    //---------------------------------------
+    void doInvert( const Matrix4& s, Matrix4& d, const Real& det )
+    {
+        const Real m00 = s.r1[1]*s.r2[2]*s.r3[3] + s.r1[2]*s.r2[3]*s.r3[1] +
+                         s.r1[3]*s.r2[1]*s.r3[2] - s.r1[1]*s.r2[3]*s.r3[2] -
+                         s.r1[2]*s.r2[1]*s.r3[3] - s.r1[3]*s.r2[2]*s.r3[1];
+        const Real m01 = s.r0[1]*s.r2[3]*s.r3[2] + s.r0[2]*s.r2[1]*s.r3[3] +
+                         s.r0[3]*s.r2[2]*s.r3[1] - s.r0[1]*s.r2[2]*s.r3[3] -
+                         s.r0[2]*s.r2[3]*s.r3[1] - s.r0[3]*s.r2[1]*s.r3[2];
+        const Real m02 = s.r0[1]*s.r1[2]*s.r3[3] + s.r0[2]*s.r1[3]*s.r3[1] +
+                         s.r0[3]*s.r1[1]*s.r3[2] - s.r0[1]*s.r1[3]*s.r3[2] -
+                         s.r0[2]*s.r1[1]*s.r3[3] - s.r0[3]*s.r1[2]*s.r3[1];
+        const Real m03 = s.r0[1]*s.r1[3]*s.r2[2] + s.r0[2]*s.r1[1]*s.r2[3] +
+                         s.r0[3]*s.r1[2]*s.r2[1] - s.r0[1]*s.r1[2]*s.r2[3] -
+                         s.r0[2]*s.r1[3]*s.r2[1] - s.r0[3]*s.r1[1]*s.r2[2];
+
+        const Real m10 = s.r1[0]*s.r2[3]*s.r3[2] + s.r1[2]*s.r2[0]*s.r3[3] +
+                         s.r1[3]*s.r2[2]*s.r3[0] - s.r1[0]*s.r2[2]*s.r3[3] -
+                         s.r1[2]*s.r2[3]*s.r3[0] - s.r1[3]*s.r2[0]*s.r3[2];
+        const Real m11 = s.r0[0]*s.r2[2]*s.r3[3] + s.r0[2]*s.r2[3]*s.r3[0] +
+                         s.r0[3]*s.r2[0]*s.r3[2] - s.r0[0]*s.r2[3]*s.r3[2] -
+                         s.r0[2]*s.r2[0]*s.r3[3] - s.r0[3]*s.r2[2]*s.r3[0];
+        const Real m12 = s.r0[0]*s.r1[3]*s.r3[2] + s.r0[2]*s.r1[0]*s.r3[3] +
+                         s.r0[3]*s.r1[2]*s.r3[0] - s.r0[0]*s.r1[2]*s.r3[3] -
+                         s.r0[2]*s.r1[3]*s.r3[0] - s.r0[3]*s.r1[0]*s.r3[2];
+        const Real m13 = s.r0[0]*s.r1[2]*s.r2[3] + s.r0[2]*s.r1[3]*s.r2[0] +
+                         s.r0[3]*s.r1[0]*s.r2[2] - s.r0[0]*s.r1[3]*s.r2[2] -
+                         s.r0[2]*s.r1[0]*s.r2[3] - s.r0[3]*s.r1[2]*s.r2[0];
+
+        const Real m20 = s.r1[0]*s.r2[1]*s.r3[3] + s.r1[1]*s.r2[3]*s.r3[0] +
+                         s.r1[3]*s.r2[0]*s.r3[1] - s.r1[0]*s.r2[3]*s.r3[1] -
+                         s.r1[1]*s.r2[0]*s.r3[3] - s.r1[3]*s.r2[1]*s.r3[0];
+        const Real m21 = s.r0[0]*s.r2[3]*s.r3[1] + s.r0[1]*s.r2[0]*s.r3[3] +
+                         s.r0[3]*s.r2[1]*s.r3[0] - s.r0[0]*s.r2[1]*s.r3[3] -
+                         s.r0[1]*s.r2[3]*s.r3[0] - s.r0[3]*s.r2[0]*s.r3[1];
+        const Real m22 = s.r0[0]*s.r1[1]*s.r3[3] + s.r0[1]*s.r1[3]*s.r3[0] +
+                         s.r0[3]*s.r1[0]*s.r3[1] - s.r0[0]*s.r1[3]*s.r3[1] -
+                         s.r0[1]*s.r1[0]*s.r3[3] - s.r0[3]*s.r1[1]*s.r3[0];
+        const Real m23 = s.r0[0]*s.r1[3]*s.r2[1] + s.r0[1]*s.r1[0]*s.r2[3] +
+                         s.r0[3]*s.r1[1]*s.r2[0] - s.r0[0]*s.r1[1]*s.r2[3] -
+                         s.r0[1]*s.r1[3]*s.r2[0] - s.r0[3]*s.r1[0]*s.r2[1];
+
+        const Real m30 = s.r1[0]*s.r2[2]*s.r3[1] + s.r1[1]*s.r2[0]*s.r3[2] +
+                         s.r1[2]*s.r2[1]*s.r3[0] - s.r1[0]*s.r2[1]*s.r3[2] -
+                         s.r1[1]*s.r2[2]*s.r3[0] - s.r1[2]*s.r2[0]*s.r3[1];
+        const Real m31 = s.r0[0]*s.r2[1]*s.r3[2] + s.r0[1]*s.r2[2]*s.r3[0] +
+                         s.r0[2]*s.r2[0]*s.r3[1] - s.r0[0]*s.r2[2]*s.r3[1] -
+                         s.r0[1]*s.r2[0]*s.r3[2] - s.r0[2]*s.r2[1]*s.r3[0];
+        const Real m32 = s.r0[0]*s.r1[2]*s.r3[1] + s.r0[1]*s.r1[0]*s.r3[2] +
+                         s.r0[2]*s.r1[1]*s.r3[0] - s.r0[0]*s.r1[1]*s.r3[2] -
+                         s.r0[1]*s.r1[2]*s.r3[0] - s.r0[2]*s.r1[0]*s.r3[1];
+        const Real m33 = s.r0[0]*s.r1[1]*s.r2[2] + s.r0[1]*s.r1[2]*s.r2[0] +
+                         s.r0[2]*s.r1[0]*s.r2[1] - s.r0[0]*s.r1[2]*s.r2[1] -
+                         s.r0[1]*s.r1[0]*s.r2[2] - s.r0[2]*s.r1[1]*s.r2[0];
+
+        d.r0.data[0] = m00 / det;
+        d.r0.data[1] = m01 / det;
+        d.r0.data[2] = m02 / det;
+        d.r0.data[3] = m03 / det;
+
+        d.r1.data[0] = m10 / det;
+        d.r1.data[1] = m11 / det;
+        d.r1.data[2] = m12 / det;
+        d.r1.data[3] = m13 / det;
+
+        d.r2.data[0] = m20 / det;
+        d.r2.data[1] = m21 / det;
+        d.r2.data[2] = m22 / det;
+        d.r2.data[3] = m23 / det;
+
+        d.r3.data[0] = m30 / det;
+        d.r3.data[1] = m31 / det;
+        d.r3.data[2] = m32 / det;
+        d.r3.data[3] = m33 / det;
+    }
+
+    //---------------------------------------
+    Matrix4 Matrix4::inverse() const
+    {
+        Real det = determinate();
+        if( realCompare( det, 0.0 ) )
+        {
+            return cIdentity;
+        }
+
+        Matrix4 ret;
+        doInvert( *this, ret, det );
+
+        return ret;
+    }
+
+    //---------------------------------------
+    bool Matrix4::invert( Matrix4& _m )
+    {
+        Real det = _m.determinate();
+        if( realCompare( det, 0.0 ) )
+        {
+            return false;
+        }
+
+        doInvert( _m, _m, det );
+
+        return true;
     }
 }

@@ -155,7 +155,7 @@ public:
     /// <tt>| 0 1 2 |</tt>\n
     /// <tt>| 3 4 5 |</tt>\n
     /// <tt>| 6 7 8 |</tt>\n
-    /// \param _layout - specify input is column major layout: \par
+    /// \param _layout - specify output is column major layout: \par
     /// <tt>| 0 3 6 |</tt>\n
     /// <tt>| 1 4 7 |</tt>\n
     /// <tt>| 2 5 8 |</tt>\n

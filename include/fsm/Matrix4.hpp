@@ -23,7 +23,8 @@
 
 namespace fsm
 {
-/// \brief
+/// \brief A matix with 4 rows and 4 columns.
+/// \note The matrix is stored internally as a row major Real array
 class Matrix4
 {
 public:
@@ -164,6 +165,21 @@ public:
     const Matrix4& postMultiply( const Matrix4& _rhs );
 
     //---------------------------------------
+    /// \brief Convert to one-dimensional array.
+    /// The default layout is: \par
+    /// <tt>|  0  1  2  3 |</tt>\n
+    /// <tt>|  4  5  6  7 |</tt>\n
+    /// <tt>|  8  9 10 11 |</tt>\n
+    /// <tt>| 12 13 14 15 |</tt>\n
+    /// \param _layout - specify output is column major layout: \par
+    /// <tt>|  0  4  8 12 |</tt>\n
+    /// <tt>|  1  5  9 13 |</tt>\n
+    /// <tt>|  2  6 10 14 |</tt>\n
+    /// <tt>|  3  7 11 15 |</tt>\n
+    /// \return A temporary array containing the matrix.
+    Real* serialise( Layout _layout = kRowMajor ) const;
+
+    //---------------------------------------
     /// \brief Get the transpose of this matrix.
     /// \return A copy of this matrix is returned.
     Matrix4 transpose() const;
@@ -171,6 +187,21 @@ public:
     /// \brief Transpose a matrix _m.
     /// \param _m - the Matrix4 to be transposed.
     static void transpose( Matrix4& _m );
+
+    //---------------------------------------
+    /// \brief Calculate the determinate.
+    Real determinate() const;
+
+    //---------------------------------------
+    /// \brief Calculate the inverse.
+    /// \return If determinate is not zero, the resulting inverse matrix,
+    ///   else Matrix4::kIdentity
+    Matrix4 inverse() const;
+    //---------------------------------------
+    /// \brief Invert a matrix.
+    /// \param _m - the Matrix4 to invert in-place.
+    /// \return true if determinate is not zero and the inverse was possible.
+    static bool invert( Matrix4& _m );
 
     Vector4 r0; ///< first row
     Vector4 r1; ///< second row
