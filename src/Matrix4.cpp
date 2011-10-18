@@ -285,37 +285,37 @@ namespace fsm
     {
         Real ret;
 
-        ret  = r0.data[0]*r1.data[1]*r2.data[2]*r3.data[3];
-        ret += r0.data[0]*r1.data[2]*r1.data[3]*r3.data[1];
-        ret += r0.data[0]*r1.data[3]*r2.data[1]*r3.data[2];
+        ret  = r0[0]*r1[1]*r2[2]*r3[3];
+        ret += r0[0]*r1[2]*r2[3]*r3[1];
+        ret += r0[0]*r1[3]*r2[1]*r3[2];
 
-        ret += r0.data[1]*r1.data[0]*r2.data[3]*r3.data[2];
-        ret += r0.data[1]*r1.data[2]*r2.data[0]*r3.data[3];
-        ret += r0.data[1]*r1.data[3]*r2.data[2]*r3.data[0];
+        ret += r0[1]*r1[0]*r2[3]*r3[2];
+        ret += r0[1]*r1[2]*r2[0]*r3[3];
+        ret += r0[1]*r1[3]*r2[2]*r3[0];
 
-        ret += r0.data[2]*r1.data[0]*r2.data[1]*r3.data[3];
-        ret += r0.data[2]*r1.data[1]*r2.data[3]*r3.data[0];
-        ret += r0.data[2]*r1.data[3]*r2.data[0]*r3.data[1];
+        ret += r0[2]*r1[0]*r2[1]*r3[3];
+        ret += r0[2]*r1[1]*r2[3]*r3[0];
+        ret += r0[2]*r1[3]*r2[0]*r3[1];
 
-        ret += r0.data[3]*r1.data[0]*r2.data[2]*r3.data[1];
-        ret += r0.data[3]*r1.data[1]*r2.data[0]*r3.data[2];
-        ret += r0.data[3]*r1.data[2]*r2.data[1]*r3.data[0];
+        ret += r0[3]*r1[0]*r2[2]*r3[1];
+        ret += r0[3]*r1[1]*r2[0]*r3[2];
+        ret += r0[3]*r1[2]*r2[1]*r3[0];
 
-        ret -= r0.data[0]*r1.data[1]*r2.data[3]*r3.data[2];
-        ret -= r0.data[0]*r1.data[2]*r2.data[1]*r3.data[3];
-        ret -= r0.data[0]*r1.data[3]*r2.data[2]*r3.data[1];
+        ret -= r0[0]*r1[1]*r2[3]*r3[2];
+        ret -= r0[0]*r1[2]*r2[1]*r3[3];
+        ret -= r0[0]*r1[3]*r2[2]*r3[1];
 
-        ret -= r0.data[1]*r1.data[0]*r2.data[2]*r3.data[3];
-        ret -= r0.data[1]*r1.data[2]*r2.data[3]*r3.data[0];
-        ret -= r0.data[1]*r1.data[3]*r2.data[0]*r3.data[2];
+        ret -= r0[1]*r1[0]*r2[2]*r3[3];
+        ret -= r0[1]*r1[2]*r2[3]*r3[0];
+        ret -= r0[1]*r1[3]*r2[0]*r3[2];
 
-        ret -= r0.data[2]*r1.data[0]*r2.data[3]*r3.data[1];
-        ret -= r0.data[2]*r1.data[1]*r2.data[0]*r3.data[3];
-        ret -= r0.data[2]*r1.data[3]*r2.data[1]*r3.data[0];
+        ret -= r0[2]*r1[0]*r2[3]*r3[1];
+        ret -= r0[2]*r1[1]*r2[0]*r3[3];
+        ret -= r0[2]*r1[3]*r2[1]*r3[0];
 
-        ret -= r0.data[3]*r1.data[0]*r2.data[1]*r3.data[2];
-        ret -= r0.data[3]*r1.data[1]*r2.data[2]*r3.data[0];
-        ret -= r0.data[3]*r1.data[2]*r2.data[0]*r3.data[1];
+        ret -= r0[3]*r1[0]*r2[1]*r3[2];
+        ret -= r0[3]*r1[1]*r2[2]*r3[0];
+        ret -= r0[3]*r1[2]*r2[0]*r3[1];
 
         return ret;
     }

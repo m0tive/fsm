@@ -195,6 +195,36 @@ TEST_F(Matrix4Test, Determinate)
     d = m2_.determinate();
     EXPECT_REAL_EQ( 0, d );
 
+#if 0 // det element test. good for debugging, not really needed {{{
+    // 0
+    d = fsm::Matrix4( 2,0,0,0,
+                      0,3,0,0,
+                      0,0,4,0,
+                      0,0,0,5 ).determinate();
+    EXPECT_REAL_EQ( 120, d );
+    // 1
+    d = fsm::Matrix4( 2,0,0,0,
+                      0,0,4,0,
+                      0,0,0,5,
+                      0,3,0,0 ).determinate();
+    EXPECT_REAL_EQ( 120, d );
+    // 2
+    d = fsm::Matrix4( 2,0,0,0,
+                      0,0,0,5,
+                      0,3,0,0,
+                      0,0,4,0 ).determinate();
+    EXPECT_REAL_EQ( 120, d );
+
+    // not done some, I found the problem, add more if needed
+
+    // 23
+    d = fsm::Matrix4( 0,0,4,0,
+                      0,0,0,5,
+                      0,3,0,0,
+                      2,0,0,0 ).determinate();
+    EXPECT_REAL_EQ( -120, d );
+#endif // }}}
+
     d = fsm::Matrix4( 2,5,7,8, 4,6,9,7, 1,3,2,6, 2,5,1,5 ).determinate();
     EXPECT_REAL_EQ( -93, d );
 }
@@ -202,25 +232,31 @@ TEST_F(Matrix4Test, Determinate)
 //---------------------------------------
 TEST_F(Matrix4Test, Invert)
 {
-    EXPECT_TRUE(false);
-#if 0
     bool result = fsm::Matrix4::invert( m0_ );
     EXPECT_FALSE(result);
-    EXPECT_16REALS_MAT_EQ( 0,0,0, 0,0,0, 0,0,0, m0_ );
+    EXPECT_16REALS_MAT_EQ( 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, m0_ );
 
-    result = fsm::Matrix3::invert( m1_ );
+    result = fsm::Matrix4::invert( m1_ );
     EXPECT_TRUE(result);
-    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m1_ );
+    EXPECT_MAT_EQ( fsm::Matrix4::cIdentity, m1_ );
 
     m0_ = m2_.inverse();
-    EXPECT_MAT_EQ( fsm::Matrix3::cIdentity, m0_ );
-    EXPECT_9REALS_MAT_EQ( 0,1,2, 3,4,5, 6,7,8, m2_ );
+    EXPECT_MAT_EQ( fsm::Matrix4::cIdentity, m0_ );
+    EXPECT_16REALS_MAT_EQ( 0,1,2,3, 4,5,6,7, 8,9,10,11, 12,13,14,15, m2_ );
 
-    m2_.set( 1,4,3, 2,5,6, 7,3,9 );
+    m2_.set( 0,1,2,3,
+             4,5,6,7,
+             8,9,4,1,
+             2,3,1,9 );
+
     m1_ = m2_.inverse();
-    EXPECT_9REALS_MAT_EQ( 1,4,3, 2,5,6, 7,3,9, m2_ );
-    EXPECT_9REALS_MAT_EQ( 0.75,-0.75, 0.25,
-                        2.0/3.0, -1.0/3.0, 0,
-                        -29.0/36.0, 25.0/36.0, -1.0/12.0, m1_ );
-#endif
+    const fsm::Real d = m2_.determinate();
+    ASSERT_REAL_EQ( 216.0, d );
+    EXPECT_16REALS_MAT_EQ( 0,1,2,3, 4,5,6,7, 8,9,4,1, 2,3,1,9, m2_ );
+    EXPECT_16REALS_MAT_EQ(
+           -314.0/d, 130.0/d, -40.0/d,   8.0/d,
+            280.0/d,-140.0/d,  68.0/d,   8.0/d,
+              4.0/d,  52.0/d, -16.0/d, -40.0/d,
+            -24.0/d,  12.0/d, -12.0/d,  24.0/d,
+            m1_ );
 }
